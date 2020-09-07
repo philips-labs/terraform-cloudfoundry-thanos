@@ -7,11 +7,11 @@ resource "random_password" "password" {
 }
 
 data "cloudfoundry_org" "org" {
-  name = var.org_name
+  name = var.cf_org_name
 }
 
 data "cloudfoundry_user" "user" {
-  name   = var.user
+  name   = var.cf_user
   org_id = data.cloudfoundry_org.org.id
 }
 
@@ -65,7 +65,7 @@ resource "cloudfoundry_service_instance" "metrics" {
 }
 
 data "cloudfoundry_domain" "app_domain" {
-  name = var.app_domain
+  name = var.cf_app_domain
 }
 
 data "cloudfoundry_service" "s3" {

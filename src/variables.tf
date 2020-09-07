@@ -1,12 +1,17 @@
-variable "org_name" {
+variable "cf_org_name" {
   description = "Cloudfoundry ORG name to use for reverse proxy"
   type        = string
 }
 
-variable "app_domain" {
-  description = "The regular app domain to use"
+variable "cf_app_domain" {
+  description = "The Cloudfoundry regular app domain to use"
   type        = string
   default     = "us-east.philips-healthsuite.com"
+}
+
+variable "cf_user" {
+  description = "The Cloudfoundry user to assign rights to the app to"
+  type        = string
 }
 
 variable "thanos_image" {
