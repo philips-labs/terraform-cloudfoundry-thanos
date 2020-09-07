@@ -19,3 +19,15 @@ variable "thanos_image" {
   default     = "loafoe/cf-thanos:0.0.8"
   type        = string
 }
+
+variable "thanos_query_image" {
+  description = "Image to use for Thanos query"
+  default     = "loafoe/cf-thanos:0.0.8"
+  type        = string
+}
+
+variable "grafana_image" {
+  description = "Image to use for Grafana"
+  default     = "grafana/grafana:latest"
+  type        = string
+}
