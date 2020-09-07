@@ -16,6 +16,6 @@ variable "cf_user" {
 
 variable "thanos_image" {
   description = "Image to use for Thanos app"
-  default     = "loafoe/cf-thanos:0.0.6"
+  default     = "loafoe/cf-thanos:0.0.8"
   type        = string
 }
