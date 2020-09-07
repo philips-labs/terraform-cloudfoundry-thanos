@@ -16,51 +16,26 @@ data "cloudfoundry_user" "user" {
 }
 
 resource "cloudfoundry_space" "space" {
-  name = "thanos-${random_id.id.hex}"
+  name = "prometheus-thanos-${random_id.id.hex}"
   org  = data.cloudfoundry_org.org.id
 }
 
-resource "cloudfoundry_app" "prometheus" {
-  name         = "prometheus"
+resource "cloudfoundry_app" "prometheus_thanos" {
+  name         = "prometheus-thanos"
   space        = cloudfoundry_space.space.id
   memory       = 64
   disk_quota   = 2048
-  docker_image = var.prometheus_image
-  environment = {
-    FOO = "bar"
-  }
+  docker_image = var.prometheus_thanos_image
   routes {
-    route = cloudfoundry_route.prometheus.id
-  }
-}
-
-resource "cloudfoundry_app" "thanos" {
-  name         = "thanos"
-  space        = cloudfoundry_space.space.id
-  memory       = 512
-  disk_quota   = 2048
-  docker_image = var.thanos_image
-  environment = {
-    ADMIN_PASSWORD = random_password.password.result
+    route = cloudfoundry_route.prometheus_thanos.id
   }
   service_binding {
     service_instance = cloudfoundry_service_instance.s3.id
   }
-  routes {
-    route = cloudfoundry_route.thanos.id
-  }
+
 }
 
-resource "cloudfoundry_route" "thanos" {
-  domain   = data.cloudfoundry_domain.app_domain.id
-  space    = cloudfoundry_space.space.id
-  hostname = "thanos-${random_id.id.hex}"
-
-  depends_on = [cloudfoundry_space_users.users]
-}
-
-
-resource "cloudfoundry_route" "prometheus" {
+resource "cloudfoundry_route" "prometheus_thanos" {
   domain   = data.cloudfoundry_domain.app_domain.id
   space    = cloudfoundry_space.space.id
   hostname = "prometheus-${random_id.id.hex}"
