@@ -16,18 +16,18 @@ data "cloudfoundry_user" "user" {
 }
 
 resource "cloudfoundry_space" "space" {
-  name = "prometheus-thanos-${random_id.id.hex}"
+  name = "thanos-${random_id.id.hex}"
   org  = data.cloudfoundry_org.org.id
 }
 
-resource "cloudfoundry_app" "prometheus_thanos" {
-  name         = "prometheus-thanos"
+resource "cloudfoundry_app" "thanos" {
+  name         = "thanos"
   space        = cloudfoundry_space.space.id
   memory       = 64
   disk_quota   = 2048
-  docker_image = var.prometheus_thanos_image
+  docker_image = var.thanos_image
   routes {
-    route = cloudfoundry_route.prometheus_thanos.id
+    route = cloudfoundry_route.thanos.id
   }
   service_binding {
     service_instance = cloudfoundry_service_instance.s3.id
@@ -35,10 +35,10 @@ resource "cloudfoundry_app" "prometheus_thanos" {
 
 }
 
-resource "cloudfoundry_route" "prometheus_thanos" {
+resource "cloudfoundry_route" "thanos" {
   domain   = data.cloudfoundry_domain.app_domain.id
   space    = cloudfoundry_space.space.id
-  hostname = "prometheus-${random_id.id.hex}"
+  hostname = "thanos-${random_id.id.hex}"
 
   depends_on = [cloudfoundry_space_users.users]
 }

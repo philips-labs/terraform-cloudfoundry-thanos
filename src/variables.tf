@@ -14,8 +14,8 @@ variable "app_domain" {
   default     = "us-east.philips-healthsuite.com"
 }
 
-variable "prometheus_thanos_image" {
-  description = "Image to use for Prometheus + Thanos app"
-  default     = "loafoe/prometheus-thanos:0.0.1"
+variable "thanos_image" {
+  description = "Image to use for Thanos app"
+  default     = "loafoe/cf-thanos:0.0.2"
   type        = string
 }

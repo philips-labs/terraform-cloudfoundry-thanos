@@ -32,5 +32,7 @@ COPY prometheus.conf /sidecars/supervisor/conf.d
 COPY thanos.conf /sidecars/supervisor/conf.d
 COPY scripts/thanos_s3.sh /sidecars/bin
 
+EXPOSE 9090
+
 ADD supervisord.conf /etc/
 CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
