@@ -62,6 +62,8 @@ resource "cloudfoundry_service_instance" "metrics" {
   name         = "metrics"
   space        = cloudfoundry_space.space.id
   service_plan = data.cloudfoundry_service.metrics.service_plans["metrics"]
+
+  depends_on = [cloudfoundry_space_users.users]
 }
 
 data "cloudfoundry_domain" "app_domain" {

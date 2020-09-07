@@ -26,8 +26,8 @@ RUN apk add --update supervisor jq && rm  -rf /tmp/* /var/cache/apk/*
 RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc
 RUN mkdir -p /prometheus /thanos
 COPY --from=prometheus /app/prometheus /sidecars/bin
-COPY --from=prometheus /app/prometheus.yml /sidecars/etc
 COPY --from=thanos     /app/thanos     /sidecars/bin
+COPY prometheus.yml  /sidecars/etc
 COPY prometheus.conf /sidecars/supervisor/conf.d
 COPY thanos.conf /sidecars/supervisor/conf.d
 COPY scripts/thanos_s3.sh /sidecars/bin
