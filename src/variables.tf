@@ -1,8 +1,3 @@
-variable "ldap_user" {
-  description = "LDAP user to use for connections"
-  type        = string
-}
-
 variable "org_name" {
   description = "Cloudfoundry ORG name to use for reverse proxy"
   type        = string
