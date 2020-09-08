@@ -8,6 +8,7 @@ terraform {
     }
     random = {
       source = "random"
+      version = ">= 2.2.1"
     }
   }
 }
