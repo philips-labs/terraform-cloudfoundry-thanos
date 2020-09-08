@@ -26,6 +26,12 @@ variable "thanos_query_image" {
   type        = string
 }
 
+variable "enable_grafana" {
+  description = "Adds a Grafana deployment when enabled"
+  type        = bool
+  default     = false
+}
+
 variable "grafana_image" {
   description = "Image to use for Grafana"
   default     = "grafana/grafana:latest"
