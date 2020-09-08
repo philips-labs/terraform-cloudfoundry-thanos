@@ -9,7 +9,7 @@ module "grafana" {
   name_postfix  = random_id.id.hex
   network_policies = [
     {
-      destination_app = cloudfoundry_app.thanos.id
+      destination_app = cloudfoundry_app.thanos_query.id
       protocol        = "tcp"
       port            = "9090"
     }
