@@ -1,5 +1,6 @@
 module "grafana" {
-  source = "./modules/grafana"
+  source = "philips-labs/grafana/cloudfoundry"
+  version = ">= 0.2.0"
 
   count         = var.enable_grafana ? 1 : 0
   grafana_image = var.grafana_image
