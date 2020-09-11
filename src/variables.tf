@@ -26,6 +26,13 @@ variable "thanos_query_image" {
   type        = string
 }
 
+variable "thanos_store_image" {
+  description = "Image to use for Thanos store"
+  default     = "loafoe/cf-thanos:0.0.9"
+  type        = string
+}
+
+
 variable "enable_grafana" {
   description = "Adds a Grafana deployment when enabled"
   type        = bool

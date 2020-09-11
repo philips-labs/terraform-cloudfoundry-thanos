@@ -1,6 +1,6 @@
 module "grafana" {
-  source = "philips-labs/grafana/cloudfoundry"
-  version = ">= 0.2.0"
+  source  = "philips-labs/grafana/cloudfoundry"
+  version = ">= 0.2.1"
 
   count         = var.enable_grafana ? 1 : 0
   grafana_image = var.grafana_image
@@ -11,6 +11,11 @@ module "grafana" {
   network_policies = [
     {
       destination_app = cloudfoundry_app.thanos_query.id
+      protocol        = "tcp"
+      port            = "9090"
+    },
+    {
+      destination_app = cloudfoundry_app.thanos_store.id
       protocol        = "tcp"
       port            = "9090"
     }
