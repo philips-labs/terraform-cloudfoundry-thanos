@@ -1,0 +1,7 @@
+.terraform/
+.idea/
+.vscode/
+local.yml
+*.tfvars*
+*.tfstate*
+*.zip
