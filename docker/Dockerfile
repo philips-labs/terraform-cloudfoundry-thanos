@@ -1,5 +1,5 @@
 ARG prometheus_version=2.20.1
-ARG thanos_version=0.14.0
+ARG thanos_version=0.15.0
 
 FROM alpine:latest AS prometheus
 ARG prometheus_version
