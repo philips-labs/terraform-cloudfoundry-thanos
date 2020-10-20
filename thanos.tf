@@ -4,6 +4,12 @@ resource "cloudfoundry_app" "thanos" {
   memory       = 512
   disk_quota   = 2048
   docker_image = var.thanos_image
+  docker_credentials = {
+    username = var.docker_username
+    password = var.docker_password
+  }
+  environment = var.environment
+
   routes {
     route = cloudfoundry_route.thanos.id
   }
