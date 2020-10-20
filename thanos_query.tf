@@ -4,6 +4,11 @@ resource "cloudfoundry_app" "thanos_query" {
   memory       = 256
   disk_quota   = 2048
   docker_image = var.thanos_query_image
+  docker_credentials = {
+    username = var.docker_username
+    password = var.docker_password
+  }
+  environment = var.environment
   command      = "/sidecars/bin/thanos query --grpc-address=0.0.0.0:10901 --http-address=0.0.0.0:9090 --store=${cloudfoundry_route.thanos_internal.endpoint}:19090 --store=${cloudfoundry_route.thanos_store_internal.endpoint}:19090"
   routes {
     route = cloudfoundry_route.thanos_query.id

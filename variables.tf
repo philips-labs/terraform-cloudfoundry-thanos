@@ -44,3 +44,21 @@ variable "grafana_image" {
   default     = "grafana/grafana:latest"
   type        = string
 }
+
+variable "environment" {
+  type  =  map
+  description = "Pass environment variable to the app"
+  default = {}
+}
+
+variable "docker_username" {
+  type        = string
+  description = "Docker registry username"
+  default     = ""
+}
+
+variable "docker_password" {
+  type        = string
+  description = "Docker registry password"
+  default     = ""
+}
