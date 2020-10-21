@@ -35,6 +35,9 @@ a separate Cloud foundry space and deploys a number of apps and services
 | thanos\_image | Image to use for Thanos app | `string` | `"loafoe/cf-thanos:0.1.0"` | no |
 | thanos\_query\_image | Image to use for Thanos query | `string` | `"loafoe/cf-thanos:0.1.0"` | no |
 | thanos\_store\_image | Image to use for Thanos store | `string` | `"loafoe/cf-thanos:0.1.0"` | no |
+| docker\_username | Private Docker Registry username (for example AWS ECR creds) | `string` | n/a | no |
+| docker\_password | Private Docker Registry password  | `string` | n/a | no |
+
 
 ## Outputs
 
