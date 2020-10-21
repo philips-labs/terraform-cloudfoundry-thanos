@@ -4,6 +4,11 @@ resource "cloudfoundry_app" "thanos_store" {
   memory       = 1024
   disk_quota   = 2048
   docker_image = var.thanos_store_image
+  docker_credentials = {
+    username = var.docker_username
+    password = var.docker_password
+  }
+  environment = var.environment
   command      = "/sidecars/bin/thanos_s3.sh store --grpc-address=0.0.0.0:19090 --http-address=0.0.0.0:9090 --data-dir=/prometheus --index-cache-size=500MB --chunk-pool-size=500MB --objstore.config-file=/sidecars/etc/bucket_config.yaml"
   routes {
     route = cloudfoundry_route.thanos_store_internal.id
