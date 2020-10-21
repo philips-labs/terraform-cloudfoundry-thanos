@@ -4,7 +4,6 @@ A path towards unlimited metrics storage. This module provisions
 a separate Cloud foundry space and deploys a number of apps and services
 
 # TODO 
-- Add persistence and authentication to Grafana
 - Internalize Prometheus
 - Add some sort of Service Discovery to Prometheus
 
