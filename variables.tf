@@ -51,6 +51,12 @@ variable "environment" {
   default = {}
 }
 
+variable "grafana_environment" {
+  type  =  map
+  description = "Pass environment variable to Grafana"
+  default = {}
+}
+
 variable "docker_username" {
   type        = string
   description = "Docker registry username"

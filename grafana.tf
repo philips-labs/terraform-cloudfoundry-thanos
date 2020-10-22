@@ -8,6 +8,7 @@ module "grafana" {
   cf_org        = data.cloudfoundry_org.org.name
   cf_domain     = data.cloudfoundry_domain.app_domain.name
   name_postfix  = random_id.id.hex
+  environment   = var.grafana_environment
   network_policies = [
     {
       destination_app = cloudfoundry_app.thanos_query.id
