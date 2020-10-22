@@ -10,5 +10,5 @@ output "thanos_query_endpoint" {
 
 output "grafana_endpoint" {
   description = "URL of Grafana deployment (optional)"
-  value       = module.grafana[0].grafana_endpoint
+  value       = join("", module.grafana.*.grafana_endpoint)
 }
