@@ -37,8 +37,8 @@ a separate Cloud foundry space and deploys a number of apps and services
 | thanos\_store\_image | Image to use for Thanos store | `string` | `"loafoe/cf-thanos:0.1.0"` | no |
 | docker\_username | Private Docker Registry username (for example AWS ECR creds) | `string` | n/a | no |
 | docker\_password | Private Docker Registry password  | `string` | n/a | no |
-| environment | Additional Prometehus/Thanos environment variables  | `Map <key>=<value>` | n/a | yes if user use cf_exporter |
-| grafana_environment | Additional Grafana environment variables  | `Map <key>=<value>` | n/a | yes if user use Grafana |
+| environment | Additional Prometehus/Thanos environment variables  | `Map <key>=<value>` | n/a | yes if user uses cf_exporter |
+| grafana_environment | Additional Grafana environment variables  | `Map <key>=<value>` | n/a | no |
 
 ## Example of Thanos Terraform
 ```
