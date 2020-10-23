@@ -7,38 +7,6 @@ a separate Cloud foundry space and deploys a number of apps and services
 - Internalize Prometheus
 - Add some sort of Service Discovery to Prometheus
 
-## Requirements
-
-| Name | Version |
-|------|---------|
-| terraform | >= 0.13.0 |
-| cloudfoundry | >= 0.12.4 |
-| random | >= 2.2.1 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| cloudfoundry | >= 0.12.4 |
-| random | >= 2.2.1 |
-
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| cf\_app\_domain | The Cloudfoundry regular app domain to use | `string` | `"us-east.philips-healthsuite.com"` | no |
-| cf\_org\_name | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
-| cf\_user | The Cloudfoundry user to assign rights to the app to | `string` | n/a | yes |
-| enable\_grafana | Adds a Grafana deployment when enabled | `bool` | `false` | no |
-| grafana\_image | Image to use for Grafana | `string` | `"grafana/grafana:latest"` | no |
-| thanos\_image | Image to use for Thanos app | `string` | `"loafoe/cf-thanos:0.1.0"` | no |
-| thanos\_query\_image | Image to use for Thanos query | `string` | `"loafoe/cf-thanos:0.1.0"` | no |
-| thanos\_store\_image | Image to use for Thanos store | `string` | `"loafoe/cf-thanos:0.1.0"` | no |
-| docker\_username | Private Docker Registry username (for example AWS ECR creds) | `string` | n/a | no |
-| docker\_password | Private Docker Registry password  | `string` | n/a | no |
-| environment | Additional Prometehus/Thanos environment variables  | `Map <key>=<value>` | n/a | yes if user uses cf_exporter |
-| grafana_environment | Additional Grafana environment variables  | `Map <key>=<value>` | n/a | no |
-
 ## Example of Thanos Terraform
 ```
 module "thanos" {
@@ -70,6 +38,38 @@ module "thanos" {
     }
 }
 ```
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13.0 |
+| cloudfoundry | >= 0.12.4 |
+| random | >= 2.2.1 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| cloudfoundry | >= 0.12.4 |
+| random | >= 2.2.1 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| cf\_app\_domain | The Cloudfoundry regular app domain to use | `string` | `"us-east.philips-healthsuite.com"` | no |
+| cf\_org\_name | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
+| cf\_user | The Cloudfoundry user to assign rights to the app to | `string` | n/a | yes |
+| docker\_password | Docker registry password | `string` | `""` | no |
+| docker\_username | Docker registry username | `string` | `""` | no |
+| enable\_grafana | Adds a Grafana deployment when enabled | `bool` | `false` | no |
+| environment | Pass environment variable to the app | `map` | `{}` | no |
+| grafana\_environment | Pass environment variable to Grafana | `map` | `{}` | no |
+| grafana\_image | Image to use for Grafana | `string` | `"grafana/grafana:latest"` | no |
+| thanos\_image | Image to use for Thanos app | `string` | `"philipslabs/cf-thanos:latest"` | no |
+| thanos\_query\_image | Image to use for Thanos query | `string` | `"philipslabs/cf-thanos:latest"` | no |
+| thanos\_store\_image | Image to use for Thanos store | `string` | `"philipslabs/cf-thanos:latest"` | no |
 
 ## Outputs
 
