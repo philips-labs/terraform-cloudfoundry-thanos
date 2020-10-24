@@ -17,10 +17,12 @@ jobs:
       vmImage: "ubuntu-latest"
 
     steps:
-      - script: git clone https://github.com/philips-labs/paas-prometheus-exporter.git
+      - script: |
+        cd docker
+        git clone https://github.com/philips-labs/paas-prometheus-exporter.git
 
       - template: docker-build-push.yml@templates
         parameters:
           ImageName: cf-monitoring/thanos
           AddImageTag: latest
-          Dockerfile: Dockerfile_with_exporter
+          Dockerfile: docker/Dockerfile_with_exporter
