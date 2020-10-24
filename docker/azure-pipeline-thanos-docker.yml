@@ -1,8 +1,8 @@
 resources:
   repositories:
-    - repository: PaasPrometheusExporter # The name used to reference this repository in the checkout step
-      type: github
-      name: alphagov/paas-prometheus-exporter
+#    - repository: PaasPrometheusExporter # The name used to reference this repository in the checkout step
+#      type: github
+#      name: alphagov/paas-prometheus-exporter
     - repository: templates
       type: git
       name: pinc/azure-pipeline-templates
@@ -17,7 +17,7 @@ jobs:
       vmImage: "ubuntu-latest"
 
     steps:
-      - checkout: PaasPrometheusExporter
+      - script: git clone https://github.com/philips-labs/paas-prometheus-exporter.git
 
       - template: docker-build-push.yml@templates
         parameters:
