@@ -1,0 +1,23 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: pinc/azure-pipeline-templates
+      ref: refs/heads/master
+
+variables:
+  - template: build-variables.yml@templates
+
+jobs:
+  - job: "build"
+    pool:
+      vmImage: "ubuntu-latest"
+
+    steps:
+      - checkout: https://github.com/alphagov/paas-prometheus-exporter.git
+
+      - template: docker-build-push.yml@templates
+        parameters:
+          ImageName: cf-monitoring/thanos
+          AddImageTag: latest
+          Dockerfile: Dockerfile_with_exporter
