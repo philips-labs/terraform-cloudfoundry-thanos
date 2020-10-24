@@ -18,8 +18,9 @@ jobs:
 
     steps:
       - script: |
-        cd docker
-        git clone https://github.com/philips-labs/paas-prometheus-exporter.git
+          cd docker
+          git clone https://github.com/philips-labs/paas-prometheus-exporter.git
+        displayName: 'Download Paas Prometheus Exporter'
 
       - template: docker-build-push.yml@templates
         parameters:
