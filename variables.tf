@@ -46,15 +46,15 @@ variable "grafana_image" {
 }
 
 variable "environment" {
-  type  =  map
+  type        = map
   description = "Pass environment variable to the app"
-  default = {}
+  default     = {}
 }
 
 variable "grafana_environment" {
-  type  =  map
+  type        = map
   description = "Pass environment variable to Grafana"
-  default = {}
+  default     = {}
 }
 
 variable "docker_username" {
