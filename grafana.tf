@@ -1,6 +1,7 @@
 module "grafana" {
-  source  = "philips-labs/grafana/cloudfoundry"
-  version = ">= 0.3.0"
+  source = "github.com/philips-labs/terraform-cloudfoundry-grafana?ref=philips-forks"
+  #source  = "philips-labs/grafana/cloudfoundry"
+  #version = ">= 0.3.0"
 
   count           = var.enable_grafana ? 1 : 0
   enable_postgres = var.enable_grafana_postgres

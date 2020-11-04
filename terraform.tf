@@ -3,7 +3,7 @@ terraform {
 
   required_providers {
     cloudfoundry = {
-      source  = "cloudfoundry-community/cloudfoundry"
+      source  = "terraform-registry.us-east.philips-healthsuite.com/philips-forks/cloudfoundry"
       version = ">= 0.12.4"
     }
     random = {
