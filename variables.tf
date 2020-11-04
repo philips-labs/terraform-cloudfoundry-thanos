@@ -39,6 +39,12 @@ variable "enable_grafana" {
   default     = false
 }
 
+variable "enable_grafana_postgres" {
+  description = "Enables use of Postgres as Grafana config store"
+  type        = bool
+  default     = true
+}
+
 variable "grafana_image" {
   description = "Image to use for Grafana"
   default     = "grafana/grafana:latest"
