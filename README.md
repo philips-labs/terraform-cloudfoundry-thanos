@@ -20,6 +20,7 @@ module "thanos" {
     docker_username = var.cf_username
     docker_password = var.cf_password
     
+    thanos_space       = var.thanos_space
     thanos_image       = "${var.docker_repo}/thanos"
     thanos_query_image = "${var.docker_repo}/thanos"
     thanos_store_image = "${var.docker_repo}/thanos"
