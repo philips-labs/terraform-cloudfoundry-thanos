@@ -1,5 +1,5 @@
 resource "cloudfoundry_space" "space" {
-  name = "thanos-${random_id.id.hex}"
+  name = var.thanos_space
   org  = data.cloudfoundry_org.org.id
 }
 

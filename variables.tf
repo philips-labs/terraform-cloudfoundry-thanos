@@ -14,6 +14,12 @@ variable "cf_user" {
   type        = string
 }
 
+variable "thanos_space" {
+  description = "The space in which Thanos will be deployed"
+  default     = "thanos-${random_id.id.hex}"
+  type        = string
+}
+
 variable "thanos_image" {
   description = "Image to use for Thanos app"
   default     = "philipslabs/cf-thanos:latest"
