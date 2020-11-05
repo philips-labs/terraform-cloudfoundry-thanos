@@ -14,10 +14,9 @@ variable "cf_user" {
   type        = string
 }
 
-variable "thanos_space" {
-  description = "The space in which Thanos will be deployed"
-  default     = ""
+variable "name_postfix" {
   type        = string
+  description = "The postfix string to append to the space, hostname, etc. Prevents namespace clashes"
 }
 
 variable "thanos_image" {

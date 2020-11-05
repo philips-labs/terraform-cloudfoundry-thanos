@@ -8,7 +8,7 @@ module "grafana" {
   cf_space        = cloudfoundry_space.space.name
   cf_org          = data.cloudfoundry_org.org.name
   cf_domain       = data.cloudfoundry_domain.app_domain.name
-  name_postfix    = random_id.id.hex
+  name_postfix    = local.postfix_name
   environment     = var.grafana_environment
   network_policies = [
     {
