@@ -16,7 +16,7 @@ variable "cf_user" {
 
 variable "thanos_space" {
   description = "The space in which Thanos will be deployed"
-  default     = "thanos-${random_id.id.hex}"
+  default     = ""
   type        = string
 }
 
