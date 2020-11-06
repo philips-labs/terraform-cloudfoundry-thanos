@@ -17,6 +17,7 @@ variable "cf_user" {
 variable "name_postfix" {
   type        = string
   description = "The postfix string to append to the space, hostname, etc. Prevents namespace clashes"
+  default = ""
 }
 
 variable "thanos_image" {
