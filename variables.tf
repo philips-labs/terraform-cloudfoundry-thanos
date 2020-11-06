@@ -14,6 +14,11 @@ variable "cf_user" {
   type        = string
 }
 
+variable "name_postfix" {
+  type        = string
+  description = "The postfix string to append to the space, hostname, etc. Prevents namespace clashes"
+}
+
 variable "thanos_image" {
   description = "Image to use for Thanos app"
   default     = "philipslabs/cf-thanos:latest"

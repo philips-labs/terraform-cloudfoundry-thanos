@@ -24,6 +24,8 @@ module "thanos" {
     thanos_query_image = "${var.docker_repo}/thanos"
     thanos_store_image = "${var.docker_repo}/thanos"
     
+    name_postfix       = var.name_postfix
+    
     // needed for paas_prometheus_exporter
     environment = {
         USERNAME     = var.cf_username
@@ -70,6 +72,7 @@ module "thanos" {
 | thanos\_image | Image to use for Thanos app | `string` | `"philipslabs/cf-thanos:latest"` | no |
 | thanos\_query\_image | Image to use for Thanos query | `string` | `"philipslabs/cf-thanos:latest"` | no |
 | thanos\_store\_image | Image to use for Thanos store | `string` | `"philipslabs/cf-thanos:latest"` | no |
+| name\_postfix | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `Auto generated hex using the Random module` | no |
 
 ## Outputs
 

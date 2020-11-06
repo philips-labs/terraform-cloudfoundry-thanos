@@ -1,6 +1,6 @@
 output "cluster_id" {
   description = "Cluster ID of Tasy POC"
-  value       = random_id.id.hex
+  value       = local.postfix_name
 }
 
 output "thanos_query_endpoint" {
