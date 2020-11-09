@@ -12,3 +12,8 @@ output "grafana_endpoint" {
   description = "URL of Grafana deployment (optional)"
   value       = join("", module.grafana.*.grafana_endpoint)
 }
+
+output "thanos_space_id" {
+  description = "Cloud foundry space ID of Thanos"
+  vlaue       = cloudfoundry_space.space.id
+}
