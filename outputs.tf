@@ -15,5 +15,5 @@ output "grafana_endpoint" {
 
 output "thanos_space_id" {
   description = "Cloud foundry space ID of Thanos"
-  vlaue       = cloudfoundry_space.space.id
+  value       = cloudfoundry_space.space.id
 }
