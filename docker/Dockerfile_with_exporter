@@ -1,4 +1,4 @@
-ARG prometheus_version=2.22.0
+ARG prometheus_version=2.22.2
 ARG thanos_version=0.15.0
 
 FROM golang:alpine as exporter
@@ -28,7 +28,7 @@ RUN curl -L -Os https://github.com/thanos-io/thanos/releases/download/v${THANOS_
 
 FROM alpine:latest
 LABEL maintainer="andy.lo-a-foe@philips.com"
-RUN apk add --update supervisor jq && rm  -rf /tmp/* /var/cache/apk/*
+RUN apk add --update supervisor jq curl && rm  -rf /tmp/* /var/cache/apk/*
 RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc
 RUN mkdir -p /prometheus /thanos
 COPY --from=prometheus /app/prometheus /sidecars/bin
@@ -38,7 +38,7 @@ COPY prometheus.yml  /sidecars/etc
 COPY cf_exporter.conf /sidecars/supervisor/conf.d
 COPY prometheus.conf /sidecars/supervisor/conf.d
 COPY thanos.conf /sidecars/supervisor/conf.d
-COPY scripts/thanos_s3.sh /sidecars/bin
+COPY scripts/* /sidecars/bin/
 
 EXPOSE 9090
 
