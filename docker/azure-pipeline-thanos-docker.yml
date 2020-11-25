@@ -1,0 +1,29 @@
+resources:
+  repositories:
+#    - repository: PaasPrometheusExporter # The name used to reference this repository in the checkout step
+#      type: github
+#      name: alphagov/paas-prometheus-exporter
+    - repository: templates
+      type: git
+      name: pinc/azure-pipeline-templates
+      ref: refs/heads/master
+
+variables:
+  - template: build-variables.yml@templates
+
+jobs:
+  - job: "build"
+    pool:
+      vmImage: "ubuntu-latest"
+
+    steps:
+      - script: |
+          cd docker
+          git clone https://github.com/philips-labs/paas-prometheus-exporter.git
+        displayName: 'Download Paas Prometheus Exporter'
+
+      - template: docker-build-push.yml@templates
+        parameters:
+          ImageName: cf-monitoring/thanos
+          AddImageTag: latest
+          Dockerfile: docker/Dockerfile_with_exporter
