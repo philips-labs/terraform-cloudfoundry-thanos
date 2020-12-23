@@ -14,6 +14,12 @@ variable "cf_user" {
   type        = string
 }
 
+variable "name_postfix" {
+  type        = string
+  description = "The postfix string to append to the space, hostname, etc. Prevents namespace clashes"
+  default     = ""
+}
+
 variable "thanos_image" {
   description = "Image to use for Thanos app"
   default     = "philipslabs/cf-thanos:latest"
@@ -39,6 +45,12 @@ variable "enable_grafana" {
   default     = false
 }
 
+variable "enable_grafana_postgres" {
+  description = "Enables use of Postgres as Grafana config store"
+  type        = bool
+  default     = true
+}
+
 variable "grafana_image" {
   description = "Image to use for Grafana"
   default     = "grafana/grafana:latest"
@@ -46,15 +58,15 @@ variable "grafana_image" {
 }
 
 variable "environment" {
-  type  =  map
+  type        = map
   description = "Pass environment variable to the app"
-  default = {}
+  default     = {}
 }
 
 variable "grafana_environment" {
-  type  =  map
+  type        = map
   description = "Pass environment variable to Grafana"
-  default = {}
+  default     = {}
 }
 
 variable "docker_username" {

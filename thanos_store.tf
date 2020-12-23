@@ -9,7 +9,7 @@ resource "cloudfoundry_app" "thanos_store" {
     password = var.docker_password
   }
   environment = var.environment
-  command      = "/sidecars/bin/thanos_s3.sh store --grpc-address=0.0.0.0:19090 --http-address=0.0.0.0:9090 --data-dir=/prometheus --index-cache-size=500MB --chunk-pool-size=500MB --objstore.config-file=/sidecars/etc/bucket_config.yaml"
+  command     = "/sidecars/bin/thanos_s3.sh store --grpc-address=0.0.0.0:19090 --http-address=0.0.0.0:9090 --data-dir=/prometheus --index-cache-size=500MB --chunk-pool-size=500MB --objstore.config-file=/sidecars/etc/bucket_config.yaml"
   routes {
     route = cloudfoundry_route.thanos_store_internal.id
   }
@@ -21,7 +21,7 @@ resource "cloudfoundry_app" "thanos_store" {
 resource "cloudfoundry_route" "thanos_store_internal" {
   domain   = data.cloudfoundry_domain.apps_internal_domain.id
   space    = cloudfoundry_space.space.id
-  hostname = "thanos-store-${random_id.id.hex}"
+  hostname = "thanos-store-${local.postfix_name}"
 
   depends_on = [cloudfoundry_space_users.users]
 }

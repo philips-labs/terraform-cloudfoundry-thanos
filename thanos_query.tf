@@ -9,7 +9,7 @@ resource "cloudfoundry_app" "thanos_query" {
     password = var.docker_password
   }
   environment = var.environment
-  command      = "/sidecars/bin/thanos query --grpc-address=0.0.0.0:10901 --http-address=0.0.0.0:9090 --store=${cloudfoundry_route.thanos_internal.endpoint}:19090 --store=${cloudfoundry_route.thanos_store_internal.endpoint}:19090"
+  command     = "/sidecars/bin/thanos query --grpc-address=0.0.0.0:10901 --http-address=0.0.0.0:9090 --store=${cloudfoundry_route.thanos_internal.endpoint}:19090 --store=${cloudfoundry_route.thanos_store_internal.endpoint}:19090"
   routes {
     route = cloudfoundry_route.thanos_query.id
   }
@@ -21,7 +21,7 @@ resource "cloudfoundry_app" "thanos_query" {
 resource "cloudfoundry_route" "thanos_query" {
   domain   = data.cloudfoundry_domain.app_domain.id
   space    = cloudfoundry_space.space.id
-  hostname = "thanos-query-${random_id.id.hex}"
+  hostname = "thanos-query-${local.postfix_name}"
 
   depends_on = [cloudfoundry_space_users.users]
 }
@@ -29,7 +29,7 @@ resource "cloudfoundry_route" "thanos_query" {
 resource "cloudfoundry_route" "thanos_query_internal" {
   domain   = data.cloudfoundry_domain.apps_internal_domain.id
   space    = cloudfoundry_space.space.id
-  hostname = "thanos-query-${random_id.id.hex}"
+  hostname = "thanos-query-${local.postfix_name}"
 
   depends_on = [cloudfoundry_space_users.users]
 }
