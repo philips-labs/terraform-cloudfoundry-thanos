@@ -22,3 +22,13 @@ output "thanos_app_id" {
   description = "App id for Thanos"
   value = cloudfoundry_app.thanos.id
 }
+//
+//output "grafana_app_id" {
+//  description = "App id for Grafana"
+//  value = cloudfoundry_app.grafana.id
+//}
+
+output "thanos_query_id" {
+  description = "App id for Thanos Query"
+  value = cloudfoundry_app.thanos_query.id
+}
