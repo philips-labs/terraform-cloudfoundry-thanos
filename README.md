@@ -24,6 +24,8 @@ module "thanos" {
     thanos_query_image = "${var.docker_repo}/thanos"
     thanos_store_image = "${var.docker_repo}/thanos"
     
+    name_postfix       = var.name_postfix
+    
     // needed for paas_prometheus_exporter
     environment = {
         USERNAME     = var.cf_username
@@ -44,14 +46,14 @@ module "thanos" {
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13.0 |
-| cloudfoundry | >= 0.12.4 |
+| cloudfoundry | >= 0.1206.0 |
 | random | >= 2.2.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| cloudfoundry | >= 0.12.4 |
+| cloudfoundry | >= 0.1206.0 |
 | random | >= 2.2.1 |
 
 ## Inputs
@@ -64,9 +66,11 @@ module "thanos" {
 | docker\_password | Docker registry password | `string` | `""` | no |
 | docker\_username | Docker registry username | `string` | `""` | no |
 | enable\_grafana | Adds a Grafana deployment when enabled | `bool` | `false` | no |
+| enable\_grafana\_postgres | Enables use of Postgres as Grafana config store | `bool` | `true` | no |
 | environment | Pass environment variable to the app | `map` | `{}` | no |
 | grafana\_environment | Pass environment variable to Grafana | `map` | `{}` | no |
 | grafana\_image | Image to use for Grafana | `string` | `"grafana/grafana:latest"` | no |
+| name\_postfix | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
 | thanos\_image | Image to use for Thanos app | `string` | `"philipslabs/cf-thanos:latest"` | no |
 | thanos\_query\_image | Image to use for Thanos query | `string` | `"philipslabs/cf-thanos:latest"` | no |
 | thanos\_store\_image | Image to use for Thanos store | `string` | `"philipslabs/cf-thanos:latest"` | no |
