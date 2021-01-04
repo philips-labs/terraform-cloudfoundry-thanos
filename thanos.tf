@@ -1,3 +1,7 @@
+locals {
+  thanos_routes = var.thanos_public_endpoints ? [cloudfoundry_route.thanos.id, cloudfoundry_route.thanos_internal.id] : [cloudfoundry_route.thanos_internal.id]
+}
+
 resource "cloudfoundry_app" "thanos" {
   name         = "thanos"
   space        = cloudfoundry_space.space.id
@@ -10,16 +14,16 @@ resource "cloudfoundry_app" "thanos" {
   }
   environment = var.environment
 
-  routes {
-    route = cloudfoundry_route.thanos.id
+  dynamic "routes" {
+    for_each = local.thanos_routes
+    content {
+      route = routes.value
+    }
   }
-  routes {
-    route = cloudfoundry_route.thanos_internal.id
-  }
+
   service_binding {
     service_instance = cloudfoundry_service_instance.s3.id
   }
-
 }
 
 resource "cloudfoundry_route" "thanos" {
