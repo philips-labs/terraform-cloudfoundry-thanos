@@ -5,7 +5,7 @@ output "cluster_id" {
 
 output "thanos_query_endpoint" {
   description = "URL of Thanos deployment"
-  value       = cloudfoundry_route.thanos_query.endpoint
+  value       = var.thanos_public_endpoints ? cloudfoundry_route.thanos_query.endpoint : cloudfoundry_route.thanos_query_internal.endpoint
 }
 
 output "grafana_endpoint" {
