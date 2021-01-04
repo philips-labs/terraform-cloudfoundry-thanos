@@ -37,8 +37,3 @@ scrape_configs:
       - targets: ['localhost:18080']
         labels:
           group: 'cf'
-
-  - job_name: cartel 
-    file_sd_configs:
-      - files:
-        - /sidecars/etc/targets.json

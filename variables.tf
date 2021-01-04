@@ -63,13 +63,13 @@ variable "grafana_image" {
 }
 
 variable "environment" {
-  type        = map
+  type        = map(any)
   description = "Pass environment variable to the app"
   default     = {}
 }
 
 variable "grafana_environment" {
-  type        = map
+  type        = map(any)
   description = "Pass environment variable to Grafana"
   default     = {}
 }
