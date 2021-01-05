@@ -38,6 +38,11 @@ variable "thanos_store_image" {
   type        = string
 }
 
+variable "thanos_public_endpoints" {
+  description = "Make Thanos public endpoint"
+  type        = bool
+  default     = true
+}
 
 variable "enable_grafana" {
   description = "Adds a Grafana deployment when enabled"

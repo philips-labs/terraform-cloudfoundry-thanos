@@ -1,3 +1,7 @@
+locals {
+  thanos_query_routes = var.thanos_public_endpoints ? [cloudfoundry_route.thanos_query.id, cloudfoundry_route.thanos_query_internal.id] : [cloudfoundry_route.thanos_query_internal.id]
+}
+
 resource "cloudfoundry_app" "thanos_query" {
   name         = "thanos-query"
   space        = cloudfoundry_space.space.id
@@ -10,11 +14,12 @@ resource "cloudfoundry_app" "thanos_query" {
   }
   environment = var.environment
   command     = "/sidecars/bin/thanos query --grpc-address=0.0.0.0:10901 --http-address=0.0.0.0:9090 --store=${cloudfoundry_route.thanos_internal.endpoint}:19090 --store=${cloudfoundry_route.thanos_store_internal.endpoint}:19090"
-  routes {
-    route = cloudfoundry_route.thanos_query.id
-  }
-  routes {
-    route = cloudfoundry_route.thanos_query_internal.id
+
+  dynamic "routes" {
+    for_each = local.thanos_routes
+    content {
+      route = routes.value
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-ARG prometheus_version=2.22.0
+ARG prometheus_version=2.22.2
 ARG thanos_version=0.15.0
 
 FROM alpine:latest AS prometheus
