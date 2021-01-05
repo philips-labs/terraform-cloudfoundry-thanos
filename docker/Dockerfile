@@ -22,7 +22,8 @@ RUN curl -L -Os https://github.com/thanos-io/thanos/releases/download/v${THANOS_
 
 FROM alpine:latest
 LABEL maintainer="andy.lo-a-foe@philips.com"
-RUN apk add --update supervisor jq && rm  -rf /tmp/* /var/cache/apk/*
+RUN apk add --update supervisor jq curl && rm -rf /tmp/* /var/cache/apk/*
+RUN apk add yq --repository http://dl-cdn.alpinelinux.org/alpine/edge/community
 RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc
 RUN mkdir -p /prometheus /thanos
 COPY --from=prometheus /app/prometheus /sidecars/bin
@@ -30,7 +31,9 @@ COPY --from=thanos     /app/thanos     /sidecars/bin
 COPY prometheus.yml  /sidecars/etc
 COPY prometheus.conf /sidecars/supervisor/conf.d
 COPY thanos.conf /sidecars/supervisor/conf.d
-COPY scripts/thanos_s3.sh /sidecars/bin
+COPY scripts/ /sidecars/bin
+RUN sh -c "chmod +x /sidecars/bin/thanos_s3.sh"
+RUN sh -c "chmod +x /sidecars/bin/prometheus_targets.sh"
 
 EXPOSE 9090
 

@@ -17,3 +17,8 @@ output "thanos_space_id" {
   description = "Cloud foundry space ID of Thanos"
   value       = cloudfoundry_space.space.id
 }
+
+output "thanos_app_id" {
+  description = "App id for Thanos"
+  value = cloudfoundry_app.thanos.id
+}
