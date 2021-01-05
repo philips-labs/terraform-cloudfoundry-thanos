@@ -16,7 +16,7 @@ resource "cloudfoundry_app" "thanos_query" {
   command     = "/sidecars/bin/thanos query --grpc-address=0.0.0.0:10901 --http-address=0.0.0.0:9090 --store=${cloudfoundry_route.thanos_internal.endpoint}:19090 --store=${cloudfoundry_route.thanos_store_internal.endpoint}:19090"
 
   dynamic "routes" {
-    for_each = local.thanos_routes
+    for_each = local.thanos_query_routes
     content {
       route = routes.value
     }
