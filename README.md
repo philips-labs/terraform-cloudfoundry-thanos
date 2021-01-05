@@ -26,6 +26,8 @@ module "thanos" {
     
     name_postfix       = var.name_postfix
     
+    thanos_public_endpoints = false
+    
     // needed for paas_prometheus_exporter
     environment = {
         USERNAME     = var.cf_username
@@ -74,12 +76,17 @@ module "thanos" {
 | thanos\_image | Image to use for Thanos app | `string` | `"philipslabs/cf-thanos:latest"` | no |
 | thanos\_query\_image | Image to use for Thanos query | `string` | `"philipslabs/cf-thanos:latest"` | no |
 | thanos\_store\_image | Image to use for Thanos store | `string` | `"philipslabs/cf-thanos:latest"` | no |
+| thanos\_public\_endpoints | Make Thanos endpoints private(false) or public (true) | `bool` | `true` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | cluster\_id | Cluster ID of Tasy POC |
+| thanos\_space\_id| CF space Id where Thanos deployed|
+| thanos\_app\_id| CF app Id of deployed Thanos |
+| thanos\_query\_app\_id| CF app Id of deployed Thanos |
+| grafana\_app\_id| CF app Id of deployed Grafana  |
 | grafana\_endpoint | URL of Grafana deployment (optional) |
 | thanos\_query\_endpoint | URL of Thanos deployment |
 

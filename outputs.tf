@@ -28,7 +28,7 @@ output "grafana_app_id" {
   value = join("", module.grafana.*.grafana_id)
 }
 
-output "thanos_query_id" {
+output "thanos_query_app_id" {
   description = "App id for Thanos Query"
   value = cloudfoundry_app.thanos_query.id
 }
