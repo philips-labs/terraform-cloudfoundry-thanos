@@ -82,7 +82,7 @@ module "thanos" {
 
 | Name | Description |
 |------|-------------|
-| cluster\_id | Cluster ID of Tasy POC |
+| cluster\_id | Cluster ID of Thanos deployment |
 | thanos\_space\_id| CF space Id where Thanos deployed|
 | thanos\_app\_id| CF app Id of deployed Thanos |
 | thanos\_query\_app\_id| CF app Id of deployed Thanos |
