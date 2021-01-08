@@ -1,5 +1,5 @@
 output "cluster_id" {
-  description = "Cluster ID of Tasy POC"
+  description = "Cluster ID of Thanos deployment"
   value       = local.postfix_name
 }
 
