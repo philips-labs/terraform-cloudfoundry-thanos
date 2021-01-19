@@ -72,6 +72,7 @@ module "thanos" {
 | environment | Pass environment variable to the app | `map` | `{}` | no |
 | grafana\_environment | Pass environment variable to Grafana | `map` | `{}` | no |
 | grafana\_image | Image to use for Grafana | `string` | `"grafana/grafana:latest"` | no |
+| grafana\_public\_endpoints | Make Grafana endpoints private(false) or public (true) | `bool` | `true` | no |
 | name\_postfix | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
 | thanos\_image | Image to use for Thanos app | `string` | `"philipslabs/cf-thanos:latest"` | no |
 | thanos\_query\_image | Image to use for Thanos query | `string` | `"philipslabs/cf-thanos:latest"` | no |
