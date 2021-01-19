@@ -7,7 +7,7 @@ module "grafana" {
   grafana_image   = var.grafana_image
   cf_space        = cloudfoundry_space.space.name
   cf_org          = data.cloudfoundry_org.org.name
-  cf_domain       = data.cloudfoundry_domain.app_domain.name
+  cf_domain       = var.grafana_public_endpoints ? data.cloudfoundry_domain.app_domain.name : data.cloudfoundry_domain.apps_internal_domain
   name_postfix    = local.postfix_name
   environment     = var.grafana_environment
   network_policies = [

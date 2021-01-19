@@ -62,6 +62,12 @@ variable "grafana_image" {
   type        = string
 }
 
+variable "grafana_public_endpoints" {
+  description = "Make Grafana public endpoint"
+  type        = bool
+  default     = true
+}
+
 variable "environment" {
   type        = map
   description = "Pass environment variable to the app"
