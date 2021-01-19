@@ -20,15 +20,15 @@ output "thanos_space_id" {
 
 output "thanos_app_id" {
   description = "App id for Thanos"
-  value = cloudfoundry_app.thanos.id
+  value       = cloudfoundry_app.thanos.id
 }
 
 output "grafana_app_id" {
   description = "App id for Grafana"
-  value = join("", module.grafana.*.grafana_id)
+  value       = join("", module.grafana.*.grafana_id)
 }
 
 output "thanos_query_app_id" {
   description = "App id for Thanos Query"
-  value = cloudfoundry_app.thanos_query.id
+  value       = cloudfoundry_app.thanos_query.id
 }
