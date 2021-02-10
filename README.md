@@ -1,7 +1,6 @@
 # Terraform Cloudfoundry Thanos module
-Experimental setup for Prometheus + Thanos on Cloudfoundry.
-A path towards unlimited metrics storage. This module provisions
-a separate Cloud foundry space and deploys a number of apps and services
+Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unlimited metrics storage. This module provisions
+a separate Cloud foundry space and deploys a number of apps and services to provides [Thanos](https://thanos.io)
 
 # TODO 
 - Internalize Prometheus
@@ -92,7 +91,7 @@ module "thanos" {
 | thanos\_query\_endpoint | URL of Thanos deployment |
 
 # Contact / Getting help
-andy.lo-a-foe@philips.com
+Please post your questions on the HSDP Slack #terraform channel, or start a [discussion](https://github.com/philips-labs/terraform-cloudfoundry-thanos/discussions)
 
 # License
 License is MIT
