@@ -91,7 +91,7 @@ module "thanos" {
 | thanos\_query\_endpoint | URL of Thanos deployment |
 
 # Contact / Getting help
-Please post your questions on the HSDP Slack #terraform channel, or start a [discussion](https://github.com/philips-labs/terraform-cloudfoundry-thanos/discussions)
+Please post your questions on the HSDP Slack `#terraform` channel, or start a [discussion](https://github.com/philips-labs/terraform-cloudfoundry-thanos/discussions)
 
 # License
 License is MIT
