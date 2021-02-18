@@ -91,3 +91,30 @@ variable "docker_password" {
   description = "Docker registry password"
   default     = ""
 }
+
+variable "thanos_memory" {
+  type        = number
+  description = "Thanos memory"
+  default     = 512
+}
+
+variable "thanos_disk_quota" {
+  type        = number
+  description = "Thanos disk quota"
+  default     = 2048
+}
+
+variable "thanos_store_memory" {
+  type        = number
+  description = "Thanos store memory"
+  default     = 1024
+}
+
+variable "thanos_store_disk_quota" {
+  type        = number
+  description = "Thanos store disk quota"
+  default     = 2048
+}
+
+
+

@@ -5,8 +5,8 @@ locals {
 resource "cloudfoundry_app" "thanos" {
   name         = "thanos"
   space        = cloudfoundry_space.space.id
-  memory       = 512
-  disk_quota   = 2048
+  memory       = var.thanos_memory
+  disk_quota   = var.thanos_disk_quota
   docker_image = var.thanos_image
   docker_credentials = {
     username = var.docker_username
