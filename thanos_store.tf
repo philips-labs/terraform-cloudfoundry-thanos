@@ -1,8 +1,8 @@
 resource "cloudfoundry_app" "thanos_store" {
   name         = "thanos-store"
   space        = cloudfoundry_space.space.id
-  memory       = 1024
-  disk_quota   = 2048
+  memory       = var.thanos_store_memory
+  disk_quota   = var.thanos_store_disk_quota
   docker_image = var.thanos_store_image
   docker_credentials = {
     username = var.docker_username
