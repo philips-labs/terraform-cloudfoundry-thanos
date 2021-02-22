@@ -5,7 +5,7 @@ set -e
 echo $PROMETHEUS_TARGETS | base64 -d >> /sidecars/etc/configured_targets.yml
 
 # Merge the two yaml files together, overwriting prometheus.yml in place
-yq m --inplace --arrays append /sidecars/etc/prometheus.yml /sidecars/etc/configured_targets.yml
+yq eval-all 'select(fileIndex == 0) * select(filename == "/sidecars/etc/configured_targets.yml")' /sidecars/etc/prometheus.yml
 
 # Things for Cartel
 json_tmpl_file="tmpl_targets"
