@@ -2,9 +2,9 @@ ARG prometheus_version=2.25.0
 ARG thanos_version=0.18.0
 
 FROM golang:alpine as exporter
-WORKDIR /app
 RUN apk add --no-cache git
-COPY ./paas-prometheus-exporter /app
+WORKDIR /app
+RUN git clone https://github.com/alphagov/paas-prometheus-exporter.git .
 RUN CGO_ENABLED=0 GOOS=linux go build 
 
 FROM alpine:latest AS prometheus
