@@ -32,8 +32,8 @@ resource "cloudfoundry_route" "alertmanager_internal" {
 
 resource "cloudfoundry_network_policy" "alertmanager" {
   policy {
-    source_app      = cloudfoundry_app.alertmanager.id
-    destination_app = cloudfoundry_app.thanos.id
-    port            = "19090"
+    source_app      = cloudfoundry_app.thanos.id
+    destination_app = cloudfoundry_app.alertmanager.id
+    port            = "9093"
   }
 }
