@@ -38,6 +38,12 @@ variable "thanos_store_image" {
   type        = string
 }
 
+variable "alertmanager_image" {
+  description = "Image to use for Alertmanager"
+  default     = "prom/alertmanager:v0.21.0"
+  type        = string
+}
+
 variable "thanos_public_endpoints" {
   description = "Make Thanos public endpoint"
   type        = bool
