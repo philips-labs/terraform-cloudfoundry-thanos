@@ -57,6 +57,29 @@ module "thanos" {
 | cloudfoundry | >= 0.1206.0 |
 | random | >= 2.2.1 |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| grafana | philips-labs/grafana/cloudfoundry | >= 0.5.0 |
+
+## Resources
+
+| Name |
+|------|
+| [cloudfoundry_app](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/resources/app) |
+| [cloudfoundry_domain](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/data-sources/domain) |
+| [cloudfoundry_network_policy](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/resources/network_policy) |
+| [cloudfoundry_org](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/data-sources/org) |
+| [cloudfoundry_route](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/resources/route) |
+| [cloudfoundry_service](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/data-sources/service) |
+| [cloudfoundry_service_instance](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/resources/service_instance) |
+| [cloudfoundry_space](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/resources/space) |
+| [cloudfoundry_space_users](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/resources/space_users) |
+| [cloudfoundry_user](https://registry.terraform.io/providers/philips-labs/cloudfoundry/0.1206.0/docs/data-sources/user) |
+| [random_id](https://registry.terraform.io/providers/random/2.2.1/docs/resources/id) |
+| [random_password](https://registry.terraform.io/providers/random/2.2.1/docs/resources/password) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -68,27 +91,31 @@ module "thanos" {
 | docker\_username | Docker registry username | `string` | `""` | no |
 | enable\_grafana | Adds a Grafana deployment when enabled | `bool` | `false` | no |
 | enable\_grafana\_postgres | Enables use of Postgres as Grafana config store | `bool` | `true` | no |
-| environment | Pass environment variable to the app | `map` | `{}` | no |
-| grafana\_environment | Pass environment variable to Grafana | `map` | `{}` | no |
+| environment | Pass environment variable to the app | `map(any)` | `{}` | no |
+| grafana\_environment | Pass environment variable to Grafana | `map(any)` | `{}` | no |
 | grafana\_image | Image to use for Grafana | `string` | `"grafana/grafana:latest"` | no |
-| grafana\_public\_endpoints | Make Grafana endpoints private(false) or public (true) | `bool` | `true` | no |
+| grafana\_public\_endpoints | Make Grafana public endpoint | `bool` | `true` | no |
 | name\_postfix | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
-| thanos\_image | Image to use for Thanos app | `string` | `"philipslabs/cf-thanos:latest"` | no |
-| thanos\_query\_image | Image to use for Thanos query | `string` | `"philipslabs/cf-thanos:latest"` | no |
-| thanos\_store\_image | Image to use for Thanos store | `string` | `"philipslabs/cf-thanos:latest"` | no |
-| thanos\_public\_endpoints | Make Thanos endpoints private(false) or public (true) | `bool` | `true` | no |
+| thanos\_disk\_quota | Thanos disk quota | `number` | `2048` | no |
+| thanos\_image | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:latest"` | no |
+| thanos\_memory | Thanos memory | `number` | `512` | no |
+| thanos\_public\_endpoints | Make Thanos public endpoint | `bool` | `true` | no |
+| thanos\_query\_image | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:latest"` | no |
+| thanos\_store\_disk\_quota | Thanos store disk quota | `number` | `2048` | no |
+| thanos\_store\_image | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:latest"` | no |
+| thanos\_store\_memory | Thanos store memory | `number` | `1024` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | cluster\_id | Cluster ID of Thanos deployment |
-| thanos\_space\_id| CF space Id where Thanos deployed|
-| thanos\_app\_id| CF app Id of deployed Thanos |
-| thanos\_query\_app\_id| CF app Id of deployed Thanos |
-| grafana\_app\_id| CF app Id of deployed Grafana  |
+| grafana\_app\_id | App id for Grafana |
 | grafana\_endpoint | URL of Grafana deployment (optional) |
+| thanos\_app\_id | App id for Thanos |
+| thanos\_query\_app\_id | App id for Thanos Query |
 | thanos\_query\_endpoint | URL of Thanos deployment |
+| thanos\_space\_id | Cloud foundry space ID of Thanos |
 
 # Contact / Getting help
 Please post your questions on the HSDP Slack `#terraform` channel, or start a [discussion](https://github.com/philips-labs/terraform-cloudfoundry-thanos/discussions)
