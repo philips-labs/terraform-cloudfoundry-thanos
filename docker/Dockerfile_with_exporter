@@ -28,7 +28,7 @@ RUN curl -L -Os https://github.com/thanos-io/thanos/releases/download/v${THANOS_
 
 FROM alpine:latest
 LABEL maintainer="andy.lo-a-foe@philips.com"
-RUN apk add --update supervisor jq curl && rm -rf /tmp/* /var/cache/apk/*
+RUN apk add --no-cache supervisor jq curl consul-template
 RUN apk add yq --repository http://dl-cdn.alpinelinux.org/alpine/edge/community
 RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc
 RUN mkdir -p /prometheus /thanos
