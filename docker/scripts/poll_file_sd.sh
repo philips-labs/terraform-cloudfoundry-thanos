@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-# TODO this needs to be a lot more robust!
-wget -O /sidecars/etc/file_sd.yml "$FILESD_URL"
+if [ -n "$FILESD_URL" ]; then  
+  echo "Polling for file_sd yaml from $FILESD_URL"
+  wget -O /sidecars/etc/file_sd.yml "$FILESD_URL"
+fi

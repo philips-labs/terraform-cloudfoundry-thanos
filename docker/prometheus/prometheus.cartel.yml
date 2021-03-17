@@ -1,0 +1,5 @@
+scrape_configs:
+  - job_name: cartel
+    file_sd_configs:
+      - files:
+          - /sidecars/etc/targets.json

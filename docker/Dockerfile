@@ -39,12 +39,14 @@ COPY --from=prometheus /app/prometheus /sidecars/bin
 COPY --from=thanos     /app/thanos     /sidecars/bin
 COPY --from=exporter   /app/paas-prometheus-exporter /sidecars/bin
 
-COPY prometheus.yml  /sidecars/etc
+COPY prometheus/  /sidecars/etc
 COPY supervisord_configs/ /sidecars/supervisor/conf.d
 COPY scripts/ /sidecars/bin
 COPY crontab.txt /var/crontab.txt
 
 RUN crontab /var/crontab.txt
+
+ENV ENABLE_CF_EXPORTER=false
 
 EXPOSE 9090
 

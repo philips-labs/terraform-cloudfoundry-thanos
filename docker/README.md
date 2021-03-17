@@ -22,7 +22,9 @@ You can add these parameters and make them customisable
 
 ## paas-prometheus-exporter
 
-This is an prometheus exporter that runs to export metrics from a CloudFoundry instance. You can find more info at the upstream config
+This is an prometheus exporter that runs to export metrics from a CloudFoundry instance. You can find more info in the upstream config documentation at [paas-prometheus-exporter](https://github.com/alphagov/paas-prometheus-exporter)
+
+To enable the exporter you must set the environment variable `ENABLE_CF_EXPORTER` to `true`.
 
 Generally you will just need the following environment variable set
 
