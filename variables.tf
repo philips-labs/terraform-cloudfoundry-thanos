@@ -116,5 +116,29 @@ variable "thanos_store_disk_quota" {
   default     = 2048
 }
 
+variable "thanos_file_sd_url" {
+  type        = string
+  description = "A URL that exposes a prometheus file_sd yaml file will be periodically downloaded and used for service discovery"
+  default     = ""
+}
 
+variable "enable_cf_exporter" {
+  type        = bool
+  description = "Enable the CloudFoundry metrics exporter and scrape it from Thanos"
+  default     = false
+}
 
+variable "thanos_extra_config" {
+  type        = string
+  description = "Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here."
+  default     = ""
+}
+
+variable "cf_exporter_config" {
+  type = object({
+    api_endpoint = string
+    username     = string
+    password     = string
+  })
+  description = "Configuration for the CloudFoundry exporter. Required if enable_cf_exporter is set to true"
+}

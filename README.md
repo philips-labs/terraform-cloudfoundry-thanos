@@ -6,7 +6,6 @@ a separate Cloud foundry space and deploys a number of apps and services to prov
 # TODO
 
 - Internalize Prometheus
-- Add some sort of Service Discovery to Prometheus
 
 ## Example of Thanos Terraform
 
@@ -62,28 +61,32 @@ module "thanos" {
 
 ## Inputs
 
-| Name                     | Description                                                                          | Type       | Default                             | Required |
-| ------------------------ | ------------------------------------------------------------------------------------ | ---------- | ----------------------------------- | :------: |
-| cf_app_domain            | The Cloudfoundry regular app domain to use                                           | `string`   | `"us-east.philips-healthsuite.com"` |    no    |
-| cf_org_name              | Cloudfoundry ORG name to use for reverse proxy                                       | `string`   | n/a                                 |   yes    |
-| cf_user                  | The Cloudfoundry user to assign rights to the app to                                 | `string`   | n/a                                 |   yes    |
-| docker_password          | Docker registry password                                                             | `string`   | `""`                                |    no    |
-| docker_username          | Docker registry username                                                             | `string`   | `""`                                |    no    |
-| enable_grafana           | Adds a Grafana deployment when enabled                                               | `bool`     | `false`                             |    no    |
-| enable_grafana_postgres  | Enables use of Postgres as Grafana config store                                      | `bool`     | `true`                              |    no    |
-| environment              | Pass environment variable to the app                                                 | `map(any)` | `{}`                                |    no    |
-| grafana_environment      | Pass environment variable to Grafana                                                 | `map(any)` | `{}`                                |    no    |
-| grafana_image            | Image to use for Grafana                                                             | `string`   | `"grafana/grafana:latest"`          |    no    |
-| grafana_public_endpoints | Make Grafana public endpoint                                                         | `bool`     | `true`                              |    no    |
-| name_postfix             | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string`   | `""`                                |    no    |
-| thanos_disk_quota        | Thanos disk quota                                                                    | `number`   | `2048`                              |    no    |
-| thanos_image             | Image to use for Thanos app. Use a v\* tagged version to prevent automatic updates   | `string`   | `"philipslabs/cf-thanos:latest"`    |    no    |
-| thanos_memory            | Thanos memory                                                                        | `number`   | `512`                               |    no    |
-| thanos_public_endpoints  | Make Thanos public endpoint                                                          | `bool`     | `true`                              |    no    |
-| thanos_query_image       | Image to use for Thanos query. Use a v\* tagged version to prevent automatic updates | `string`   | `"philipslabs/cf-thanos:latest"`    |    no    |
-| thanos_store_disk_quota  | Thanos store disk quota                                                              | `number`   | `2048`                              |    no    |
-| thanos_store_image       | Image to use for Thanos store. Use a v\* tagged version to prevent automatic updates | `string`   | `"philipslabs/cf-thanos:latest"`    |    no    |
-| thanos_store_memory      | Thanos store memory                                                                  | `number`   | `1024`                              |    no    |
+| Name                     | Description                                                                                                       | Type                                                                                             | Default                             | Required |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------- | :------: |
+| cf_app_domain            | The Cloudfoundry regular app domain to use                                                                        | `string`                                                                                         | `"us-east.philips-healthsuite.com"` |    no    |
+| cf_exporter_config       | Configuration for the CloudFoundry exporter. Required if enable_cf_exporter is set to true                        | <pre>object({<br> api_endpoint = string<br> username = string<br> password = string<br> })</pre> | n/a                                 |   yes    |
+| cf_org_name              | Cloudfoundry ORG name to use for reverse proxy                                                                    | `string`                                                                                         | n/a                                 |   yes    |
+| cf_user                  | The Cloudfoundry user to assign rights to the app to                                                              | `string`                                                                                         | n/a                                 |   yes    |
+| docker_password          | Docker registry password                                                                                          | `string`                                                                                         | `""`                                |    no    |
+| docker_username          | Docker registry username                                                                                          | `string`                                                                                         | `""`                                |    no    |
+| enable_cf_exporter       | Enable the CloudFoundry metrics exporter and scrape it from Thanos                                                | `bool`                                                                                           | `false`                             |    no    |
+| enable_grafana           | Adds a Grafana deployment when enabled                                                                            | `bool`                                                                                           | `false`                             |    no    |
+| enable_grafana_postgres  | Enables use of Postgres as Grafana config store                                                                   | `bool`                                                                                           | `true`                              |    no    |
+| environment              | Pass environment variable to the app                                                                              | `map(any)`                                                                                       | `{}`                                |    no    |
+| grafana_environment      | Pass environment variable to Grafana                                                                              | `map(any)`                                                                                       | `{}`                                |    no    |
+| grafana_image            | Image to use for Grafana                                                                                          | `string`                                                                                         | `"grafana/grafana:latest"`          |    no    |
+| grafana_public_endpoints | Make Grafana public endpoint                                                                                      | `bool`                                                                                           | `true`                              |    no    |
+| name_postfix             | The postfix string to append to the space, hostname, etc. Prevents namespace clashes                              | `string`                                                                                         | `""`                                |    no    |
+| thanos_disk_quota        | Thanos disk quota                                                                                                 | `number`                                                                                         | `2048`                              |    no    |
+| thanos_extra_config      | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string`                                                                                         | `""`                                |    no    |
+| thanos_file_sd_url       | A URL that exposes a prometheus file_sd yaml file will be periodically downloaded and used for service discovery  | `string`                                                                                         | `""`                                |    no    |
+| thanos_image             | Image to use for Thanos app. Use a v\* tagged version to prevent automatic updates                                | `string`                                                                                         | `"philipslabs/cf-thanos:latest"`    |    no    |
+| thanos_memory            | Thanos memory                                                                                                     | `number`                                                                                         | `512`                               |    no    |
+| thanos_public_endpoints  | Make Thanos public endpoint                                                                                       | `bool`                                                                                           | `true`                              |    no    |
+| thanos_query_image       | Image to use for Thanos query. Use a v\* tagged version to prevent automatic updates                              | `string`                                                                                         | `"philipslabs/cf-thanos:latest"`    |    no    |
+| thanos_store_disk_quota  | Thanos store disk quota                                                                                           | `number`                                                                                         | `2048`                              |    no    |
+| thanos_store_image       | Image to use for Thanos store. Use a v\* tagged version to prevent automatic updates                              | `string`                                                                                         | `"philipslabs/cf-thanos:latest"`    |    no    |
+| thanos_store_memory      | Thanos store memory                                                                                               | `number`                                                                                         | `1024`                              |    no    |
 
 ## Outputs
 
