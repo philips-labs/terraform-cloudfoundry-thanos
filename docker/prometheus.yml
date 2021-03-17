@@ -1,6 +1,6 @@
 # my global config
 global:
-  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
   external_labels:
     cluster: thanos
@@ -9,9 +9,9 @@ global:
 # Alertmanager configuration
 alerting:
   alertmanagers:
-  - static_configs:
-    - targets:
-      # - alertmanager:9093
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -28,7 +28,7 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-    - targets: ['localhost:9090']
+      - targets: ['localhost:9090']
 
   - job_name: cf
     # Override the global default and scrape targets from this job every 5 seconds.
@@ -38,7 +38,12 @@ scrape_configs:
         labels:
           group: 'cf'
 
-  - job_name: cartel 
+  - job_name: cartel
     file_sd_configs:
       - files:
-        - /sidecars/etc/targets.json
+          - /sidecars/etc/targets.json
+
+  - job_name: external_discovery
+    file_sd_configs:
+      - files:
+          - /sidecars/etc/file_sd.yml
