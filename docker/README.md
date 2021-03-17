@@ -40,4 +40,4 @@ To enable the addition of more prometheus config you can add bse64 encoded yaml 
 
 This image can accept a URL that is passed on `FILESD_URL` which it will periodically poll and save to to the file `/sidecars/etc/file_sd.yml`.
 
-The default prometheus.yml includes the config to read this file and configure any scrape targets that are in it.
+The default `prometheus.yml` includes the config to read this file and configure any scrape targets that are in it.
