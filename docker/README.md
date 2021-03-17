@@ -1,36 +1,43 @@
-# Alpine Dockerfile for multi-processor runs
-## Build Thanos Docker image
-You can build Thanos with paas-prometheus-exporter based on https://github.com/alphagov/paas-prometheus-exporter
+# Build Prometheus/Thanos Docker image
 
-Run 
+This is the customised image for Prometheus with some includes extras for running in CloudFoundry and enabling Thanos functionality with S3.
 
-```
-git clone https://github.com/alphagov/paas-prometheus-exporter.git
-docker build -t thanos -f Dockerfile_with_exporter
-```
+In this image we include
 
-and build without paas-prometheus-exporter
-```
-docker build -t thanos
-```
+- Prometheus
+- Thanos
+- paas-prometheus-exporter based on https://github.com/alphagov/paas-prometheus-exporter
+- URL based file service discovery
 
-## Change period of uploading Prometheus data into S3
-Change these parameters. Values should be equals
-```
+## Customising Thanos
+
+It is currently not possible to customise the config of Thanos. This can be added by customising `thanos.conf`.
+
+For example.
+You can add these parameters and make them customisable
+
+```bash
 --storage.tsdb.min-block-duration=30m --storage.tsdb.max-block-duration=30m
 ```
 
+## paas-prometheus-exporter
 
-## Add more exporters to Prometheus
+This is an prometheus exporter that runs to export metrics from a CloudFoundry instance. You can find more info at the upstream config
 
-Add new section `job_name` into `scrape_configs` section in `prometheus.yml`.
+Generally you will just need the following environment variable set
 
-For Example:
-```  
- - job_name: <some_job_name>
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['localhost:18080', <_urls_>]
-        labels:
-          group: '<some_group_name>'
-```
+| Configuration Option | Application Flag | Environment Variable |
+| :------------------- | :--------------- | :------------------- |
+| API endpoint         | api-endpoint     | API_ENDPOINT         |
+| Username             | username         | USERNAME             |
+| Password             | password         | PASSWORD             |
+
+## How to supplement prometheus config
+
+To enable the addition of more prometheus config you can add bse64 encoded yaml content to the environment variable `PROMETHEUS_TARGETS`. This is then decoded and merged into the main prometheus.yml using `yq`.
+
+## URL based file_sd for prometheus
+
+This image can accept a URL that is passed on `FILESD_URL` which it will periodically poll and save to to the file `/sidecars/etc/file_sd.yml`.
+
+The default prometheus.yml includes the config to read this file and configure any scrape targets that are in it.
