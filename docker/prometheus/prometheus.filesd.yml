@@ -1,5 +1,5 @@
 scrape_configs:
-  - job_name: external_discovery
+  - job_name: targets
     file_sd_configs:
       - files:
           - /sidecars/etc/file_sd.yml

@@ -12,7 +12,14 @@ resource "cloudfoundry_app" "thanos" {
     username = var.docker_username
     password = var.docker_password
   }
-  environment = var.environment
+  environment = merge({
+    FILESD_URL         = var.thanos_file_sd_url
+    ENABLE_CF_EXPORTER = var.enable_cf_exporter
+    PROMETHEUS_TARGETS = base64encode(var.thanos_extra_config)
+    USERNAME           = var.cf_exporter_config.username
+    PASSWORD           = var.cf_exporter_config.password
+    API_ENDPOINT       = var.cf_exporter_config.api_endpoint
+  }, var.environment)
 
   dynamic "routes" {
     for_each = local.thanos_routes
