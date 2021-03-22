@@ -1,8 +1,8 @@
 ARG prometheus_version=2.25.0
 ARG thanos_version=0.18.0
-ARG aplipe_version=3.13
+ARG alpine_version=3.13
 
-FROM alpine:$aplipe_version AS prometheus
+FROM alpine:$alpine_version AS prometheus
 ARG prometheus_version
 ENV PROMETHEUS_VERSION ${prometheus_version}
 RUN apk add --no-cache curl
