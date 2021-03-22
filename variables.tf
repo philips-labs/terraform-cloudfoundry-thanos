@@ -143,7 +143,7 @@ variable "cf_exporter_config" {
   description = "Configuration for the CloudFoundry exporter. Required if enable_cf_exporter is set to true"
   default = {
     api_endpoint = ""
-    username = ""
-    password = ""
+    username     = ""
+    password     = ""
   }
 }
