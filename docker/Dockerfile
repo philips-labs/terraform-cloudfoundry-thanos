@@ -1,8 +1,7 @@
 ARG prometheus_version=2.25.0
 ARG thanos_version=0.18.0
-ARG alpine_version=3.13
 
-FROM alpine:$alpine_version AS prometheus
+FROM alpine:3.13 AS prometheus
 ARG prometheus_version
 ENV PROMETHEUS_VERSION ${prometheus_version}
 RUN apk add --no-cache curl
@@ -19,7 +18,7 @@ RUN git clone https://github.com/alphagov/paas-prometheus-exporter.git .
 RUN CGO_ENABLED=0 GOOS=linux go build 
 
 ## Build thanos
-FROM alpine:$aplipe_version AS thanos
+FROM alpine:3.13 AS thanos
 ARG thanos_version
 ENV THANOS_VERSION ${thanos_version}
 RUN apk add --no-cache curl
@@ -28,7 +27,7 @@ RUN curl -L -Os https://github.com/thanos-io/thanos/releases/download/v${THANOS_
  && tar zxvf thanos-${THANOS_VERSION}.linux-amd64.tar.gz --strip 1
 
 ## Build final image
-FROM alpine:$aplipe_version
+FROM alpine:3.13
 LABEL maintainer="andy.lo-a-foe@philips.com"
 RUN apk add --no-cache supervisor jq curl && rm -rf /tmp/* /var/cache/apk/*
 RUN apk add --no-cache yq --repository http://dl-cdn.alpinelinux.org/alpine/edge/community
