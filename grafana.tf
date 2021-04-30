@@ -1,6 +1,6 @@
 module "grafana" {
   source  = "philips-labs/grafana/cloudfoundry"
-  version = "0.5.0"
+  version = "0.6.0"
 
   count           = var.enable_grafana ? 1 : 0
   enable_postgres = var.enable_grafana_postgres
