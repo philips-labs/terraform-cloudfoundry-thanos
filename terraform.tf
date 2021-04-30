@@ -3,8 +3,8 @@ terraform {
 
   required_providers {
     cloudfoundry = {
-      source  = "cloudfoundry-community/cloudfoundry"
-      version = ">= 0.14.1"
+      source  = "philips-labs/cloudfoundry"
+      version = ">= 0.1206.0"
     }
     random = {
       source  = "random"
