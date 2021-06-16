@@ -9,6 +9,12 @@ output "cluster_id" {
 output "thanos_space_id" {
   description = "Cloud foundry space ID of Thanos"
   value       = cloudfoundry_space.space.id
+
+   depends_on = [
+    # Before this space can be used the permissions need to be allocated,
+    # otherwise some operations will not be permitted.
+    cloudfoundry_space_users.users,
+  ]
 }
 
 output "thanos_query_app_id" {
