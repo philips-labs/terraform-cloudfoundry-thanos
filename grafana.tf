@@ -5,7 +5,7 @@ module "grafana" {
   count           = var.enable_grafana ? 1 : 0
   enable_postgres = var.enable_grafana_postgres
   grafana_image   = var.grafana_image
-  cf_space        = cloudfoundry_space.space.name
+  cf_space        = local.space_name
   cf_org          = data.cloudfoundry_org.org.name
   cf_domain       = var.grafana_public_endpoints ? data.cloudfoundry_domain.app_domain.name : data.cloudfoundry_domain.apps_internal_domain.name
   name_postfix    = local.postfix_name

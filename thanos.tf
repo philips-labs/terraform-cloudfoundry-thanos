@@ -4,7 +4,7 @@ locals {
 
 resource "cloudfoundry_app" "thanos" {
   name         = "thanos"
-  space        = cloudfoundry_space.space.id
+  space        = local.space_id
   memory       = var.thanos_memory
   disk_quota   = var.thanos_disk_quota
   docker_image = var.thanos_image
@@ -34,7 +34,7 @@ resource "cloudfoundry_app" "thanos" {
 
 resource "cloudfoundry_route" "thanos" {
   domain   = data.cloudfoundry_domain.app_domain.id
-  space    = cloudfoundry_space.space.id
+  space    = local.space_id
   hostname = "thanos-${local.postfix_name}"
 
   depends_on = [cloudfoundry_space_users.users]
@@ -42,7 +42,7 @@ resource "cloudfoundry_route" "thanos" {
 
 resource "cloudfoundry_route" "thanos_internal" {
   domain   = data.cloudfoundry_domain.apps_internal_domain.id
-  space    = cloudfoundry_space.space.id
+  space    = local.space_id
   hostname = "thanos-${local.postfix_name}"
 
   depends_on = [cloudfoundry_space_users.users]

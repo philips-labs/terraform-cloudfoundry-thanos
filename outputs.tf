@@ -1,6 +1,7 @@
 locals {
   grafana_endpoint = join("", module.grafana.*.grafana_endpoint)
 }
+
 output "cluster_id" {
   description = "Cluster ID of Thanos deployment"
   value       = local.postfix_name
@@ -8,7 +9,7 @@ output "cluster_id" {
 
 output "thanos_space_id" {
   description = "Cloud foundry space ID of Thanos"
-  value       = cloudfoundry_space.space.id
+  value       = local.space_id
 }
 
 output "thanos_query_app_id" {
