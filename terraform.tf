@@ -6,6 +6,10 @@ terraform {
       source  = "cloudfoundry-community/cloudfoundry"
       version = ">= 0.14.2"
     }
+    hsdp = {
+      source = "philips-software/hsdp"
+      version = ">= 0.16.3"
+    }
     random = {
       source  = "random"
       version = ">= 2.2.1"
