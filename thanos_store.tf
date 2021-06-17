@@ -22,8 +22,6 @@ resource "cloudfoundry_route" "thanos_store_internal" {
   domain   = data.cloudfoundry_domain.apps_internal_domain.id
   space    = local.space_id
   hostname = "thanos-store-${local.postfix_name}"
-
-  depends_on = [cloudfoundry_space_users.users]
 }
 
 resource "cloudfoundry_network_policy" "thanos_store" {

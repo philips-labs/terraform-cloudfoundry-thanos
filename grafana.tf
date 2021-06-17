@@ -22,6 +22,4 @@ module "grafana" {
       port            = "9090"
     }
   ]
-
-  depends_on = [cloudfoundry_space_users.users]
 }

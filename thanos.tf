@@ -36,14 +36,10 @@ resource "cloudfoundry_route" "thanos" {
   domain   = data.cloudfoundry_domain.app_domain.id
   space    = local.space_id
   hostname = "thanos-${local.postfix_name}"
-
-  depends_on = [cloudfoundry_space_users.users]
 }
 
 resource "cloudfoundry_route" "thanos_internal" {
   domain   = data.cloudfoundry_domain.apps_internal_domain.id
   space    = local.space_id
   hostname = "thanos-${local.postfix_name}"
-
-  depends_on = [cloudfoundry_space_users.users]
 }

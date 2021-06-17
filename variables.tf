@@ -6,24 +6,6 @@ variable "cf_org_name" {
 variable "cf_space_name" {
   description = "Cloudfoundry SPACE name to use for deploying all Thanos components. If empty, the module will create it's own space"
   type        = string
-  default     = ""
-}
-
-variable "cf_region" {
-  description = "The HSP region to which this will be deployed"
-  type        = string
-  default     = "us-east"
-}
-
-variable "cf_app_domain" {
-  description = "The Cloudfoundry regular app domain to use (deprecated: use cf_region)"
-  type        = string
-  default     = ""
-}
-
-variable "cf_user" {
-  description = "The Cloudfoundry user to assign rights to the app to"
-  type        = string
 }
 
 variable "name_postfix" {
