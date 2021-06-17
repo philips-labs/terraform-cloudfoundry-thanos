@@ -3,14 +3,8 @@ variable "cf_org_name" {
   type        = string
 }
 
-variable "cf_app_domain" {
-  description = "The Cloudfoundry regular app domain to use"
-  type        = string
-  default     = "us-east.philips-healthsuite.com"
-}
-
-variable "cf_user" {
-  description = "The Cloudfoundry user to assign rights to the app to"
+variable "cf_space_name" {
+  description = "Cloudfoundry SPACE name to use for deploying all Thanos components. If empty, the module will create it's own space"
   type        = string
 }
 

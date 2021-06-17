@@ -1,6 +1,7 @@
 locals {
   grafana_endpoint = join("", module.grafana.*.grafana_endpoint)
 }
+
 output "cluster_id" {
   description = "Cluster ID of Thanos deployment"
   value       = local.postfix_name
@@ -8,13 +9,7 @@ output "cluster_id" {
 
 output "thanos_space_id" {
   description = "Cloud foundry space ID of Thanos"
-  value       = cloudfoundry_space.space.id
-
-   depends_on = [
-    # Before this space can be used the permissions need to be allocated,
-    # otherwise some operations will not be permitted.
-    cloudfoundry_space_users.users,
-  ]
+  value       = local.space_id
 }
 
 output "thanos_query_app_id" {
