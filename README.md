@@ -11,11 +11,11 @@ a separate Cloud foundry space and deploys a number of apps and services to prov
 
 ```
 module "thanos" {
-    source = "github.com/philips-labs/terraform-cloudfoundry-thanos"
+    source = "philips-labs/thanos/cloudfoundry"
+    verision = "2.0.0"
 
-    cf_app_domain      = var.cf_domain
-    cf_org_name        = var.cf_org
-    cf_user            = var.cf_username
+    cf_org_name        = var.cf_org_name
+    cf_space_name      = var.cf_space_name
     enable_grafana     = true
 
     docker_username = var.cf_username
