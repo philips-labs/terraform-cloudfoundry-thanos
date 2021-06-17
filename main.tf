@@ -7,5 +7,5 @@ resource "random_password" "password" {
 }
 
 locals {
-  postfix_name = var.name_postfix != "" ? var.name_postfix : random_id.id.hex
+  postfix = var.name_postfix != "" ? var.name_postfix : random_id.id.hex
 }

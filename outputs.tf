@@ -4,7 +4,7 @@ locals {
 
 output "cluster_id" {
   description = "Cluster ID of Thanos deployment"
-  value       = local.postfix_name
+  value       = local.postfix
 }
 
 output "thanos_space_id" {

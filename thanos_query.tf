@@ -3,7 +3,7 @@ locals {
 }
 
 resource "cloudfoundry_app" "thanos_query" {
-  name         = "thanos-query"
+  name         = "tf-thanos-query-${local.postfix}"
   space        = local.space_id
   memory       = 256
   disk_quota   = 2048
@@ -26,13 +26,13 @@ resource "cloudfoundry_app" "thanos_query" {
 resource "cloudfoundry_route" "thanos_query" {
   domain   = data.cloudfoundry_domain.app_domain.id
   space    = local.space_id
-  hostname = "thanos-query-${local.postfix_name}"
+  hostname = "thanos-query-${local.postfix}"
 }
 
 resource "cloudfoundry_route" "thanos_query_internal" {
   domain   = data.cloudfoundry_domain.apps_internal_domain.id
   space    = local.space_id
-  hostname = "thanos-query-${local.postfix_name}"
+  hostname = "thanos-query-${local.postfix}"
 }
 
 resource "cloudfoundry_network_policy" "thanos_query" {
