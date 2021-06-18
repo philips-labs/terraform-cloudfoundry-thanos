@@ -4,3 +4,8 @@ provider "cloudfoundry" {
   password            = var.cf_password
   skip_ssl_validation = false
 }
+
+provider "grafana" {
+  url = "http://foo"
+  auth = "admin:password"
+}
