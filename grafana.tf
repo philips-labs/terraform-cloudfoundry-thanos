@@ -1,6 +1,6 @@
 module "grafana" {
   source  = "philips-labs/grafana/cloudfoundry"
-  version = "0.8.0"
+  version = "0.8.1"
 
   enable_postgres  = var.enable_grafana_postgres
   grafana_image    = var.grafana_image
