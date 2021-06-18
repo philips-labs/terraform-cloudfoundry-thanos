@@ -30,6 +30,7 @@ resource "grafana_data_source" "thanos" {
   type        = "prometheus"
   url         = "${cloudfoundry_route.thanos_query_internal.endpoint}:9090"
   access_mode = "proxy"
+  is_default  = true
 
   depends_on = [module.grafana.grafana_endpoint]
 }
