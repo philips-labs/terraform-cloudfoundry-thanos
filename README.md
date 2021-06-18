@@ -51,6 +51,8 @@ module "thanos" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0 |
 | <a name="requirement_cloudfoundry"></a> [cloudfoundry](#requirement\_cloudfoundry) | >= 0.14.2 |
+| <a name="requirement_grafana"></a> [grafana](#requirement\_grafana) | >= 1.11.0 |
+| <a name="requirement_hsdp"></a> [hsdp](#requirement\_hsdp) | >= 0.16.3 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.2.1 |
 
 ## Providers
@@ -58,13 +60,15 @@ module "thanos" {
 | Name | Version |
 |------|---------|
 | <a name="provider_cloudfoundry"></a> [cloudfoundry](#provider\_cloudfoundry) | >= 0.14.2 |
+| <a name="provider_grafana"></a> [grafana](#provider\_grafana) | >= 1.11.0 |
+| <a name="provider_hsdp"></a> [hsdp](#provider\_hsdp) | >= 0.16.3 |
 | <a name="provider_random"></a> [random](#provider\_random) | >= 2.2.1 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_grafana"></a> [grafana](#module\_grafana) | philips-labs/grafana/cloudfoundry | 0.6.0 |
+| <a name="module_grafana"></a> [grafana](#module\_grafana) | philips-labs/grafana/cloudfoundry | 0.8.3 |
 
 ## Resources
 
@@ -73,6 +77,7 @@ module "thanos" {
 | [cloudfoundry_app.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_network_policy.grafana_database_metrics](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_route.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
@@ -80,39 +85,33 @@ module "thanos" {
 | [cloudfoundry_route.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos_query_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos_store_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
-| [cloudfoundry_service_instance.metrics](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_instance) | resource |
 | [cloudfoundry_service_instance.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_instance) | resource |
-| [cloudfoundry_space.space](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/space) | resource |
-| [cloudfoundry_space_users.users](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/space_users) | resource |
+| [grafana_data_source.thanos](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/data_source) | resource |
 | [random_id.id](https://registry.terraform.io/providers/random/latest/docs/resources/id) | resource |
 | [random_password.password](https://registry.terraform.io/providers/random/latest/docs/resources/password) | resource |
 | [cloudfoundry_domain.app_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain) | data source |
 | [cloudfoundry_domain.apps_internal_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain) | data source |
 | [cloudfoundry_org.org](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/org) | data source |
-| [cloudfoundry_service.metrics](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/service) | data source |
 | [cloudfoundry_service.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/service) | data source |
 | [cloudfoundry_space.space](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/space) | data source |
-| [cloudfoundry_user.user](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/user) | data source |
+| [hsdp_config.cf](https://registry.terraform.io/providers/philips-software/hsdp/latest/docs/data-sources/config) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cf_app_domain"></a> [cf\_app\_domain](#input\_cf\_app\_domain) | The Cloudfoundry regular app domain to use (deprecated: use cf\_region) | `string` | `""` | no |
 | <a name="input_cf_exporter_config"></a> [cf\_exporter\_config](#input\_cf\_exporter\_config) | Configuration for the CloudFoundry exporter. Required if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
 | <a name="input_cf_org_name"></a> [cf\_org\_name](#input\_cf\_org\_name) | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
-| <a name="input_cf_region"></a> [cf\_region](#input\_cf\_region) | The HSP region to which this will be deployed | `string` | `"us-east"` | no |
-| <a name="input_cf_space_name"></a> [cf\_space\_name](#input\_cf\_space\_name) | Cloudfoundry SPACE name to use for deploying all Thanos components. If empty, the module will create it's own space | `string` | `""` | no |
-| <a name="input_cf_user"></a> [cf\_user](#input\_cf\_user) | The Cloudfoundry user to assign rights to the app to | `string` | n/a | yes |
+| <a name="input_cf_space_name"></a> [cf\_space\_name](#input\_cf\_space\_name) | Cloudfoundry SPACE name to use for deploying all Thanos components. If empty, the module will create it's own space | `string` | n/a | yes |
 | <a name="input_docker_password"></a> [docker\_password](#input\_docker\_password) | Docker registry password | `string` | `""` | no |
 | <a name="input_docker_username"></a> [docker\_username](#input\_docker\_username) | Docker registry username | `string` | `""` | no |
 | <a name="input_enable_cf_exporter"></a> [enable\_cf\_exporter](#input\_enable\_cf\_exporter) | Enable the CloudFoundry metrics exporter and scrape it from Thanos | `bool` | `false` | no |
-| <a name="input_enable_grafana"></a> [enable\_grafana](#input\_enable\_grafana) | Adds a Grafana deployment when enabled | `bool` | `false` | no |
-| <a name="input_enable_grafana_postgres"></a> [enable\_grafana\_postgres](#input\_enable\_grafana\_postgres) | Enables use of Postgres as Grafana config store | `bool` | `true` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Pass environment variable to the app | `map(any)` | `{}` | no |
 | <a name="input_grafana_environment"></a> [grafana\_environment](#input\_grafana\_environment) | Pass environment variable to Grafana | `map(any)` | `{}` | no |
 | <a name="input_grafana_image"></a> [grafana\_image](#input\_grafana\_image) | Image to use for Grafana | `string` | `"grafana/grafana:latest"` | no |
+| <a name="input_grafana_password"></a> [grafana\_password](#input\_grafana\_password) | Grafana password | `string` | n/a | yes |
 | <a name="input_grafana_public_endpoints"></a> [grafana\_public\_endpoints](#input\_grafana\_public\_endpoints) | Make Grafana public endpoint | `bool` | `true` | no |
+| <a name="input_grafana_username"></a> [grafana\_username](#input\_grafana\_username) | Grafana username | `string` | `"admin"` | no |
 | <a name="input_name_postfix"></a> [name\_postfix](#input\_name\_postfix) | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
 | <a name="input_thanos_disk_quota"></a> [thanos\_disk\_quota](#input\_thanos\_disk\_quota) | Thanos disk quota | `number` | `2048` | no |
 | <a name="input_thanos_extra_config"></a> [thanos\_extra\_config](#input\_thanos\_extra\_config) | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string` | `""` | no |
@@ -131,7 +130,9 @@ module "thanos" {
 |------|-------------|
 | <a name="output_cluster_id"></a> [cluster\_id](#output\_cluster\_id) | Cluster ID of Thanos deployment |
 | <a name="output_grafana_app_id"></a> [grafana\_app\_id](#output\_grafana\_app\_id) | App id for Grafana |
+| <a name="output_grafana_auth"></a> [grafana\_auth](#output\_grafana\_auth) | The Grafana auth token to use for e.g. configuring Grafana provider |
 | <a name="output_grafana_endpoint"></a> [grafana\_endpoint](#output\_grafana\_endpoint) | URL of Grafana deployment (optional) |
+| <a name="output_grafana_url"></a> [grafana\_url](#output\_grafana\_url) | The Grafana URL |
 | <a name="output_thanos_app_id"></a> [thanos\_app\_id](#output\_thanos\_app\_id) | App id for Thanos |
 | <a name="output_thanos_endpoint"></a> [thanos\_endpoint](#output\_thanos\_endpoint) | URL of Thanos deployment |
 | <a name="output_thanos_query_app_id"></a> [thanos\_query\_app\_id](#output\_thanos\_query\_app\_id) | App id for Thanos Query |
