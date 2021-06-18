@@ -1,17 +1,11 @@
-resource "random_password" "grafana_password" {
-  count  = var.enable_grafana ? 1 : 0
-  length = 16
-}
-
 module "grafana" {
   source  = "philips-labs/grafana/cloudfoundry"
   version = "0.8.0"
 
-  count            = var.enable_grafana ? 1 : 0
   enable_postgres  = var.enable_grafana_postgres
   grafana_image    = var.grafana_image
   grafana_username = "admin"
-  grafana_password = random_password.grafana_password[count.index].result
+  grafana_password = var.grafana_password
   cf_space         = local.space_name
   cf_org           = data.cloudfoundry_org.org.name
   cf_domain        = var.grafana_public_endpoints ? data.cloudfoundry_domain.app_domain.name : data.cloudfoundry_domain.apps_internal_domain.name

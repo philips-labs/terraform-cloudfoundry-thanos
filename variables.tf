@@ -38,10 +38,15 @@ variable "thanos_public_endpoints" {
   default     = true
 }
 
-variable "enable_grafana" {
-  description = "Adds a Grafana deployment when enabled"
-  type        = bool
-  default     = false
+variable "grafana_username" {
+  description = "Grafana username"
+  type        = string
+  default     = "admin"
+}
+
+variable "grafana_password" {
+  description = "Grafana password"
+  type        = string
 }
 
 variable "enable_grafana_postgres" {
