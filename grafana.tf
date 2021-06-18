@@ -4,7 +4,7 @@ module "grafana" {
 
   enable_postgres  = var.enable_grafana_postgres
   grafana_image    = var.grafana_image
-  grafana_username = "admin"
+  grafana_username = var.grafana_username
   grafana_password = var.grafana_password
   cf_space         = local.space_name
   cf_org           = data.cloudfoundry_org.org.name
