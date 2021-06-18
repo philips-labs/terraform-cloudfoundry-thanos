@@ -24,6 +24,27 @@ provider "registry.terraform.io/cloudfoundry-community/cloudfoundry" {
   ]
 }
 
+provider "registry.terraform.io/grafana/grafana" {
+  version     = "1.11.0"
+  constraints = ">= 1.11.0"
+  hashes = [
+    "h1:Fj28TEXj5OvHRm/wfbR3CwM8yfQFeS1KQ8ZOhEhjMs8=",
+    "zh:0bc391dab34f4e02b4ff1c1ffb06409c009edf120823d0f33944ddcd023c3927",
+    "zh:14ef3b2b834b6e21f627a65bce428723aa33f597dd94e9bf2b0e02ec7e0d696d",
+    "zh:48e1f19655c3ba0b3b32a8291a878b3aa6edf3149efda5a9f6001f59ffcdac6f",
+    "zh:51ea54e7650ce221afe0c3509849ca90496321b6ccc27129989b4de7f77e0171",
+    "zh:5d40933a06ba57de33b2c471c3745b64b49309a2c14fc98b6673447249c07af7",
+    "zh:68a18e1f331b4063b565799583d4b39dd18929cd32faae1d0bff03b7a6219d78",
+    "zh:84b122dbf1815bf2ce47c4736b4c9964bdf42b93aebda714b45ad4dea4ccf390",
+    "zh:b3487ff2db6564fc8a79a96cdeb9e87bd446e18231206057f7207b10ba194339",
+    "zh:caf8a47a36f271f6198f4a0eb659823257b580b0982efbb56ae7a70b8ea6f865",
+    "zh:da46e8287ef65e18113b9d82372ea017bb9f9ed2e50a69c3064a319d1ea8ad8f",
+    "zh:dc2346e85adb2ce1d1c99fd41ee856e7c13f13406c77d1d06718c7c8ee842c4b",
+    "zh:de7c9faf2eb508024719f370873f14a0f0ec20870ca57369b6de7bc1c543e445",
+    "zh:e176f217cc983abace0e1ac906e215059beee5fd08b7b98f631e3ad922599fad",
+  ]
+}
+
 provider "registry.terraform.io/hashicorp/random" {
   version     = "3.1.0"
   constraints = ">= 2.2.1"
