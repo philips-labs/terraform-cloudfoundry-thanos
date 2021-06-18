@@ -38,5 +38,17 @@ if [ -n "$CARTEL_HOSTS" ]; then
   cat "$prom_config"
 fi
 
+if [ -n "$PG_EXPORTERS" ]; then
+  echo " Merging pg_exporter list"
+  json_tmpl_file="tmpl_targets"
+  json_file="pgexporters.json"
+  echo "$PG_EXPORTERS" | tr "," "\n" > exporters
+  echo '[{"targets": '$(cat exporters| jq -R -s -c 'split("\n")[:-1]')', "labels":{"group":"pg_exporter"}}]'  > $json_tmpl_file
+  cat $json_tmpl_file | jq . > $json_file
+  mv $json_file /sidecars/etc/
+  yq eval-all --inplace 'select(fileIndex == 0) *+ select(fileIndex == 1)' "$prom_config" /sidecars/etc/prometheus.pgexporter.yml
+  cat "$prom_config"
+fi
+
 # Start and run prometheus
 exec /sidecars/bin/prometheus --config.file="$prom_config" --storage.tsdb.path=/prometheus --storage.tsdb.retention=2d --storage.tsdb.min-block-duration=30m --storage.tsdb.max-block-duration=30m --web.enable-lifecycle

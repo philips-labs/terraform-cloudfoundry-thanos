@@ -28,6 +28,7 @@ resource "cloudfoundry_app" "thanos" {
     USERNAME           = var.cf_exporter_config.username
     PASSWORD           = var.cf_exporter_config.password
     API_ENDPOINT       = var.cf_exporter_config.api_endpoint
+    PG_EXPORTERS       = join(",", [module.grafana.grafana_database_metrics_endpoint])
   }, var.environment)
 
   dynamic "routes" {
