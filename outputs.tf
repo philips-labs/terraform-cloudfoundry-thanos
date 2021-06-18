@@ -52,3 +52,13 @@ output "grafana_endpoint" {
   value       = var.grafana_public_endpoints ? local.grafana_endpoint : "${local.grafana_endpoint}:3000"
 }
 
+output "grafana_auth" {
+  description = "The Grafana auth token to use for e.g. configuring Grafana provider"
+  value       = local.grafana_auth
+  sensitive   = true
+}
+
+output "grafana_url" {
+  description = "The Grafana URL"
+  value       = local.grafana_url
+}

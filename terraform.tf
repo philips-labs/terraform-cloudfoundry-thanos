@@ -7,8 +7,12 @@ terraform {
       version = ">= 0.14.2"
     }
     hsdp = {
-      source = "philips-software/hsdp"
+      source  = "philips-software/hsdp"
       version = ">= 0.16.3"
+    }
+    grafana = {
+      source  = "grafana/grafana"
+      version = ">= 1.11.0"
     }
     random = {
       source  = "random"
