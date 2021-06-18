@@ -6,6 +6,6 @@ provider "cloudfoundry" {
 }
 
 provider "grafana" {
-  url = "http://foo"
+  url  = "http://foo"
   auth = "admin:password"
 }
