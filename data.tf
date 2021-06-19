@@ -7,6 +7,7 @@ data "hsdp_config" "cf" {
 }
 
 data "cloudfoundry_domain" "app_domain" {
+  //noinspection HILUnresolvedReference
   name = data.hsdp_config.cf.domain
 }
 
