@@ -88,13 +88,13 @@ variable "docker_password" {
 variable "thanos_memory" {
   type        = number
   description = "Thanos memory"
-  default     = 512
+  default     = 1024
 }
 
 variable "thanos_disk_quota" {
   type        = number
   description = "Thanos disk quota"
-  default     = 2048
+  default     = 5000
 }
 
 variable "thanos_store_memory" {
@@ -106,7 +106,7 @@ variable "thanos_store_memory" {
 variable "thanos_store_disk_quota" {
   type        = number
   description = "Thanos store disk quota"
-  default     = 2048
+  default     = 5000
 }
 
 variable "thanos_file_sd_url" {
