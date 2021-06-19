@@ -58,6 +58,11 @@ output "grafana_auth" {
   sensitive   = true
 }
 
+output "grafana_username" {
+  description = "The Grafana username"
+  value       = var.grafana_username
+}
+
 output "grafana_url" {
   description = "The Grafana URL"
   value       = local.grafana_url
