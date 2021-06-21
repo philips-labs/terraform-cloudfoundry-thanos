@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v2.0.5
+- Add RabbitMQ and Redis exporter injection support
+
 ## v2.0.4
 - Use versioned defaults for docker images
 
