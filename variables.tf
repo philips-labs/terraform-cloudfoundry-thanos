@@ -3,8 +3,8 @@ variable "cf_org_name" {
   type        = string
 }
 
-variable "cf_space_name" {
-  description = "Cloudfoundry SPACE name to use for deploying all Thanos components. If empty, the module will create it's own space"
+variable "cf_space_id" {
+  description = "Cloudfoundry SPACE id to use for deploying all Thanos components."
   type        = string
 }
 

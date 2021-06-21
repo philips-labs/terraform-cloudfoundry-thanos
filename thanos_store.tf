@@ -1,6 +1,6 @@
 resource "cloudfoundry_app" "thanos_store" {
   name         = "tf-thanos-store-${local.postfix}"
-  space        = local.space_id
+  space        = var.cf_space_id
   memory       = var.thanos_store_memory
   disk_quota   = var.thanos_store_disk_quota
   docker_image = var.thanos_store_image
@@ -20,7 +20,7 @@ resource "cloudfoundry_app" "thanos_store" {
 
 resource "cloudfoundry_route" "thanos_store_internal" {
   domain   = data.cloudfoundry_domain.apps_internal_domain.id
-  space    = local.space_id
+  space    = var.cf_space_id
   hostname = "thanos-store-${local.postfix}"
 }
 

@@ -9,7 +9,7 @@ output "cluster_id" {
 
 output "thanos_space_id" {
   description = "Cloud foundry space ID of Thanos"
-  value       = local.space_id
+  value       = var.cf_space_id
 }
 
 output "thanos_query_app_id" {
