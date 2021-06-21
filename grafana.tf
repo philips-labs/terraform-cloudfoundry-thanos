@@ -6,7 +6,7 @@ module "grafana" {
   grafana_image    = var.grafana_image
   grafana_username = var.grafana_username
   grafana_password = var.grafana_password
-  cf_space_id      = localspace_id
+  cf_space_id      = var.cf_space_id
   cf_org           = data.cloudfoundry_org.org.name
   cf_domain        = var.grafana_public_endpoints ? data.cloudfoundry_domain.app_domain.name : data.cloudfoundry_domain.apps_internal_domain.name
   name_postfix     = local.postfix
