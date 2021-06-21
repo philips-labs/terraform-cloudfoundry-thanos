@@ -38,6 +38,8 @@ if [ -n "$CARTEL_HOSTS" ]; then
   cat "$prom_config"
 fi
 
+# TODO: the following blocks should be collapsed in a method as they are mostly duplicates
+
 if [ -n "$PG_EXPORTERS" ]; then
   echo " Merging pg_exporter list"
   json_tmpl_file="tmpl_targets"
@@ -47,6 +49,30 @@ if [ -n "$PG_EXPORTERS" ]; then
   cat $json_tmpl_file | jq . > $json_file
   mv $json_file /sidecars/etc/
   yq eval-all --inplace 'select(fileIndex == 0) *+ select(fileIndex == 1)' "$prom_config" /sidecars/etc/prometheus.pgexporter.yml
+  cat "$prom_config"
+fi
+
+if [ -n "$RABBITMQ_EXPORTERS" ]; then
+  echo " Merging rabbitmq_exporter list"
+  json_tmpl_file="tmpl_targets"
+  json_file="rabbitmqexporters.json"
+  echo "$RABBITMQ_EXPORTERS" | tr "," "\n" > exporters
+  echo '[{"targets": '$(cat exporters| jq -R -s -c 'split("\n")[:-1]')', "labels":{"group":"rabbitmq_exporter"}}]'  > $json_tmpl_file
+  cat $json_tmpl_file | jq . > $json_file
+  mv $json_file /sidecars/etc/
+  yq eval-all --inplace 'select(fileIndex == 0) *+ select(fileIndex == 1)' "$prom_config" /sidecars/etc/prometheus.rabbitmqexporter.yml
+  cat "$prom_config"
+fi
+
+if [ -n "$REDIS_EXPORTERS" ]; then
+  echo " Merging pg_exporter list"
+  json_tmpl_file="tmpl_targets"
+  json_file="redisexporters.json"
+  echo "$REDIS_EXPORTERS" | tr "," "\n" > exporters
+  echo '[{"targets": '$(cat exporters| jq -R -s -c 'split("\n")[:-1]')', "labels":{"group":"redis_exporter"}}]'  > $json_tmpl_file
+  cat $json_tmpl_file | jq . > $json_file
+  mv $json_file /sidecars/etc/
+  yq eval-all --inplace 'select(fileIndex == 0) *+ select(fileIndex == 1)' "$prom_config" /sidecars/etc/prometheus.rediexporter.yml
   cat "$prom_config"
 fi
 
