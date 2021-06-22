@@ -72,7 +72,7 @@ if [ -n "$REDIS_EXPORTERS" ]; then
   echo '[{"targets": '$(cat exporters| jq -R -s -c 'split("\n")[:-1]')', "labels":{"group":"redis_exporter"}}]'  > $json_tmpl_file
   cat $json_tmpl_file | jq . > $json_file
   mv $json_file /sidecars/etc/
-  yq eval-all --inplace 'select(fileIndex == 0) *+ select(fileIndex == 1)' "$prom_config" /sidecars/etc/prometheus.rediexporter.yml
+  yq eval-all --inplace 'select(fileIndex == 0) *+ select(fileIndex == 1)' "$prom_config" /sidecars/etc/prometheus.redisexporter.yml
   cat "$prom_config"
 fi
 
