@@ -1,7 +1,6 @@
 # Terraform Cloudfoundry Thanos module
 
-Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unlimited metrics storage. This module provisions
-a separate Cloud foundry space and deploys a number of apps and services to provides [Thanos](https://thanos.io)
+Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unlimited metrics storage. This module deploys a number of apps and services to provide [Thanos](https://thanos.io)
 
 # TODO
 
