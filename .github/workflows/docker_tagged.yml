@@ -16,6 +16,13 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
+        name: Login to HSDP Docker registry
+        uses: docker/login-action@v1
+        with:
+          registry: docker.na1.hsdp.io
+          username: ${{ secrets.HSDP_DOCKER_USERNAME }}
+          password: ${{ secrets.HSDP_DOCKER_PASSWORD }}
+      -
         name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -40,7 +47,7 @@ jobs:
           file: ./docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: philipslabs/cf-thanos:${{ steps.vars.outputs.tag }}
+          tags: philipslabs/cf-thanos:${{ steps.vars.outputs.tag }},docker.na1.hsdp.io/philipslabs/cf-thanos:${{ steps.vars.outputs.tag }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
