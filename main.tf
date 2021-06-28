@@ -22,13 +22,18 @@ resource "cloudfoundry_app" "thanos" {
     password = var.docker_password
   }
   environment = merge({
-    FILESD_URL         = var.thanos_file_sd_url
-    ENABLE_CF_EXPORTER = var.enable_cf_exporter
-    PROMETHEUS_TARGETS = base64encode(var.thanos_extra_config)
-    USERNAME           = var.cf_exporter_config.username
-    PASSWORD           = var.cf_exporter_config.password
-    API_ENDPOINT       = var.cf_exporter_config.api_endpoint
-    PG_EXPORTERS       = join(",", [module.grafana.grafana_database_metrics_endpoint])
+    FILESD_URL                 = var.thanos_file_sd_url
+    ENABLE_CF_EXPORTER         = var.enable_cf_exporter
+    PROMETHEUS_TARGETS         = base64encode(var.thanos_extra_config)
+    USERNAME                   = var.cf_exporter_config.username
+    PASSWORD                   = var.cf_exporter_config.password
+    API_ENDPOINT               = var.cf_exporter_config.api_endpoint
+    VARIANT_API_ENDPOINT       = var.cf_exporter_config.api_endpoint
+    VARIANT_USERNAME           = var.cf_exporter_config.username
+    VARIANT_PASSWORD           = var.cf_exporter_config.password
+    VARIANT_INTERNAL_DOMAIN_ID = data.cloudfoundry_domain.apps_internal_domain.id
+    VARIANT_PROMETHEUS_CONFIG  = "/sidecars/etc/prometheus.yml"
+    PG_EXPORTERS               = join(",", [module.grafana.grafana_database_metrics_endpoint])
   }, var.environment)
 
   dynamic "routes" {

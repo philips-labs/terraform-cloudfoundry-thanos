@@ -26,6 +26,8 @@ WORKDIR /app
 RUN curl -L -Os https://github.com/thanos-io/thanos/releases/download/v${THANOS_VERSION}/thanos-${THANOS_VERSION}.linux-amd64.tar.gz \
  && tar zxvf thanos-${THANOS_VERSION}.linux-amd64.tar.gz --strip 1
 
+FROM philipslabs/variant:latest AS variant
+
 ## Build final image
 FROM alpine:3.14.0
 LABEL maintainer="andy.lo-a-foe@philips.com"
@@ -36,6 +38,7 @@ RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc /prometheus 
 
 COPY --from=prometheus /app/prometheus /sidecars/bin
 COPY --from=thanos     /app/thanos     /sidecars/bin
+COPY --from=variant    /app/app        /sidecars/bin/variant
 COPY --from=exporter   /app/paas-prometheus-exporter /sidecars/bin
 
 COPY prometheus/  /sidecars/etc
@@ -46,6 +49,7 @@ COPY crontab.txt /var/crontab.txt
 RUN crontab /var/crontab.txt
 
 ENV ENABLE_CF_EXPORTER=false
+ENV ENABLE_VARIANT=true
 
 EXPOSE 9090
 
