@@ -1,6 +1,6 @@
 module "grafana" {
   source  = "philips-labs/grafana/cloudfoundry"
-  version = "0.9.0"
+  version = "0.9.1"
 
   enable_postgres  = true
   grafana_image    = var.grafana_image
@@ -23,14 +23,6 @@ module "grafana" {
       port            = "9090"
     }
   ]
-}
-
-resource "cloudfoundry_network_policy" "grafana_database_metrics" {
-  policy {
-    source_app      = cloudfoundry_app.thanos.id
-    destination_app = module.grafana.grafana_database_metrics_app_id
-    port            = module.grafana.grafana_database_metrics_port
-  }
 }
 
 resource "grafana_data_source" "thanos" {
