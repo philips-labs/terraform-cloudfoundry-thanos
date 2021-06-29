@@ -35,7 +35,7 @@ variable "thanos_store_image" {
 variable "thanos_public_endpoints" {
   description = "Make Thanos public endpoint"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "grafana_username" {
