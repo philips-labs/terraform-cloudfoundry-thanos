@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v3.0.0
+- Add [variant](https://github.com/philips-labs/variant) support
+- Rename cf_exporter_config to more generic cf_functional_account
+
+## v2.1.0
+- Use `space_id` for Grafana integration
+
 ## v2.0.5
 - Add RabbitMQ and Redis exporter injection support
 

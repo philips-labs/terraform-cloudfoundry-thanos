@@ -127,13 +127,13 @@ variable "thanos_extra_config" {
   default     = ""
 }
 
-variable "cf_exporter_config" {
+variable "cf_functional_account" {
   type = object({
     api_endpoint = string
     username     = string
     password     = string
   })
-  description = "Configuration for the CloudFoundry exporter. Required if enable_cf_exporter is set to true"
+  description = "Configuration for the CloudFoundry function account. Required for variant and if enable_cf_exporter is set to true"
   default = {
     api_endpoint = ""
     username     = ""
