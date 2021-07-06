@@ -127,6 +127,12 @@ variable "thanos_extra_config" {
   default     = ""
 }
 
+variable "tenants" {
+  type        = list(string)
+  description = "The list of tenants to scrape. When an app does not specify tenant then 'default' is used"
+  default     = ["default"]
+}
+
 variable "cf_functional_account" {
   type = object({
     api_endpoint = string
