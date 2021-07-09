@@ -3,11 +3,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.0.1
+- Update variant to v0.0.12
+
 ## v4.0.0
 - BREAKING: remove Grafana from module
 - NOTE: Before upgrade: `terraform state rm module.thanos.grafana_data_source.thanos`
 - NOTE: Before upgrade: `terraform destroy -target=module.thanos.module.grafana`
 
+VV v3.0.2
+- Update variant to v0.0.12
 
 ## v3.0.1
 - Update variant to support discovering CF instances
