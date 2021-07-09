@@ -101,7 +101,7 @@ No Modules.
 
 | Name | Description |
 |------|-------------|
-| cluster\_id | Cluster ID of Thanos deployment |
+| postfix | Cluster ID / Postfix of Thanos deployment |
 | thanos\_app\_id | App id for Thanos |
 | thanos\_endpoint | URL of Thanos deployment |
 | thanos\_query\_app\_id | App id for Thanos Query |
