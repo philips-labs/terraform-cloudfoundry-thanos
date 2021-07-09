@@ -26,7 +26,8 @@ WORKDIR /app
 RUN curl -L -Os https://github.com/thanos-io/thanos/releases/download/v${THANOS_VERSION}/thanos-${THANOS_VERSION}.linux-amd64.tar.gz \
  && tar zxvf thanos-${THANOS_VERSION}.linux-amd64.tar.gz --strip 1
 
-FROM philipslabs/variant:v0.0.11 AS variant
+## Variant
+FROM philipslabs/variant:v0.0.12 AS variant
 
 ## Build final image
 FROM alpine:3.14.0
