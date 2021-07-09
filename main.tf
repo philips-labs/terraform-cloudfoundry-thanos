@@ -35,7 +35,6 @@ resource "cloudfoundry_app" "thanos" {
     VARIANT_PROMETHEUS_CONFIG  = "/sidecars/etc/prometheus.yml"
     VARIANT_TENANTS            = join(",", var.tenants)
     VARIANT_RELOAD             = "true"
-    PG_EXPORTERS               = join(",", [module.grafana.grafana_database_metrics_endpoint])
   }, var.environment)
 
   dynamic "routes" {

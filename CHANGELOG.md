@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.0.0
+- BREAKING: remove Grafana from module
+
+## v3.0.1
+- Update variant to support discovering CF instances
+
 ## v3.0.0
 - Add [variant](https://github.com/philips-labs/variant) support
 - Rename cf_exporter_config to more generic cf_functional_account

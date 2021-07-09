@@ -5,11 +5,6 @@ provider "cloudfoundry" {
   skip_ssl_validation = false
 }
 
-provider "grafana" {
-  url  = "http://foo"
-  auth = "admin:password"
-}
-
 provider "hsdp" {
   region = "us-east"
 }

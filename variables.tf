@@ -38,38 +38,9 @@ variable "thanos_public_endpoints" {
   default     = false
 }
 
-variable "grafana_username" {
-  description = "Grafana username"
-  type        = string
-  default     = "admin"
-}
-
-variable "grafana_password" {
-  description = "Grafana password"
-  type        = string
-}
-
-variable "grafana_image" {
-  description = "Image to use for Grafana"
-  default     = "grafana/grafana:8.0.4"
-  type        = string
-}
-
-variable "grafana_public_endpoints" {
-  description = "Make Grafana public endpoint"
-  type        = bool
-  default     = true
-}
-
 variable "environment" {
   type        = map(any)
   description = "Pass environment variable to the app"
-  default     = {}
-}
-
-variable "grafana_environment" {
-  type        = map(any)
-  description = "Pass environment variable to Grafana"
   default     = {}
 }
 
