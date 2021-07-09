@@ -1,9 +1,5 @@
-locals {
-  grafana_endpoint = join("", module.grafana.*.grafana_endpoint)
-}
-
-output "cluster_id" {
-  description = "Cluster ID of Thanos deployment"
+output "postfix" {
+  description = "Cluster ID / Postfix of Thanos deployment"
   value       = local.postfix
 }
 
@@ -40,30 +36,4 @@ output "thanos_store_app_id" {
 output "thanos_store_endpoint" {
   description = "Internal only URL of Thanos store deployment"
   value       = "${cloudfoundry_route.thanos_store_internal.endpoint}:9090"
-}
-
-output "grafana_app_id" {
-  description = "App id for Grafana"
-  value       = join("", module.grafana.*.grafana_id)
-}
-
-output "grafana_endpoint" {
-  description = "URL of Grafana deployment (optional)"
-  value       = var.grafana_public_endpoints ? local.grafana_endpoint : "${local.grafana_endpoint}:3000"
-}
-
-output "grafana_auth" {
-  description = "The Grafana auth token to use for e.g. configuring Grafana provider"
-  value       = local.grafana_auth
-  sensitive   = true
-}
-
-output "grafana_username" {
-  description = "The Grafana username"
-  value       = var.grafana_username
-}
-
-output "grafana_url" {
-  description = "The Grafana URL"
-  value       = local.grafana_url
 }

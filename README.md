@@ -15,7 +15,6 @@ module "thanos" {
 
     cf_org_name        = var.cf_org_name
     cf_space_name      = var.cf_space_name
-    enable_grafana     = true
 
     docker_username = var.cf_username
     docker_password = var.cf_password
@@ -34,112 +33,82 @@ module "thanos" {
         PASSWORD     = var.cf_password
         API_ENDPOINT = var.cf_api
     }
-
-    // some Grafana env.vars
-    grafana_environment = {
-        GF_SECURITY_ADMIN_USER      = test_user
-        GF_SECURITY_ADMIN_PASSWORD  = test_pass
-    }
 }
 ```
 
 <!--- BEGIN_TF_DOCS --->
-
 ## Requirements
 
-| Name                                                                              | Version   |
-| --------------------------------------------------------------------------------- | --------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform)          | >= 0.13.0 |
-| <a name="requirement_cloudfoundry"></a> [cloudfoundry](#requirement_cloudfoundry) | >= 0.14.2 |
-| <a name="requirement_grafana"></a> [grafana](#requirement_grafana)                | >= 1.11.0 |
-| <a name="requirement_hsdp"></a> [hsdp](#requirement_hsdp)                         | >= 0.16.3 |
-| <a name="requirement_random"></a> [random](#requirement_random)                   | >= 2.2.1  |
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13.0 |
+| cloudfoundry | >= 0.14.2 |
+| hsdp | >= 0.16.3 |
+| random | >= 2.2.1 |
 
 ## Providers
 
-| Name                                                                        | Version   |
-| --------------------------------------------------------------------------- | --------- |
-| <a name="provider_cloudfoundry"></a> [cloudfoundry](#provider_cloudfoundry) | >= 0.14.2 |
-| <a name="provider_grafana"></a> [grafana](#provider_grafana)                | >= 1.11.0 |
-| <a name="provider_hsdp"></a> [hsdp](#provider_hsdp)                         | >= 0.16.3 |
-| <a name="provider_random"></a> [random](#provider_random)                   | >= 2.2.1  |
+| Name | Version |
+|------|---------|
+| cloudfoundry | >= 0.14.2 |
+| hsdp | >= 0.16.3 |
+| random | >= 2.2.1 |
 
 ## Modules
 
-| Name                                                     | Source                            | Version |
-| -------------------------------------------------------- | --------------------------------- | ------- |
-| <a name="module_grafana"></a> [grafana](#module_grafana) | philips-labs/grafana/cloudfoundry | 0.9.0   |
+No Modules.
 
 ## Resources
 
-| Name                                                                                                                                                                     | Type        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| [cloudfoundry_app.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app)                                         | resource    |
-| [cloudfoundry_app.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app)                                   | resource    |
-| [cloudfoundry_app.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app)                                   | resource    |
-| [cloudfoundry_network_policy.grafana_database_metrics](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource    |
-| [cloudfoundry_network_policy.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy)             | resource    |
-| [cloudfoundry_network_policy.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy)             | resource    |
-| [cloudfoundry_route.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route)                                     | resource    |
-| [cloudfoundry_route.thanos_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route)                            | resource    |
-| [cloudfoundry_route.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route)                               | resource    |
-| [cloudfoundry_route.thanos_query_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route)                      | resource    |
-| [cloudfoundry_route.thanos_store_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route)                      | resource    |
-| [cloudfoundry_service_instance.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_instance)                   | resource    |
-| [grafana_data_source.thanos](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/data_source)                                                  | resource    |
-| [random_id.id](https://registry.terraform.io/providers/random/latest/docs/resources/id)                                                                                  | resource    |
-| [random_password.password](https://registry.terraform.io/providers/random/latest/docs/resources/password)                                                                | resource    |
-| [cloudfoundry_domain.app_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain)                            | data source |
-| [cloudfoundry_domain.apps_internal_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain)                  | data source |
-| [cloudfoundry_org.org](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/org)                                         | data source |
-| [cloudfoundry_service.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/service)                                  | data source |
-| [hsdp_config.cf](https://registry.terraform.io/providers/philips-software/hsdp/latest/docs/data-sources/config)                                                          | data source |
+| Name |
+|------|
+| [cloudfoundry_app](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) |
+| [cloudfoundry_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain) |
+| [cloudfoundry_network_policy](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) |
+| [cloudfoundry_org](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/org) |
+| [cloudfoundry_route](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) |
+| [cloudfoundry_service](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/service) |
+| [cloudfoundry_service_instance](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_instance) |
+| [hsdp_config](https://registry.terraform.io/providers/philips-software/hsdp/latest/docs/data-sources/config) |
+| [random_id](https://registry.terraform.io/providers/random/latest/docs/resources/id) |
+| [random_password](https://registry.terraform.io/providers/random/latest/docs/resources/password) |
 
 ## Inputs
 
-| Name                                                                                                      | Description                                                                                                       | Type                                                                                             | Default                                                                          | Required |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | :------: |
-| <a name="input_cf_exporter_config"></a> [cf_exporter_config](#input_cf_exporter_config)                   | Configuration for the CloudFoundry exporter. Required if enable_cf_exporter is set to true                        | <pre>object({<br> api_endpoint = string<br> username = string<br> password = string<br> })</pre> | <pre>{<br> "api_endpoint": "",<br> "password": "",<br> "username": ""<br>}</pre> |    no    |
-| <a name="input_cf_org_name"></a> [cf_org_name](#input_cf_org_name)                                        | Cloudfoundry ORG name to use for reverse proxy                                                                    | `string`                                                                                         | n/a                                                                              |   yes    |
-| <a name="input_cf_space_id"></a> [cf_space_id](#input_cf_space_id)                                        | Cloudfoundry SPACE id to use for deploying all Thanos components.                                                 | `string`                                                                                         | n/a                                                                              |   yes    |
-| <a name="input_docker_password"></a> [docker_password](#input_docker_password)                            | Docker registry password                                                                                          | `string`                                                                                         | `""`                                                                             |    no    |
-| <a name="input_docker_username"></a> [docker_username](#input_docker_username)                            | Docker registry username                                                                                          | `string`                                                                                         | `""`                                                                             |    no    |
-| <a name="input_enable_cf_exporter"></a> [enable_cf_exporter](#input_enable_cf_exporter)                   | Enable the CloudFoundry metrics exporter and scrape it from Thanos                                                | `bool`                                                                                           | `false`                                                                          |    no    |
-| <a name="input_environment"></a> [environment](#input_environment)                                        | Pass environment variable to the app                                                                              | `map(any)`                                                                                       | `{}`                                                                             |    no    |
-| <a name="input_grafana_environment"></a> [grafana_environment](#input_grafana_environment)                | Pass environment variable to Grafana                                                                              | `map(any)`                                                                                       | `{}`                                                                             |    no    |
-| <a name="input_grafana_image"></a> [grafana_image](#input_grafana_image)                                  | Image to use for Grafana                                                                                          | `string`                                                                                         | `"grafana/grafana:latest"`                                                       |    no    |
-| <a name="input_grafana_password"></a> [grafana_password](#input_grafana_password)                         | Grafana password                                                                                                  | `string`                                                                                         | n/a                                                                              |   yes    |
-| <a name="input_grafana_public_endpoints"></a> [grafana_public_endpoints](#input_grafana_public_endpoints) | Make Grafana public endpoint                                                                                      | `bool`                                                                                           | `true`                                                                           |    no    |
-| <a name="input_grafana_username"></a> [grafana_username](#input_grafana_username)                         | Grafana username                                                                                                  | `string`                                                                                         | `"admin"`                                                                        |    no    |
-| <a name="input_name_postfix"></a> [name_postfix](#input_name_postfix)                                     | The postfix string to append to the space, hostname, etc. Prevents namespace clashes                              | `string`                                                                                         | `""`                                                                             |    no    |
-| <a name="input_thanos_disk_quota"></a> [thanos_disk_quota](#input_thanos_disk_quota)                      | Thanos disk quota                                                                                                 | `number`                                                                                         | `5000`                                                                           |    no    |
-| <a name="input_thanos_extra_config"></a> [thanos_extra_config](#input_thanos_extra_config)                | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string`                                                                                         | `""`                                                                             |    no    |
-| <a name="input_thanos_file_sd_url"></a> [thanos_file_sd_url](#input_thanos_file_sd_url)                   | A URL that exposes a prometheus file_sd yaml file will be periodically downloaded and used for service discovery  | `string`                                                                                         | `""`                                                                             |    no    |
-| <a name="input_thanos_image"></a> [thanos_image](#input_thanos_image)                                     | Image to use for Thanos app. Use a v\* tagged version to prevent automatic updates                                | `string`                                                                                         | `"philipslabs/cf-thanos:v2.0.5"`                                                 |    no    |
-| <a name="input_thanos_memory"></a> [thanos_memory](#input_thanos_memory)                                  | Thanos memory                                                                                                     | `number`                                                                                         | `1024`                                                                           |    no    |
-| <a name="input_thanos_public_endpoints"></a> [thanos_public_endpoints](#input_thanos_public_endpoints)    | Make Thanos public endpoint                                                                                       | `bool`                                                                                           | `true`                                                                           |    no    |
-| <a name="input_thanos_query_image"></a> [thanos_query_image](#input_thanos_query_image)                   | Image to use for Thanos query. Use a v\* tagged version to prevent automatic updates                              | `string`                                                                                         | `"philipslabs/cf-thanos:v2.0.5"`                                                 |    no    |
-| <a name="input_thanos_store_disk_quota"></a> [thanos_store_disk_quota](#input_thanos_store_disk_quota)    | Thanos store disk quota                                                                                           | `number`                                                                                         | `5000`                                                                           |    no    |
-| <a name="input_thanos_store_image"></a> [thanos_store_image](#input_thanos_store_image)                   | Image to use for Thanos store. Use a v\* tagged version to prevent automatic updates                              | `string`                                                                                         | `"philipslabs/cf-thanos:v2.0.5"`                                                 |    no    |
-| <a name="input_thanos_store_memory"></a> [thanos_store_memory](#input_thanos_store_memory)                | Thanos store memory                                                                                               | `number`                                                                                         | `1024`                                                                           |    no    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| cf\_functional\_account | Configuration for the CloudFoundry function account. Required for variant and if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
+| cf\_org\_name | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
+| cf\_space\_id | Cloudfoundry SPACE id to use for deploying all Thanos components. | `string` | n/a | yes |
+| docker\_password | Docker registry password | `string` | `""` | no |
+| docker\_username | Docker registry username | `string` | `""` | no |
+| enable\_cf\_exporter | Enable the CloudFoundry metrics exporter and scrape it from Thanos | `bool` | `false` | no |
+| environment | Pass environment variable to the app | `map(any)` | `{}` | no |
+| name\_postfix | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
+| tenants | The list of tenants to scrape. When an app does not specify tenant then 'default' is used | `list(string)` | <pre>[<br>  "default"<br>]</pre> | no |
+| thanos\_disk\_quota | Thanos disk quota | `number` | `5000` | no |
+| thanos\_extra\_config | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string` | `""` | no |
+| thanos\_file\_sd\_url | A URL that exposes a prometheus file\_sd yaml file will be periodically downloaded and used for service discovery | `string` | `""` | no |
+| thanos\_image | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v3.0.1"` | no |
+| thanos\_memory | Thanos memory | `number` | `1024` | no |
+| thanos\_public\_endpoints | Make Thanos public endpoint | `bool` | `false` | no |
+| thanos\_query\_image | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v3.0.1"` | no |
+| thanos\_store\_disk\_quota | Thanos store disk quota | `number` | `5000` | no |
+| thanos\_store\_image | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v3.0.1"` | no |
+| thanos\_store\_memory | Thanos store memory | `number` | `1024` | no |
 
 ## Outputs
 
-| Name                                                                                               | Description                                                         |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| <a name="output_cluster_id"></a> [cluster_id](#output_cluster_id)                                  | Cluster ID of Thanos deployment                                     |
-| <a name="output_grafana_app_id"></a> [grafana_app_id](#output_grafana_app_id)                      | App id for Grafana                                                  |
-| <a name="output_grafana_auth"></a> [grafana_auth](#output_grafana_auth)                            | The Grafana auth token to use for e.g. configuring Grafana provider |
-| <a name="output_grafana_endpoint"></a> [grafana_endpoint](#output_grafana_endpoint)                | URL of Grafana deployment (optional)                                |
-| <a name="output_grafana_url"></a> [grafana_url](#output_grafana_url)                               | The Grafana URL                                                     |
-| <a name="output_grafana_username"></a> [grafana_username](#output_grafana_username)                | The Grafana username                                                |
-| <a name="output_thanos_app_id"></a> [thanos_app_id](#output_thanos_app_id)                         | App id for Thanos                                                   |
-| <a name="output_thanos_endpoint"></a> [thanos_endpoint](#output_thanos_endpoint)                   | URL of Thanos deployment                                            |
-| <a name="output_thanos_query_app_id"></a> [thanos_query_app_id](#output_thanos_query_app_id)       | App id for Thanos Query                                             |
-| <a name="output_thanos_query_endpoint"></a> [thanos_query_endpoint](#output_thanos_query_endpoint) | URL of Thanos query deployment                                      |
-| <a name="output_thanos_space_id"></a> [thanos_space_id](#output_thanos_space_id)                   | Cloud foundry space ID of Thanos                                    |
-| <a name="output_thanos_store_app_id"></a> [thanos_store_app_id](#output_thanos_store_app_id)       | App id for Thanos Store                                             |
-| <a name="output_thanos_store_endpoint"></a> [thanos_store_endpoint](#output_thanos_store_endpoint) | Internal only URL of Thanos store deployment                        |
+| Name | Description |
+|------|-------------|
+| postfix | Cluster ID / Postfix of Thanos deployment |
+| thanos\_app\_id | App id for Thanos |
+| thanos\_endpoint | URL of Thanos deployment |
+| thanos\_query\_app\_id | App id for Thanos Query |
+| thanos\_query\_endpoint | URL of Thanos query deployment |
+| thanos\_space\_id | Cloud foundry space ID of Thanos |
+| thanos\_store\_app\_id | App id for Thanos Store |
+| thanos\_store\_endpoint | Internal only URL of Thanos store deployment |
 
 <!--- END_TF_DOCS --->
 
