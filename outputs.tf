@@ -1,5 +1,5 @@
-output "cluster_id" {
-  description = "Cluster ID of Thanos deployment"
+output "postfix" {
+  description = "Cluster ID / Postfix of Thanos deployment"
   value       = local.postfix
 }
 
