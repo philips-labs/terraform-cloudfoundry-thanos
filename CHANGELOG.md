@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.0.4
+- Update variant to v0.0.14
+
 ## v4.0.3
 - Update variant to v0.0.13
 - Instance index is available as `${1}` for annotation `prometheus.exporter.instance_name`
