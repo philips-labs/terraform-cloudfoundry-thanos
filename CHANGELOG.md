@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.0.6
+- Update variant to v0.0.16
+
 ## v4.0.5
 - Reduce build time by pulling exporter binary
 - Update variant to v0.0.15
