@@ -10,12 +10,8 @@ RUN curl -L -Os https://github.com/prometheus/prometheus/releases/download/v${PR
  && tar zxvf prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz --strip 1 
 RUN ls -l /app
 
-## Build exporter
-FROM golang:alpine as exporter
-RUN apk add --no-cache git
-WORKDIR /app
-RUN git clone https://github.com/alphagov/paas-prometheus-exporter.git .
-RUN CGO_ENABLED=0 GOOS=linux go build 
+## PAAS exporter
+FROM philipslabs/paas-prometheus-exporter:latest as exporter
 
 ## Build thanos
 FROM alpine:3.14.0 AS thanos
@@ -40,7 +36,7 @@ RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc /prometheus 
 COPY --from=prometheus /app/prometheus /sidecars/bin
 COPY --from=thanos     /app/thanos     /sidecars/bin
 COPY --from=variant    /app/app        /sidecars/bin/variant
-COPY --from=exporter   /app/paas-prometheus-exporter /sidecars/bin
+COPY --from=exporter   /user/local/bin/paas-prometheus-exporter /sidecars/bin
 
 COPY prometheus/  /sidecars/etc
 COPY supervisord_configs/ /sidecars/supervisor/conf.d
