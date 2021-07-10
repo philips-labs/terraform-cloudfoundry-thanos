@@ -36,7 +36,7 @@ RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc /prometheus 
 COPY --from=prometheus /app/prometheus /sidecars/bin
 COPY --from=thanos     /app/thanos     /sidecars/bin
 COPY --from=variant    /app/app        /sidecars/bin/variant
-COPY --from=exporter   /user/local/bin/paas-prometheus-exporter /sidecars/bin
+COPY --from=exporter   /usr/local/bin/paas-prometheus-exporter /sidecars/bin
 
 COPY prometheus/  /sidecars/etc
 COPY supervisord_configs/ /sidecars/supervisor/conf.d
