@@ -89,12 +89,12 @@ No Modules.
 | thanos\_disk\_quota | Thanos disk quota | `number` | `5000` | no |
 | thanos\_extra\_config | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string` | `""` | no |
 | thanos\_file\_sd\_url | A URL that exposes a prometheus file\_sd yaml file will be periodically downloaded and used for service discovery | `string` | `""` | no |
-| thanos\_image | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.0.7"` | no |
+| thanos\_image | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.0.8"` | no |
 | thanos\_memory | Thanos memory | `number` | `1024` | no |
 | thanos\_public\_endpoints | Make Thanos public endpoint | `bool` | `false` | no |
-| thanos\_query\_image | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.0.7"` | no |
+| thanos\_query\_image | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.0.8"` | no |
 | thanos\_store\_disk\_quota | Thanos store disk quota | `number` | `5000` | no |
-| thanos\_store\_image | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.0.7"` | no |
+| thanos\_store\_image | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.0.8"` | no |
 | thanos\_store\_memory | Thanos store memory | `number` | `1024` | no |
 
 ## Outputs
