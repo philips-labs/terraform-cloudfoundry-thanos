@@ -23,7 +23,7 @@ RUN curl -L -Os https://github.com/thanos-io/thanos/releases/download/v${THANOS_
  && tar zxvf thanos-${THANOS_VERSION}.linux-amd64.tar.gz --strip 1
 
 ## Variant
-FROM philipslabs/variant:v0.0.19 AS variant
+FROM philipslabs/variant:v0.0.20 AS variant
 
 ## Build final image
 FROM alpine:3.14.0
