@@ -43,7 +43,7 @@ module "thanos" {
 |------|---------|
 | terraform | >= 0.13.0 |
 | cloudfoundry | >= 0.14.2 |
-| hsdp | >= 0.16.3 |
+| hsdp | >= 0.18.1 |
 | random | >= 2.2.1 |
 
 ## Providers
@@ -51,7 +51,7 @@ module "thanos" {
 | Name | Version |
 |------|---------|
 | cloudfoundry | >= 0.14.2 |
-| hsdp | >= 0.16.3 |
+| hsdp | >= 0.18.1 |
 | random | >= 2.2.1 |
 
 ## Modules
