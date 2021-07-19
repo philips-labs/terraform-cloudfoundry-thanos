@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.0.9
+- Update variant to v0.0.19
+
+## v4.0.8
+- Update variant to v0.0.18
+
+## v4.0.7
+- Update variant to v0.0.17
+
 ## v4.0.6
 - Update variant to v0.0.16
 
