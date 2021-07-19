@@ -8,7 +8,7 @@ terraform {
     }
     hsdp = {
       source  = "philips-software/hsdp"
-      version = ">= 0.16.3"
+      version = ">= 0.18.1"
     }
     random = {
       source  = "random"
