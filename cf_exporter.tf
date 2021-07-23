@@ -16,6 +16,10 @@ resource "cloudfoundry_app" "cfpaasexporter" {
     API_ENDPOINT = var.cf_functional_account.api_endpoint
   }
 
+  routes {
+    route = cloudfoundry_route.cfpaasexporter_internal[0].id
+  }
+
   labels = {
     "variant.tva/exporter" = true
   }
@@ -39,7 +43,7 @@ resource "cloudfoundry_network_policy" "cfpaasexporter" {
 
   policy {
     source_app      = cloudfoundry_app.thanos.id
-    destination_app = cloudfoundry_app.cfpaasexporter.id
-    port            = "18080"
+    destination_app = cloudfoundry_app.cfpaasexporter[0].id
+    port            = 18080
   }
 }
