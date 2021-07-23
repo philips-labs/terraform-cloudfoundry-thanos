@@ -37,10 +37,9 @@ resource "cloudfoundry_route" "cfpaasexporter_internal" {
 resource "cloudfoundry_network_policy" "cfpaasexporter" {
   count = var.enable_cf_exporter ? 1 : 0
 
-
   policy {
     source_app      = cloudfoundry_app.thanos.id
-    destination_app = cloudfoundry_app.cfpaas_exporter.id
+    destination_app = cloudfoundry_app.cfpaasexporter.id
     port            = "18080"
   }
 }
