@@ -117,3 +117,21 @@ variable "cf_functional_account" {
     password     = ""
   }
 }
+
+variable "cf_paas_exporter_image" {
+  description = "Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates"
+  default     = "philipslabs/paas-prometheus-exporter:latest"
+  type        = string
+}
+
+variable "cf_paas_exporter_memory" {
+  type        = number
+  description = "CF PaaS Exporter memory"
+  default     = 256
+}
+
+variable "cf_paas_exporter_disk_quota" {
+  type        = number
+  description = "CF PaaS Exporter disk quota"
+  default     = 100
+}
