@@ -17,13 +17,6 @@ if [ -n "$FILESD_URL" ]; then
   cat "$prom_config"
 fi
 
-# only merge in the paas exporter if API_ENDPOINT is set
-if [ "$ENABLE_CF_EXPORTER" = "true" ]; then  
-  echo " Merging in prometheus config for paas exporter"
-  yq eval-all --inplace 'select(fileIndex == 0) *+ select(fileIndex == 1)' "$prom_config" /sidecars/etc/prometheus.paasexporter.yml
-  cat "$prom_config"
-fi
-
 # only merge in the cartel stuff if CARTEL_HOSTS is set
 if [ -n "$CARTEL_HOSTS" ]; then  
   echo " Merging in prometheus config for cartel endpoints"
