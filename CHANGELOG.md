@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.1.0
+- Update thanos to v0.22.0
+
 ## v4.0.11
 - PAAS exporter extracted from Docker image
 
