@@ -1,23 +1,6 @@
-ARG prometheus_version=2.28.1
-ARG thanos_version=0.22.0
+FROM prom/prometheus:v2.29.2 AS prometheus
 
-FROM alpine:3.14.1 AS prometheus
-ARG prometheus_version
-ENV PROMETHEUS_VERSION ${prometheus_version}
-RUN apk add --no-cache curl
-WORKDIR /app
-RUN curl -L -Os https://github.com/prometheus/prometheus/releases/download/v${PROMETHEUS_VERSION}/prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz \
- && tar zxvf prometheus-${PROMETHEUS_VERSION}.linux-amd64.tar.gz --strip 1 
-RUN ls -l /app
-
-## Build thanos
-FROM alpine:3.14.1 AS thanos
-ARG thanos_version
-ENV THANOS_VERSION ${thanos_version}
-RUN apk add --no-cache curl
-WORKDIR /app
-RUN curl -L -Os https://github.com/thanos-io/thanos/releases/download/v${THANOS_VERSION}/thanos-${THANOS_VERSION}.linux-amd64.tar.gz \
- && tar zxvf thanos-${THANOS_VERSION}.linux-amd64.tar.gz --strip 1
+FROM thanosio/thanos:v0.22.0 AS thanos
 
 ## Variant
 FROM philipslabs/variant:v0.0.20 AS variant
@@ -30,8 +13,8 @@ RUN apk add --no-cache yq --repository http://dl-cdn.alpinelinux.org/alpine/edge
 
 RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc /prometheus /thanos
 
-COPY --from=prometheus /app/prometheus /sidecars/bin
-COPY --from=thanos     /app/thanos     /sidecars/bin
+COPY --from=prometheus /bin/prometheus /sidecars/bin
+COPY --from=thanos     /bin/thanos     /sidecars/bin
 COPY --from=variant    /app/app        /sidecars/bin/variant
 
 COPY prometheus/  /sidecars/etc
