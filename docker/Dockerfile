@@ -14,6 +14,7 @@ RUN apk add --no-cache yq --repository http://dl-cdn.alpinelinux.org/alpine/edge
 RUN mkdir -p /sidecars/bin /sidecars/supervisor/conf.d sidecars/etc /prometheus /thanos
 
 COPY --from=prometheus /bin/prometheus /sidecars/bin
+COPY --from=prometheus /bin/promtool   /bin
 COPY --from=thanos     /bin/thanos     /sidecars/bin
 COPY --from=variant    /app/app        /sidecars/bin/variant
 
