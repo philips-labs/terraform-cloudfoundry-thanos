@@ -11,7 +11,7 @@ Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unli
 ```
 module "thanos" {
     source = "philips-labs/thanos/cloudfoundry"
-    version = "4.0.11"
+    version = "4.2.0"
 
     cf_org_name        = var.cf_org_name
     cf_space_id        = var.cf_space_id
