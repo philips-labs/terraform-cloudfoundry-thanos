@@ -11,27 +11,15 @@ Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unli
 ```
 module "thanos" {
     source = "philips-labs/thanos/cloudfoundry"
-    verision = "2.0.0"
+    version = "4.0.11"
 
     cf_org_name        = var.cf_org_name
-    cf_space_name      = var.cf_space_name
+    cf_space_id        = var.cf_space_id
 
-    docker_username = var.cf_username
-    docker_password = var.cf_password
-
-    thanos_image       = "${var.docker_repo}/thanos"
-    thanos_query_image = "${var.docker_repo}/thanos"
-    thanos_store_image = "${var.docker_repo}/thanos"
-
-    name_postfix       = var.name_postfix
-
-    thanos_public_endpoints = false
-
-    // needed for paas_prometheus_exporter
-    environment = {
-        USERNAME     = var.cf_username
-        PASSWORD     = var.cf_password
-        API_ENDPOINT = var.cf_api
+    cf_functional_account = {
+      api_endpoint = var.cf_api_url
+      username     = var.cf_username
+      password     = var.cf_password
     }
 }
 ```
