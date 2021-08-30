@@ -91,12 +91,12 @@ No modules.
 | <a name="input_thanos_disk_quota"></a> [thanos\_disk\_quota](#input\_thanos\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
 | <a name="input_thanos_extra_config"></a> [thanos\_extra\_config](#input\_thanos\_extra\_config) | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string` | `""` | no |
 | <a name="input_thanos_file_sd_url"></a> [thanos\_file\_sd\_url](#input\_thanos\_file\_sd\_url) | A URL that exposes a prometheus file\_sd yaml file will be periodically downloaded and used for service discovery | `string` | `""` | no |
-| <a name="input_thanos_image"></a> [thanos\_image](#input\_thanos\_image) | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.1.0"` | no |
+| <a name="input_thanos_image"></a> [thanos\_image](#input\_thanos\_image) | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.2.0"` | no |
 | <a name="input_thanos_memory"></a> [thanos\_memory](#input\_thanos\_memory) | Thanos memory | `number` | `1024` | no |
 | <a name="input_thanos_public_endpoints"></a> [thanos\_public\_endpoints](#input\_thanos\_public\_endpoints) | Make Thanos public endpoint | `bool` | `false` | no |
-| <a name="input_thanos_query_image"></a> [thanos\_query\_image](#input\_thanos\_query\_image) | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.1.0"` | no |
+| <a name="input_thanos_query_image"></a> [thanos\_query\_image](#input\_thanos\_query\_image) | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.2.0"` | no |
 | <a name="input_thanos_store_disk_quota"></a> [thanos\_store\_disk\_quota](#input\_thanos\_store\_disk\_quota) | Thanos store disk quota | `number` | `5000` | no |
-| <a name="input_thanos_store_image"></a> [thanos\_store\_image](#input\_thanos\_store\_image) | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.1.0"` | no |
+| <a name="input_thanos_store_image"></a> [thanos\_store\_image](#input\_thanos\_store\_image) | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v4.2.0"` | no |
 | <a name="input_thanos_store_memory"></a> [thanos\_store\_memory](#input\_thanos\_store\_memory) | Thanos store memory | `number` | `1024` | no |
 
 ## Outputs
