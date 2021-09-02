@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.2.3
+- Upgrade Variant to v0.0.21
+- Initial support for promethues rules via variant
+
 ## v4.2.0
 - Update Prometheus to v2.29.2
 - Reduce local storage caching
