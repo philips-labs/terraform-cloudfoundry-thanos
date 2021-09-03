@@ -3,12 +3,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.3.2
+- Upgrade Variant to v0.0.22
+
 ## v4.3.1
 - Fix invalid param
 
 ## v4.3.0
 - Upgrade Variant to v0.0.21
-- Initial support for promethues rules via variant
+- Initial support for prometheus rules via variant
 
 ## v4.2.0
 - Update Prometheus to v2.29.2
