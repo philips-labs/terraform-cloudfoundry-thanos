@@ -7,5 +7,5 @@ groups:
       labels:
         severity: page
       annotations:
-        summary: "Instance {{ $labels.instance }} is too fast"
+        summary: "Instance {{ $labels.instance }} has unexpected scrape time"
         description: "{{ $labels.instance }} has a average scrape time < 200ms which usually means something is not right"
