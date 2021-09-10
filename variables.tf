@@ -71,7 +71,7 @@ variable "thanos_disk_quota" {
 variable "thanos_store_memory" {
   type        = number
   description = "Thanos store memory"
-  default     = 1024
+  default     = 1536
 }
 
 variable "thanos_store_disk_quota" {
