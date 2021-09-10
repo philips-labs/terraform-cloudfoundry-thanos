@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.3.5
+- Upgrade Variant to v0.0.25
+
 ## v4.3.4
 - Upgrade Variant to v0.0.24
 
