@@ -1,0 +1,11 @@
+groups:
+  - name: VariantSidecar
+    rules:
+    - alert: VariantScrapingProbablyBroken
+      expr: avg_over_time(variant_scrape_interval[5m]) < 200
+      for: 5m
+      labels:
+        severity: page
+      annotations:
+        summary: "Instance {{ $labels.instance }} has unexpected scrape time"
+        description: "{{ $labels.instance }} has a average scrape time < 200ms which usually means something is not right"

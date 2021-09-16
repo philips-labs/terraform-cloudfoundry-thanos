@@ -5,3 +5,4 @@ local.yml
 *.tfvars*
 *.tfstate*
 *.zip
+.terraform.lock.hcl

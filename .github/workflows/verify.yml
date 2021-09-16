@@ -1,0 +1,48 @@
+# Current module version is 0.14.5, when upgrading please run a full search / replace.
+name: Verify
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+
+jobs:
+  ## Verify module, terraform validate runs only on examples
+  verify_module:
+    name: Verify module
+    strategy:
+      matrix:
+        terraform: [1.0.0]
+    runs-on: ubuntu-latest
+    container:
+      image: hashicorp/terraform:${{ matrix.terraform }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: init terraform
+        run: terraform init -get -backend=false -input=false
+      - name: check formatting
+        run: terraform fmt -recursive -check=true -write=false
+
+  verify_examples:
+    ## Verify examples, terraform fmt runs only on module version.
+    name: Verify examples
+    strategy:
+      matrix:
+        terraform: [0.14.5, latest]
+        example: ["default"]
+    defaults:
+      run:
+        working-directory: examples/${{ matrix.example }}
+    runs-on: ubuntu-latest
+    container:
+      image: hashicorp/terraform:${{ matrix.terraform }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: init terraform example
+        run: terraform init -get -backend=false -input=false
+      - name: check formatting
+        if: ${{ matrix.terraform == '0.14.5' }}
+        run: terraform fmt -recursive -check=true -write=false
+      - name: validate terraform
+        run: terraform validate
