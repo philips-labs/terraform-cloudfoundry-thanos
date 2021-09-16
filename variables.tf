@@ -34,7 +34,7 @@ variable "thanos_store_image" {
 
 variable "alertmanager_image" {
   description = "Image to use for Alertmanager"
-  default     = "prom/alertmanager:v0.21.0"
+  default     = "prom/alertmanager:v0.23.0"
   type        = string
 }
 
