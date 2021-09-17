@@ -2,9 +2,12 @@
 
 Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unlimited metrics storage. This module deploys a number of apps and services to provide [Thanos](https://thanos.io)
 
-# TODO
+## Features
 
-- Internalize Prometheus
+- Deploys a Thanos instance with S3 Bucket as storage
+- [Variant](https://github.com/philips-software/variant) sidecar for scrape target and rule discovery
+- Alertmanager support
+- Teams notification support
 
 ## Example of Thanos Terraform
 
@@ -50,14 +53,20 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [cloudfoundry_app.alertmanager](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.cfpaasexporter](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_app.prometheusmsteams](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_network_policy.alertmanager](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.cfpaasexporter](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
+| [cloudfoundry_network_policy.prometheusmsteams](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
+| [cloudfoundry_route.alertmanager_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.cfpaasexporter_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
+| [cloudfoundry_route.prometheusmsteams_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
@@ -76,6 +85,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_alertmanager_config"></a> [alertmanager\_config](#input\_alertmanager\_config) | Alertmanager config | `string` | `""` | no |
+| <a name="input_alertmanager_image"></a> [alertmanager\_image](#input\_alertmanager\_image) | Image to use for Alertmanager | `string` | `"prom/alertmanager:v0.23.0"` | no |
 | <a name="input_cf_functional_account"></a> [cf\_functional\_account](#input\_cf\_functional\_account) | Configuration for the CloudFoundry function account. Required for variant and if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
 | <a name="input_cf_org_name"></a> [cf\_org\_name](#input\_cf\_org\_name) | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
 | <a name="input_cf_paas_exporter_disk_quota"></a> [cf\_paas\_exporter\_disk\_quota](#input\_cf\_paas\_exporter\_disk\_quota) | CF PaaS Exporter disk quota | `number` | `100` | no |
@@ -87,6 +98,7 @@ No modules.
 | <a name="input_enable_cf_exporter"></a> [enable\_cf\_exporter](#input\_enable\_cf\_exporter) | Enable the CloudFoundry metrics exporter and scrape it from Thanos | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Pass environment variable to the app | `map(any)` | `{}` | no |
 | <a name="input_name_postfix"></a> [name\_postfix](#input\_name\_postfix) | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
+| <a name="input_teams_incoming_webhook_url"></a> [teams\_incoming\_webhook\_url](#input\_teams\_incoming\_webhook\_url) | Teams incoming webhook URL | `string` | `""` | no |
 | <a name="input_tenants"></a> [tenants](#input\_tenants) | The list of tenants to scrape. When an app does not specify tenant then 'default' is used | `list(string)` | <pre>[<br>  "default"<br>]</pre> | no |
 | <a name="input_thanos_disk_quota"></a> [thanos\_disk\_quota](#input\_thanos\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
 | <a name="input_thanos_extra_config"></a> [thanos\_extra\_config](#input\_thanos\_extra\_config) | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string` | `""` | no |
@@ -103,6 +115,8 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_alertmanager_app_id"></a> [alertmanager\_app\_id](#output\_alertmanager\_app\_id) | App id of Alertmanager |
+| <a name="output_alertmanager_internal_endpoint"></a> [alertmanager\_internal\_endpoint](#output\_alertmanager\_internal\_endpoint) | Internal route of alertmanager |
 | <a name="output_postfix"></a> [postfix](#output\_postfix) | Cluster ID / Postfix of Thanos deployment |
 | <a name="output_thanos_app_id"></a> [thanos\_app\_id](#output\_thanos\_app\_id) | App id for Thanos |
 | <a name="output_thanos_endpoint"></a> [thanos\_endpoint](#output\_thanos\_endpoint) | URL of Thanos deployment |

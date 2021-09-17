@@ -32,6 +32,24 @@ variable "thanos_store_image" {
   type        = string
 }
 
+variable "alertmanager_image" {
+  description = "Image to use for Alertmanager"
+  default     = "prom/alertmanager:v0.23.0"
+  type        = string
+}
+
+variable "alertmanager_config" {
+  description = "Alertmanager config"
+  default     = ""
+  type        = string
+}
+
+variable "teams_incoming_webhook_url" {
+  description = "Teams incoming webhook URL"
+  default     = ""
+  type        = string
+}
+
 variable "thanos_public_endpoints" {
   description = "Make Thanos public endpoint"
   type        = bool
