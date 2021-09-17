@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+## v4.4.0
+- Alertmanager support
+
 ## v4.3.6
 - Upgrade Variant to v0.0.26
 
