@@ -1,6 +1,9 @@
 locals {
   thanos_routes = var.thanos_public_endpoints ? [cloudfoundry_route.thanos.id, cloudfoundry_route.thanos_internal.id] : [cloudfoundry_route.thanos_internal.id]
   postfix       = var.name_postfix != "" ? var.name_postfix : random_id.id.hex
+  prometheus_config = templatefile("${path.module}/templates/prometheus.yml", {
+    alertmanagers = ["0.tf-alertmanager-${local.postfix}.apps.internal:9093"]
+  })
 }
 
 resource "random_id" "id" {
@@ -21,10 +24,12 @@ resource "cloudfoundry_app" "thanos" {
     username = var.docker_username
     password = var.docker_password
   }
+  command = "echo $PROMETHEUS_CONFIG_BASE64|base64 -d > /sidecars/etc/prometheus.default.yml && supervisord --nodaemon --configuration /etc/supervisord.conf"
   environment = merge({
     FILESD_URL                 = var.thanos_file_sd_url
     ENABLE_CF_EXPORTER         = var.enable_cf_exporter
     PROMETHEUS_TARGETS         = base64encode(var.thanos_extra_config)
+    PROMETHEUS_CONFIG_BASE64   = base64encode(local.prometheus_config)
     USERNAME                   = var.cf_functional_account.username
     PASSWORD                   = var.cf_functional_account.password
     API_ENDPOINT               = var.cf_functional_account.api_endpoint
