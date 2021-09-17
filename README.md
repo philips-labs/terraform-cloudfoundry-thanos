@@ -2,9 +2,12 @@
 
 Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unlimited metrics storage. This module deploys a number of apps and services to provide [Thanos](https://thanos.io)
 
-# TODO
+## Features
 
-- Internalize Prometheus
+- Deploys a Thanos instance with S3 Bucket as storage
+- [Variant](https://github.com/philips-software/variant) sidecar for scrape target and rule discovery
+- Alertmanager support
+- Teams notification support
 
 ## Example of Thanos Terraform
 
