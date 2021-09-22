@@ -44,6 +44,6 @@ resource "cloudfoundry_network_policy" "cfpaasexporter" {
   policy {
     source_app      = cloudfoundry_app.thanos.id
     destination_app = cloudfoundry_app.cfpaasexporter[0].id
-    port            = 18080
+    port            = 8080
   }
 }
