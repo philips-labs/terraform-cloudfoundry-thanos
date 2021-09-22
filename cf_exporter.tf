@@ -25,7 +25,7 @@ resource "cloudfoundry_app" "cfpaasexporter" {
   }
 
   annotations = {
-    "prometheus.exporter.port" = "18080"
+    "prometheus.exporter.port" = "8080"
     "prometheus.exporter.path" = "/metrics"
   }
 }
