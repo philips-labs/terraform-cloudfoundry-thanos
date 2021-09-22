@@ -43,7 +43,7 @@ resource "cloudfoundry_app" "alertmanager" {
   environment = merge({
     ALERTMANAGER_CONFIG_BASE64 = base64encode(local.alertmanager_config)
   }, var.environment)
-  command = "echo $ALERTMANAGER_CONFIG_BASE64 | base64 -d > /etc/alertmanager/alertmanager.yml && /bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/alertmanager"
+  command = "echo $ALERTMANAGER_CONFIG_BASE64 | base64 -d > /etc/alertmanager/alertmanager.yml && /bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/alertmanager --web.route-prefix=/alertmanager"
 
   dynamic "routes" {
     for_each = local.alertmanager_routes
