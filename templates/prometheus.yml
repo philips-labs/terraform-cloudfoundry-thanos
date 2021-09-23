@@ -10,6 +10,7 @@ global:
 alerting:
   alertmanagers:
   - scheme: http
+    path_prefix: "/alertmanager/"
     static_configs:
     - targets:
 %{ for alertmanager in alertmanagers ~}

@@ -3,7 +3,7 @@ locals {
 
   webhook_url = var.teams_incoming_webhook_url != "" ? "http://${cloudfoundry_route.prometheusmsteams_internal[0].endpoint}:2000/alertmanager" : "http://localhost:5001"
 
-  alertmanager_config = var.alertmanager_config == "" ? templatefile("${path.module}/templates/alertmanager.yml", { url = local.webhook_url }) : var.alertmanager_config
+  alertmanager_config = local.alertmanager.config_file == "" ? templatefile("${path.module}/templates/alertmanager.yml", { url = local.webhook_url }) : local.alertmanager.config_file
 }
 
 resource "cloudfoundry_app" "prometheusmsteams" {
@@ -33,17 +33,17 @@ resource "cloudfoundry_route" "prometheusmsteams_internal" {
 resource "cloudfoundry_app" "alertmanager" {
   name         = "tf-alertmanager-${local.postfix}"
   space        = var.cf_space_id
-  memory       = 512
+  memory       = local.alertmanager.memory
   disk_quota   = 2048
-  docker_image = var.alertmanager_image
+  docker_image = local.alertmanager.docker_image
   docker_credentials = {
-    username = var.docker_username
-    password = var.docker_password
+    username = local.alertmanager.docker_username
+    password = local.alertmanager.docker_password
   }
   environment = merge({
     ALERTMANAGER_CONFIG_BASE64 = base64encode(local.alertmanager_config)
   }, var.environment)
-  command = "echo $ALERTMANAGER_CONFIG_BASE64 | base64 -d > /etc/alertmanager/alertmanager.yml && /bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/alertmanager"
+  command = "echo $ALERTMANAGER_CONFIG_BASE64 | base64 -d > /etc/alertmanager/alertmanager.yml && /bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/alertmanager --web.route-prefix=/alertmanager"
 
   dynamic "routes" {
     for_each = local.alertmanager_routes

@@ -32,18 +32,6 @@ variable "thanos_store_image" {
   type        = string
 }
 
-variable "alertmanager_image" {
-  description = "Image to use for Alertmanager"
-  default     = "prom/alertmanager:v0.23.0"
-  type        = string
-}
-
-variable "alertmanager_config" {
-  description = "Alertmanager config"
-  default     = ""
-  type        = string
-}
-
 variable "teams_incoming_webhook_url" {
   description = "Teams incoming webhook URL"
   default     = ""
@@ -152,4 +140,23 @@ variable "cf_paas_exporter_disk_quota" {
   type        = number
   description = "CF PaaS Exporter disk quota"
   default     = 100
+}
+
+variable "alertmanager" {
+  type = object({
+    docker_image    = optional(string)
+    memory          = optional(string)
+    config_file     = optional(string)
+    docker_username = optional(string)
+    docker_password = optional(string)
+  })
+  default = {}
+}
+
+locals {
+  alertmanager = defaults(var.alertmanager, {
+    memory       = 128
+    docker_image = "prom/alertmanager:v0.23.0"
+    config_file  = ""
+  })
 }
