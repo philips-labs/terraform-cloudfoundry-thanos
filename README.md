@@ -85,8 +85,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_alertmanager_config"></a> [alertmanager\_config](#input\_alertmanager\_config) | Alertmanager config | `string` | `""` | no |
-| <a name="input_alertmanager_image"></a> [alertmanager\_image](#input\_alertmanager\_image) | Image to use for Alertmanager | `string` | `"prom/alertmanager:v0.23.0"` | no |
+| <a name="input_alertmanager"></a> [alertmanager](#input\_alertmanager) | n/a | <pre>object({<br>    docker_image    = optional(string)<br>    memory          = optional(string)<br>    config_file     = optional(string)<br>    docker_username = optional(string)<br>    docker_password = optional(string)<br>  })</pre> | `{}` | no |
 | <a name="input_cf_functional_account"></a> [cf\_functional\_account](#input\_cf\_functional\_account) | Configuration for the CloudFoundry function account. Required for variant and if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
 | <a name="input_cf_org_name"></a> [cf\_org\_name](#input\_cf\_org\_name) | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
 | <a name="input_cf_paas_exporter_disk_quota"></a> [cf\_paas\_exporter\_disk\_quota](#input\_cf\_paas\_exporter\_disk\_quota) | CF PaaS Exporter disk quota | `number` | `100` | no |
