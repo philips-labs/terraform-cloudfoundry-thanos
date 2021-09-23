@@ -25,7 +25,7 @@ resource "cloudfoundry_app" "cfpaasexporter" {
   }
 
   annotations = {
-    "prometheus.exporter.port" = "18080"
+    "prometheus.exporter.port" = "8080"
     "prometheus.exporter.path" = "/metrics"
   }
 }
@@ -36,14 +36,4 @@ resource "cloudfoundry_route" "cfpaasexporter_internal" {
   domain   = data.cloudfoundry_domain.apps_internal_domain.id
   space    = var.cf_space_id
   hostname = "cfpaasexporter-${local.postfix}"
-}
-
-resource "cloudfoundry_network_policy" "cfpaasexporter" {
-  count = var.enable_cf_exporter ? 1 : 0
-
-  policy {
-    source_app      = cloudfoundry_app.thanos.id
-    destination_app = cloudfoundry_app.cfpaasexporter[0].id
-    port            = 18080
-  }
 }

@@ -28,6 +28,7 @@ module "thanos" {
 ```
 
 <!--- BEGIN_TF_DOCS --->
+
 ## Requirements
 
 | Name | Version |
@@ -60,7 +61,6 @@ No modules.
 | [cloudfoundry_app.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_network_policy.alertmanager](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
-| [cloudfoundry_network_policy.cfpaasexporter](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.prometheusmsteams](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
@@ -90,7 +90,7 @@ No modules.
 | <a name="input_cf_functional_account"></a> [cf\_functional\_account](#input\_cf\_functional\_account) | Configuration for the CloudFoundry function account. Required for variant and if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
 | <a name="input_cf_org_name"></a> [cf\_org\_name](#input\_cf\_org\_name) | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
 | <a name="input_cf_paas_exporter_disk_quota"></a> [cf\_paas\_exporter\_disk\_quota](#input\_cf\_paas\_exporter\_disk\_quota) | CF PaaS Exporter disk quota | `number` | `100` | no |
-| <a name="input_cf_paas_exporter_image"></a> [cf\_paas\_exporter\_image](#input\_cf\_paas\_exporter\_image) | Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/paas-prometheus-exporter:latest"` | no |
+| <a name="input_cf_paas_exporter_image"></a> [cf\_paas\_exporter\_image](#input\_cf\_paas\_exporter\_image) | Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates | `string` | `"governmentpaas/paas-prometheus-exporter:latest"` | no |
 | <a name="input_cf_paas_exporter_memory"></a> [cf\_paas\_exporter\_memory](#input\_cf\_paas\_exporter\_memory) | CF PaaS Exporter memory | `number` | `256` | no |
 | <a name="input_cf_space_id"></a> [cf\_space\_id](#input\_cf\_space\_id) | Cloudfoundry SPACE id to use for deploying all Thanos components. | `string` | n/a | yes |
 | <a name="input_docker_password"></a> [docker\_password](#input\_docker\_password) | Docker registry password | `string` | `""` | no |
@@ -125,6 +125,7 @@ No modules.
 | <a name="output_thanos_space_id"></a> [thanos\_space\_id](#output\_thanos\_space\_id) | Cloud foundry space ID of Thanos |
 | <a name="output_thanos_store_app_id"></a> [thanos\_store\_app\_id](#output\_thanos\_store\_app\_id) | App id for Thanos Store |
 | <a name="output_thanos_store_endpoint"></a> [thanos\_store\_endpoint](#output\_thanos\_store\_endpoint) | Internal only URL of Thanos store deployment |
+
 
 <!--- END_TF_DOCS --->
 
