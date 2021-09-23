@@ -28,7 +28,6 @@ module "thanos" {
 ```
 
 <!--- BEGIN_TF_DOCS --->
-
 ## Requirements
 
 | Name | Version |
@@ -125,7 +124,6 @@ No modules.
 | <a name="output_thanos_space_id"></a> [thanos\_space\_id](#output\_thanos\_space\_id) | Cloud foundry space ID of Thanos |
 | <a name="output_thanos_store_app_id"></a> [thanos\_store\_app\_id](#output\_thanos\_store\_app\_id) | App id for Thanos Store |
 | <a name="output_thanos_store_endpoint"></a> [thanos\_store\_endpoint](#output\_thanos\_store\_endpoint) | Internal only URL of Thanos store deployment |
-
 
 <!--- END_TF_DOCS --->
 
