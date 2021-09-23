@@ -3,7 +3,7 @@ locals {
 
   webhook_url = var.teams_incoming_webhook_url != "" ? "http://${cloudfoundry_route.prometheusmsteams_internal[0].endpoint}:2000/alertmanager" : "http://localhost:5001"
 
-  alertmanager_config = local.alertmanager.config_file == "" ? templatefile("${path.module}/templates/alertmanager.yml", { url = local.webhook_url }) : var.alertmanager.config_file
+  alertmanager_config = local.alertmanager.config_file == "" ? templatefile("${path.module}/templates/alertmanager.yml", { url = local.webhook_url }) : local.alertmanager.config_file
 }
 
 resource "cloudfoundry_app" "prometheusmsteams" {
