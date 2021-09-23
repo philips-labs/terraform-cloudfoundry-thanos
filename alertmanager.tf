@@ -37,8 +37,8 @@ resource "cloudfoundry_app" "alertmanager" {
   disk_quota   = 2048
   docker_image = local.alertmanager.docker_image
   docker_credentials = {
-    username = var.docker_username
-    password = var.docker_password
+    username = local.alertmanager.docker_username
+    password = local.alertmanager.docker_password
   }
   environment = merge({
     ALERTMANAGER_CONFIG_BASE64 = base64encode(local.alertmanager_config)

@@ -144,9 +144,11 @@ variable "cf_paas_exporter_disk_quota" {
 
 variable "alertmanager" {
   type = object({
-    docker_image = optional(string)
-    memory       = optional(string)
-    config_file  = optional(string)
+    docker_image    = optional(string)
+    memory          = optional(string)
+    config_file     = optional(string)
+    docker_username = optional(string)
+    docker_password = optional(string)
   })
   default = {}
 }
