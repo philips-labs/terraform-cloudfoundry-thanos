@@ -2,7 +2,7 @@ locals {
   thanos_routes = var.thanos_public_endpoints ? [cloudfoundry_route.thanos.id, cloudfoundry_route.thanos_internal.id] : [cloudfoundry_route.thanos_internal.id]
   postfix       = var.name_postfix != "" ? var.name_postfix : random_id.id.hex
   prometheus_config = templatefile("${path.module}/templates/prometheus.yml", {
-    alertmanagers = ["0.tf-alertmanager-${local.postfix}.apps.internal:9093"]
+    alertmanagers = var.alertmanagers_endpoints
   })
 }
 

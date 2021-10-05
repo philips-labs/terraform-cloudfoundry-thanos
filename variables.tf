@@ -142,21 +142,8 @@ variable "cf_paas_exporter_disk_quota" {
   default     = 100
 }
 
-variable "alertmanager" {
-  type = object({
-    docker_image    = optional(string)
-    memory          = optional(string)
-    config_file     = optional(string)
-    docker_username = optional(string)
-    docker_password = optional(string)
-  })
-  default = {}
-}
-
-locals {
-  alertmanager = defaults(var.alertmanager, {
-    memory       = 128
-    docker_image = "prom/alertmanager:v0.23.0"
-    config_file  = ""
-  })
+variable "alertmanagers_endpoints" {
+  type        = list(string)
+  description = "List of endpoints of the alert managers"
+  default     = []
 }
