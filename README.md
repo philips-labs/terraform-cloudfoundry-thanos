@@ -51,19 +51,13 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [cloudfoundry_app.alertmanager](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.cfpaasexporter](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
-| [cloudfoundry_app.prometheusmsteams](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
 | [cloudfoundry_app.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
-| [cloudfoundry_network_policy.alertmanager](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
-| [cloudfoundry_network_policy.prometheusmsteams](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
 | [cloudfoundry_network_policy.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
-| [cloudfoundry_route.alertmanager_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.cfpaasexporter_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
-| [cloudfoundry_route.prometheusmsteams_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
@@ -82,7 +76,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_alertmanager"></a> [alertmanager](#input\_alertmanager) | n/a | <pre>object({<br>    docker_image    = optional(string)<br>    memory          = optional(string)<br>    config_file     = optional(string)<br>    docker_username = optional(string)<br>    docker_password = optional(string)<br>  })</pre> | `{}` | no |
+| <a name="input_alertmanagers_endpoints"></a> [alertmanagers\_endpoints](#input\_alertmanagers\_endpoints) | List of endpoints of the alert managers | `list(string)` | `[]` | no |
 | <a name="input_cf_functional_account"></a> [cf\_functional\_account](#input\_cf\_functional\_account) | Configuration for the CloudFoundry function account. Required for variant and if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
 | <a name="input_cf_org_name"></a> [cf\_org\_name](#input\_cf\_org\_name) | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
 | <a name="input_cf_paas_exporter_disk_quota"></a> [cf\_paas\_exporter\_disk\_quota](#input\_cf\_paas\_exporter\_disk\_quota) | CF PaaS Exporter disk quota | `number` | `100` | no |
@@ -111,8 +105,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_alertmanager_app_id"></a> [alertmanager\_app\_id](#output\_alertmanager\_app\_id) | App id of Alertmanager |
-| <a name="output_alertmanager_internal_endpoint"></a> [alertmanager\_internal\_endpoint](#output\_alertmanager\_internal\_endpoint) | Internal route of alertmanager |
 | <a name="output_postfix"></a> [postfix](#output\_postfix) | Cluster ID / Postfix of Thanos deployment |
 | <a name="output_thanos_app_id"></a> [thanos\_app\_id](#output\_thanos\_app\_id) | App id for Thanos |
 | <a name="output_thanos_endpoint"></a> [thanos\_endpoint](#output\_thanos\_endpoint) | URL of Thanos deployment |
