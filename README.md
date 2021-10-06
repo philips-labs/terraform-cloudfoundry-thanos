@@ -7,8 +7,6 @@ Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unli
 - Deploys a Thanos instance with S3 Bucket as storage
 - [Variant](https://github.com/philips-software/variant) sidecar for scrape target and rule discovery
 - Alertmanager support
-- Teams notification support
-
 ## Example of Thanos Terraform
 
 ```
