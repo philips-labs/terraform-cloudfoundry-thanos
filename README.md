@@ -88,7 +88,6 @@ No modules.
 | <a name="input_enable_cf_exporter"></a> [enable\_cf\_exporter](#input\_enable\_cf\_exporter) | Enable the CloudFoundry metrics exporter and scrape it from Thanos | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Pass environment variable to the app | `map(any)` | `{}` | no |
 | <a name="input_name_postfix"></a> [name\_postfix](#input\_name\_postfix) | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
-| <a name="input_teams_incoming_webhook_url"></a> [teams\_incoming\_webhook\_url](#input\_teams\_incoming\_webhook\_url) | Teams incoming webhook URL | `string` | `""` | no |
 | <a name="input_tenants"></a> [tenants](#input\_tenants) | The list of tenants to scrape. When an app does not specify tenant then 'default' is used | `list(string)` | <pre>[<br>  "default"<br>]</pre> | no |
 | <a name="input_thanos_disk_quota"></a> [thanos\_disk\_quota](#input\_thanos\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
 | <a name="input_thanos_extra_config"></a> [thanos\_extra\_config](#input\_thanos\_extra\_config) | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string` | `""` | no |
@@ -113,7 +112,6 @@ No modules.
 | <a name="output_thanos_space_id"></a> [thanos\_space\_id](#output\_thanos\_space\_id) | Cloud foundry space ID of Thanos |
 | <a name="output_thanos_store_app_id"></a> [thanos\_store\_app\_id](#output\_thanos\_store\_app\_id) | App id for Thanos Store |
 | <a name="output_thanos_store_endpoint"></a> [thanos\_store\_endpoint](#output\_thanos\_store\_endpoint) | Internal only URL of Thanos store deployment |
-
 <!--- END_TF_DOCS --->
 
 # Contact / Getting help

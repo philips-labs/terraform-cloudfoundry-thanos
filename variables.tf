@@ -32,12 +32,6 @@ variable "thanos_store_image" {
   type        = string
 }
 
-variable "teams_incoming_webhook_url" {
-  description = "Teams incoming webhook URL"
-  default     = ""
-  type        = string
-}
-
 variable "thanos_public_endpoints" {
   description = "Make Thanos public endpoint"
   type        = bool
