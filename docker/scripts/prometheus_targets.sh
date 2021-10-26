@@ -31,4 +31,4 @@ if [ -n "$CARTEL_HOSTS" ]; then
 fi
 
 # Start and run prometheus
-exec /sidecars/bin/prometheus --config.file="$prom_config" --storage.tsdb.path=/prometheus --storage.tsdb.retention=2h --storage.tsdb.min-block-duration=30m --storage.tsdb.max-block-duration=30m --web.enable-lifecycle
+exec /sidecars/bin/prometheus --config.file="$prom_config" --storage.tsdb.path=/prometheus --storage.tsdb.retention.time=2h --storage.tsdb.min-block-duration=30m --storage.tsdb.max-block-duration=30m --web.enable-lifecycle
