@@ -10,9 +10,9 @@ resource "cloudfoundry_app" "cfpaasexporter" {
     username = var.docker_username
     password = var.docker_password
   }
-  
+
   command = "export USERNAME=${var.cf_functional_account.username};export PASSWORD=${var.cf_functional_account.password};paas-prometheus-exporter"
-  
+
   environment = {
     API_ENDPOINT = var.cf_functional_account.api_endpoint
   }
