@@ -154,12 +154,6 @@ variable "thanos_query_service_bindings" {
   default     = []
 }
 
-variable "thanos_query_service_bindings" {
-  type        = list(object({ service_instance = string }))
-  description = "A list of service instances that should be bound to the thanos_query app"
-  default     = []
-}
-
 variable "thanos_store_service_bindings" {
   type        = list(object({ service_instance = string }))
   description = "A list of service instances that should be bound to the thanos_store app"
