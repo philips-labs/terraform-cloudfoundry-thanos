@@ -21,6 +21,14 @@ resource "cloudfoundry_app" "thanos_query" {
       route = routes.value
     }
   }
+
+  dynamic "service_binding" {
+    for_each = var.thanos_query_service_bindings
+
+    content {
+      service_instance = service_binding.value.service_instance
+    }
+  }
 }
 
 resource "cloudfoundry_route" "thanos_query" {

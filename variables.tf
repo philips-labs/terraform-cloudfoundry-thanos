@@ -141,3 +141,27 @@ variable "alertmanagers_endpoints" {
   description = "List of endpoints of the alert managers"
   default     = []
 }
+
+variable "thanos_service_bindings" {
+  type        = list(object({ service_instance = string }))
+  description = "A list of service instances that should be bound to the thanos app"
+  default     = []
+}
+
+variable "thanos_query_service_bindings" {
+  type        = list(object({ service_instance = string }))
+  description = "A list of service instances that should be bound to the thanos app"
+  default     = []
+}
+
+variable "thanos_query_service_bindings" {
+  type        = list(object({ service_instance = string }))
+  description = "A list of service instances that should be bound to the thanos_query app"
+  default     = []
+}
+
+variable "thanos_store_service_bindings" {
+  type        = list(object({ service_instance = string }))
+  description = "A list of service instances that should be bound to the thanos_store app"
+  default     = []
+}
