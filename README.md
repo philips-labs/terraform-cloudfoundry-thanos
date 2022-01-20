@@ -96,9 +96,12 @@ No modules.
 | <a name="input_thanos_memory"></a> [thanos\_memory](#input\_thanos\_memory) | Thanos memory | `number` | `1024` | no |
 | <a name="input_thanos_public_endpoints"></a> [thanos\_public\_endpoints](#input\_thanos\_public\_endpoints) | Make Thanos public endpoint | `bool` | `false` | no |
 | <a name="input_thanos_query_image"></a> [thanos\_query\_image](#input\_thanos\_query\_image) | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v5.0.1"` | no |
+| <a name="input_thanos_query_service_bindings"></a> [thanos\_query\_service\_bindings](#input\_thanos\_query\_service\_bindings) | A list of service instances that should be bound to the thanos app | `list(object({ service_instance = string }))` | `[]` | no |
+| <a name="input_thanos_service_bindings"></a> [thanos\_service\_bindings](#input\_thanos\_service\_bindings) | A list of service instances that should be bound to the thanos app | `list(object({ service_instance = string }))` | `[]` | no |
 | <a name="input_thanos_store_disk_quota"></a> [thanos\_store\_disk\_quota](#input\_thanos\_store\_disk\_quota) | Thanos store disk quota | `number` | `5000` | no |
 | <a name="input_thanos_store_image"></a> [thanos\_store\_image](#input\_thanos\_store\_image) | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v5.0.1"` | no |
 | <a name="input_thanos_store_memory"></a> [thanos\_store\_memory](#input\_thanos\_store\_memory) | Thanos store memory | `number` | `1536` | no |
+| <a name="input_thanos_store_service_bindings"></a> [thanos\_store\_service\_bindings](#input\_thanos\_store\_service\_bindings) | A list of service instances that should be bound to the thanos\_store app | `list(object({ service_instance = string }))` | `[]` | no |
 
 ## Outputs
 
