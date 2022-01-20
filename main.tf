@@ -52,6 +52,14 @@ resource "cloudfoundry_app" "thanos" {
   service_binding {
     service_instance = cloudfoundry_service_instance.s3.id
   }
+
+  dynamic "service_binding" {
+    for_each = var.thanos_service_bindings
+
+    content {
+      service_instance = service_binding.value.service_instance
+    }
+  }
 }
 
 resource "cloudfoundry_route" "thanos" {
