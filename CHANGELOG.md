@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
+## v5.0.1
+- Upgrade Variant to v0.0.29
+
 ## v5.0.0
 - BREAKING: Removed Alertmanager app from this module. This module still supports alert managers and it now accepts a list of alert managers endpoints.
 - The alertmanager app is now a separate module at [philips-labs/terraform-cloudfoundry-alertmanager](https://github.com/philips-labs/terraform-cloudfoundry-alertmanager)
