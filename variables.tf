@@ -62,6 +62,12 @@ variable "thanos_memory" {
   default     = 1024
 }
 
+variable "thanos_query_memory" {
+  type        = number
+  description = "Thanos memory"
+  default     = 1024
+}
+
 variable "thanos_disk_quota" {
   type        = number
   description = "Thanos disk quota"

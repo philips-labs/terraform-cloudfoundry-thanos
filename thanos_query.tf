@@ -5,7 +5,7 @@ locals {
 resource "cloudfoundry_app" "thanos_query" {
   name         = "tf-thanos-query-${local.postfix}"
   space        = var.cf_space_id
-  memory       = 256
+  memory       = var.thanos_query_memory
   disk_quota   = 2048
   docker_image = var.thanos_query_image
   docker_credentials = {
