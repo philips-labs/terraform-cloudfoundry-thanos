@@ -32,6 +32,12 @@ variable "thanos_store_image" {
   type        = string
 }
 
+variable "thanos_compactor_image" {
+  description = "Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates"
+  default     = "philipslabs/cf-thanos:v5.1.2"
+  type        = string
+}
+
 variable "thanos_public_endpoints" {
   description = "Make Thanos public endpoint"
   type        = bool
@@ -78,6 +84,18 @@ variable "thanos_store_memory" {
   type        = number
   description = "Thanos store memory"
   default     = 1536
+}
+
+variable "thanos_compactor_disk_quota" {
+  type        = number
+  description = "Thanos disk quota"
+  default     = 5000
+}
+
+variable "thanos_compactor_memory" {
+  type        = number
+  description = "Thanos store memory"
+  default     = 1024
 }
 
 variable "thanos_store_disk_quota" {
