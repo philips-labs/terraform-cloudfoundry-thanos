@@ -86,6 +86,12 @@ variable "thanos_store_memory" {
   default     = 1536
 }
 
+variable "thanos_compactor_enabled" {
+  type = bool
+  description = "Enable or disable the Thanos compactor component"
+  default = true
+}
+
 variable "thanos_compactor_disk_quota" {
   type        = number
   description = "Thanos disk quota"

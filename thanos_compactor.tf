@@ -1,4 +1,5 @@
 resource "cloudfoundry_app" "thanos_compactor" {
+  count             = var.thanos_compactor_enabled ? 1 : 0
   name              = "tf-thanos-compactor-${local.postfix}"
   space             = var.cf_space_id
   memory            = var.thanos_compactor_memory
