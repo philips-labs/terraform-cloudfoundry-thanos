@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v5.3.0
+
+- Upgrade Thanos to v0.25.2
+- Toggle for Thanos Compactor
+
 ## v5.2.0
 
 - Enable Thanos Compactor component
