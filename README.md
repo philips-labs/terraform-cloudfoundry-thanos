@@ -92,6 +92,7 @@ No modules.
 | <a name="input_name_postfix"></a> [name\_postfix](#input\_name\_postfix) | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
 | <a name="input_tenants"></a> [tenants](#input\_tenants) | The list of tenants to scrape. When an app does not specify tenant then 'default' is used | `list(string)` | <pre>[<br>  "default"<br>]</pre> | no |
 | <a name="input_thanos_compactor_disk_quota"></a> [thanos\_compactor\_disk\_quota](#input\_thanos\_compactor\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
+| <a name="input_thanos_compactor_enabled"></a> [thanos\_compactor\_enabled](#input\_thanos\_compactor\_enabled) | Enable or disable the Thanos compactor component | `bool` | `true` | no |
 | <a name="input_thanos_compactor_image"></a> [thanos\_compactor\_image](#input\_thanos\_compactor\_image) | Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v5.2.0"` | no |
 | <a name="input_thanos_compactor_memory"></a> [thanos\_compactor\_memory](#input\_thanos\_compactor\_memory) | Thanos store memory | `number` | `1024` | no |
 | <a name="input_thanos_disk_quota"></a> [thanos\_disk\_quota](#input\_thanos\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
