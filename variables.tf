@@ -87,9 +87,9 @@ variable "thanos_store_memory" {
 }
 
 variable "thanos_compactor_enabled" {
-  type = bool
+  type        = bool
   description = "Enable or disable the Thanos compactor component"
-  default = true
+  default     = true
 }
 
 variable "thanos_compactor_disk_quota" {
