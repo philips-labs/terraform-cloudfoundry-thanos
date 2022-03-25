@@ -134,6 +134,13 @@ variable "tenants" {
   default     = ["default"]
 }
 
+variable "spaces" {
+  type        = list(string)
+  description = "The list of CF space GUIDs to scrape. When provided variant will only consider apps in these spaces"
+  default     = []
+}
+
+
 variable "cf_functional_account" {
   type = object({
     api_endpoint = string

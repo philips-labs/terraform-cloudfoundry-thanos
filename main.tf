@@ -39,6 +39,7 @@ resource "cloudfoundry_app" "thanos" {
     VARIANT_INTERNAL_DOMAIN_ID = data.cloudfoundry_domain.apps_internal_domain.id
     VARIANT_PROMETHEUS_CONFIG  = "/sidecars/etc/prometheus.yml"
     VARIANT_TENANTS            = join(",", var.tenants)
+    VARIANT_SPACES             = join(",", var.spaces)
     VARIANT_RELOAD             = "true"
   }, var.environment)
 
