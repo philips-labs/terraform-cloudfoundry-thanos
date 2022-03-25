@@ -16,25 +16,25 @@ variable "name_postfix" {
 
 variable "thanos_image" {
   description = "Image to use for Thanos app. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.3.1"
+  default     = "philipslabs/cf-thanos:v5.3.2"
   type        = string
 }
 
 variable "thanos_query_image" {
   description = "Image to use for Thanos query. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.3.1"
+  default     = "philipslabs/cf-thanos:v5.3.2"
   type        = string
 }
 
 variable "thanos_store_image" {
   description = "Image to use for Thanos store. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.3.1"
+  default     = "philipslabs/cf-thanos:v5.3.2"
   type        = string
 }
 
 variable "thanos_compactor_image" {
   description = "Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.3.1"
+  default     = "philipslabs/cf-thanos:v5.3.2"
   type        = string
 }
 
