@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v5.3.4
+
+- Fix default Docker image version
+
 ## v5.3.3
 
 - Upgrade Variant to v0.0.32
