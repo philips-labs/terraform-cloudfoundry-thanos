@@ -3,7 +3,7 @@ FROM prom/prometheus:v2.34.0 AS prometheus
 FROM thanosio/thanos:v0.25.2 AS thanos
 
 ## Variant
-FROM philipssoftware/variant:v0.0.32 AS variant
+FROM philipssoftware/variant:v0.0.33 AS variant
 
 ## Build final image
 FROM alpine:3.15.2
