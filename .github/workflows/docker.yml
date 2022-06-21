@@ -9,9 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      -
         name: Login to HSDP Docker registry
         uses: docker/login-action@v2
         with:

@@ -10,12 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      -
         name: Login to HSDP Docker registry
         uses: docker/login-action@v2
         with:
@@ -45,7 +39,7 @@ jobs:
         with:
           context: ./docker
           file: ./docker/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
           tags: philipslabs/cf-thanos:${{ steps.vars.outputs.tag }},docker.na1.hsdp.io/philipslabs/cf-thanos:${{ steps.vars.outputs.tag }}
       -
