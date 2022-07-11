@@ -30,7 +30,7 @@ resource "cloudfoundry_app" "thanos" {
     ENABLE_CF_EXPORTER                 = var.enable_cf_exporter
     PROMETHEUS_TARGETS                 = base64encode(var.thanos_extra_config)
     PROMETHEUS_CONFIG_BASE64           = base64encode(local.prometheus_config)
-    THANOS_STORAGE_TSDB_RETENTION_TIME = var.thano_storage_tsdb_retention_time
+    THANOS_STORAGE_TSDB_RETENTION_TIME = var.thanos_storage_tsdb_retention_time
     USERNAME                           = var.cf_functional_account.username
     PASSWORD                           = var.cf_functional_account.password
     API_ENDPOINT                       = var.cf_functional_account.api_endpoint
