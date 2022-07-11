@@ -196,3 +196,9 @@ variable "thanos_store_service_bindings" {
   description = "A list of service instances that should be bound to the thanos_store app"
   default     = []
 }
+
+variable "thanos_storage_tsdb_retention_time" {
+  type        = string
+  description = "Thanos storage tsdb retention time"
+  default     = "2h"
+}
