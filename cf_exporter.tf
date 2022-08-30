@@ -6,6 +6,7 @@ resource "cloudfoundry_app" "cfpaasexporter" {
   memory       = var.cf_paas_exporter_memory
   disk_quota   = var.cf_paas_exporter_disk_quota
   docker_image = var.cf_paas_exporter_image
+  timeout      = var.cf_paas_exporter_timeout
   docker_credentials = {
     username = var.docker_username
     password = var.docker_password

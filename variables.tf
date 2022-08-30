@@ -173,6 +173,12 @@ variable "cf_paas_exporter_disk_quota" {
   default     = 100
 }
 
+variable "cf_paas_exporter_timeout" {
+  type        = number
+  description = "CF PaaS Exporter timeout"
+  default     = 120
+}
+
 variable "alertmanagers_endpoints" {
   type        = list(string)
   description = "List of endpoints of the alert managers"
