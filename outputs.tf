@@ -37,3 +37,19 @@ output "thanos_store_endpoint" {
   description = "Internal only URL of Thanos store deployment"
   value       = "${cloudfoundry_route.thanos_store_internal.endpoint}:9090"
 }
+
+output "prometheus_proxy_username" {
+  description = "The Promethues proxy username"
+  value       = var.enable_prometheus_proxy ? module.proxy[0].proxy_username : ""
+}
+
+output "prometheus_proxy_password" {
+  description = "The Promethues proxy password"
+  value       = var.enable_prometheus_proxy ? module.proxy[0].proxy_password : ""
+  sensitive   = true
+}
+
+output "prometheus_proxy_endpoint" {
+  description = "The Promethues proxy endpoint"
+  value       = var.enable_prometheus_proxy ? module.proxy[0].proxy_endpoint : ""
+}

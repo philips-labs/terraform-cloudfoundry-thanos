@@ -16,25 +16,25 @@ variable "name_postfix" {
 
 variable "thanos_image" {
   description = "Image to use for Thanos app. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.4.1"
+  default     = "philipslabs/cf-thanos:v5.5.0"
   type        = string
 }
 
 variable "thanos_query_image" {
   description = "Image to use for Thanos query. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.4.1"
+  default     = "philipslabs/cf-thanos:v5.5.0"
   type        = string
 }
 
 variable "thanos_store_image" {
   description = "Image to use for Thanos store. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.4.1"
+  default     = "philipslabs/cf-thanos:v5.5.0"
   type        = string
 }
 
 variable "thanos_compactor_image" {
   description = "Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.4.1"
+  default     = "philipslabs/cf-thanos:v5.5.0"
   type        = string
 }
 
@@ -119,6 +119,12 @@ variable "thanos_file_sd_url" {
 variable "enable_cf_exporter" {
   type        = bool
   description = "Enable the CloudFoundry metrics exporter and scrape it from Thanos"
+  default     = false
+}
+
+variable "enable_prometheus_proxy" {
+  type        = bool
+  description = "Enable the Prometheus proxy, protected by Basic Auth"
   default     = false
 }
 

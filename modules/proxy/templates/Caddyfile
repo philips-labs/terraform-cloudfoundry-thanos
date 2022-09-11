@@ -1,0 +1,6 @@
+:80 {
+  reverse_proxy ${upstream_url}
+  basicauth {
+        ${username} ${password}
+    }
+}
