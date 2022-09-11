@@ -192,6 +192,7 @@ No modules.
 | <a name="input_cf_paas_exporter_disk_quota"></a> [cf\_paas\_exporter\_disk\_quota](#input\_cf\_paas\_exporter\_disk\_quota) | CF PaaS Exporter disk quota | `number` | `100` | no |
 | <a name="input_cf_paas_exporter_image"></a> [cf\_paas\_exporter\_image](#input\_cf\_paas\_exporter\_image) | Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates | `string` | `"governmentpaas/paas-prometheus-exporter:latest"` | no |
 | <a name="input_cf_paas_exporter_memory"></a> [cf\_paas\_exporter\_memory](#input\_cf\_paas\_exporter\_memory) | CF PaaS Exporter memory | `number` | `256` | no |
+| <a name="input_cf_paas_exporter_timeout"></a> [cf\_paas\_exporter\_timeout](#input\_cf\_paas\_exporter\_timeout) | CF PaaS Exporter timeout | `number` | `120` | no |
 | <a name="input_cf_space_id"></a> [cf\_space\_id](#input\_cf\_space\_id) | Cloudfoundry SPACE id to use for deploying all Thanos components. | `string` | n/a | yes |
 | <a name="input_docker_password"></a> [docker\_password](#input\_docker\_password) | Docker registry password | `string` | `""` | no |
 | <a name="input_docker_username"></a> [docker\_username](#input\_docker\_username) | Docker registry username | `string` | `""` | no |
@@ -214,6 +215,7 @@ No modules.
 | <a name="input_thanos_query_memory"></a> [thanos\_query\_memory](#input\_thanos\_query\_memory) | Thanos memory | `number` | `1024` | no |
 | <a name="input_thanos_query_service_bindings"></a> [thanos\_query\_service\_bindings](#input\_thanos\_query\_service\_bindings) | A list of service instances that should be bound to the thanos app | `list(object({ service_instance = string }))` | `[]` | no |
 | <a name="input_thanos_service_bindings"></a> [thanos\_service\_bindings](#input\_thanos\_service\_bindings) | A list of service instances that should be bound to the thanos app | `list(object({ service_instance = string }))` | `[]` | no |
+| <a name="input_thanos_storage_tsdb_retention_time"></a> [thanos\_storage\_tsdb\_retention\_time](#input\_thanos\_storage\_tsdb\_retention\_time) | Thanos storage tsdb retention time | `string` | `"2h"` | no |
 | <a name="input_thanos_store_disk_quota"></a> [thanos\_store\_disk\_quota](#input\_thanos\_store\_disk\_quota) | Thanos store disk quota | `number` | `5000` | no |
 | <a name="input_thanos_store_image"></a> [thanos\_store\_image](#input\_thanos\_store\_image) | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v5.4.1"` | no |
 | <a name="input_thanos_store_memory"></a> [thanos\_store\_memory](#input\_thanos\_store\_memory) | Thanos store memory | `number` | `1536` | no |
