@@ -139,9 +139,9 @@ License is MIT
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
 | <a name="requirement_cloudfoundry"></a> [cloudfoundry](#requirement\_cloudfoundry) | >= 0.14.2 |
-| <a name="requirement_hsdp"></a> [hsdp](#requirement\_hsdp) | >= 0.18.1 |
+| <a name="requirement_hsdp"></a> [hsdp](#requirement\_hsdp) | >= 0.37.4 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.2.1 |
 
 ## Providers
@@ -149,7 +149,7 @@ License is MIT
 | Name | Version |
 |------|---------|
 | <a name="provider_cloudfoundry"></a> [cloudfoundry](#provider\_cloudfoundry) | >= 0.14.2 |
-| <a name="provider_hsdp"></a> [hsdp](#provider\_hsdp) | >= 0.18.1 |
+| <a name="provider_hsdp"></a> [hsdp](#provider\_hsdp) | >= 0.37.4 |
 | <a name="provider_random"></a> [random](#provider\_random) | >= 2.2.1 |
 
 ## Modules
