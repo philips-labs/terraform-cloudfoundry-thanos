@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.13.0"
+  required_version = ">= 1.2.0"
   experiments      = [module_variable_optional_attrs]
 
   required_providers {
@@ -9,7 +9,7 @@ terraform {
     }
     hsdp = {
       source  = "philips-software/hsdp"
-      version = ">= 0.18.1"
+      version = ">= 0.37.4"
     }
     random = {
       source  = "random"
