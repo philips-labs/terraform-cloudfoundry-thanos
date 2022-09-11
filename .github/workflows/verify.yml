@@ -13,7 +13,7 @@ jobs:
     name: Verify module
     strategy:
       matrix:
-        terraform: [1.0.0]
+        terraform: [1.2.6]
     runs-on: ubuntu-latest
     container:
       image: hashicorp/terraform:${{ matrix.terraform }}
@@ -29,7 +29,7 @@ jobs:
     name: Verify examples
     strategy:
       matrix:
-        terraform: [0.14.5, latest]
+        terraform: [1.2.6, latest]
         example: ["default"]
     defaults:
       run:
@@ -41,8 +41,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: init terraform example
         run: terraform init -get -backend=false -input=false
-      - name: check formatting
-        if: ${{ matrix.terraform == '0.14.5' }}
-        run: terraform fmt -recursive -check=true -write=false
       - name: validate terraform
         run: terraform validate
