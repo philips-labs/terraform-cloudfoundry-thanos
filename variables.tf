@@ -173,6 +173,12 @@ variable "cf_paas_exporter_disk_quota" {
   default     = 100
 }
 
+variable "cf_paas_exporter_timeout" {
+  type        = number
+  description = "CF PaaS Exporter timeout"
+  default     = 120
+}
+
 variable "alertmanagers_endpoints" {
   type        = list(string)
   description = "List of endpoints of the alert managers"
@@ -195,4 +201,10 @@ variable "thanos_store_service_bindings" {
   type        = list(object({ service_instance = string }))
   description = "A list of service instances that should be bound to the thanos_store app"
   default     = []
+}
+
+variable "thanos_storage_tsdb_retention_time" {
+  type        = string
+  description = "Thanos storage tsdb retention time"
+  default     = "2h"
 }

@@ -26,21 +26,22 @@ resource "cloudfoundry_app" "thanos" {
   }
   command = "echo $PROMETHEUS_CONFIG_BASE64|base64 -d > /sidecars/etc/prometheus.default.yml && supervisord --nodaemon --configuration /etc/supervisord.conf"
   environment = merge({
-    FILESD_URL                 = var.thanos_file_sd_url
-    ENABLE_CF_EXPORTER         = var.enable_cf_exporter
-    PROMETHEUS_TARGETS         = base64encode(var.thanos_extra_config)
-    PROMETHEUS_CONFIG_BASE64   = base64encode(local.prometheus_config)
-    USERNAME                   = var.cf_functional_account.username
-    PASSWORD                   = var.cf_functional_account.password
-    API_ENDPOINT               = var.cf_functional_account.api_endpoint
-    VARIANT_API_ENDPOINT       = var.cf_functional_account.api_endpoint
-    VARIANT_USERNAME           = var.cf_functional_account.username
-    VARIANT_PASSWORD           = var.cf_functional_account.password
-    VARIANT_INTERNAL_DOMAIN_ID = data.cloudfoundry_domain.apps_internal_domain.id
-    VARIANT_PROMETHEUS_CONFIG  = "/sidecars/etc/prometheus.yml"
-    VARIANT_TENANTS            = join(",", var.tenants)
-    VARIANT_SPACES             = join(",", var.spaces)
-    VARIANT_RELOAD             = "true"
+    FILESD_URL                         = var.thanos_file_sd_url
+    ENABLE_CF_EXPORTER                 = var.enable_cf_exporter
+    PROMETHEUS_TARGETS                 = base64encode(var.thanos_extra_config)
+    PROMETHEUS_CONFIG_BASE64           = base64encode(local.prometheus_config)
+    THANOS_STORAGE_TSDB_RETENTION_TIME = var.thanos_storage_tsdb_retention_time
+    USERNAME                           = var.cf_functional_account.username
+    PASSWORD                           = var.cf_functional_account.password
+    API_ENDPOINT                       = var.cf_functional_account.api_endpoint
+    VARIANT_API_ENDPOINT               = var.cf_functional_account.api_endpoint
+    VARIANT_USERNAME                   = var.cf_functional_account.username
+    VARIANT_PASSWORD                   = var.cf_functional_account.password
+    VARIANT_INTERNAL_DOMAIN_ID         = data.cloudfoundry_domain.apps_internal_domain.id
+    VARIANT_PROMETHEUS_CONFIG          = "/sidecars/etc/prometheus.yml"
+    VARIANT_TENANTS                    = join(",", var.tenants)
+    VARIANT_SPACES                     = join(",", var.spaces)
+    VARIANT_RELOAD                     = "true"
   }, var.environment)
 
   dynamic "routes" {
