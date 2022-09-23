@@ -1,15 +1,14 @@
 terraform {
-  required_version = ">= 1.2.0"
-  experiments      = [module_variable_optional_attrs]
+  required_version = ">= 1.3.0"
 
   required_providers {
     cloudfoundry = {
       source  = "cloudfoundry-community/cloudfoundry"
-      version = ">= 0.14.2"
+      version = ">= 0.15.5"
     }
     hsdp = {
       source  = "philips-software/hsdp"
-      version = ">= 0.37.4"
+      version = ">= 0.38.2"
     }
     random = {
       source  = "random"
