@@ -193,7 +193,7 @@ License is MIT
 | <a name="input_cf_functional_account"></a> [cf\_functional\_account](#input\_cf\_functional\_account) | Configuration for the CloudFoundry function account. Required for variant and if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
 | <a name="input_cf_org_name"></a> [cf\_org\_name](#input\_cf\_org\_name) | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
 | <a name="input_cf_paas_exporter_disk_quota"></a> [cf\_paas\_exporter\_disk\_quota](#input\_cf\_paas\_exporter\_disk\_quota) | CF PaaS Exporter disk quota | `number` | `100` | no |
-| <a name="input_cf_paas_exporter_image"></a> [cf\_paas\_exporter\_image](#input\_cf\_paas\_exporter\_image) | Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates | `string` | `"governmentpaas/paas-prometheus-exporter:latest"` | no |
+| <a name="input_cf_paas_exporter_image"></a> [cf\_paas\_exporter\_image](#input\_cf\_paas\_exporter\_image) | Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates | `string` | `"loafoe/paas-prometheus-exporter:v0.0.5"` | no |
 | <a name="input_cf_paas_exporter_memory"></a> [cf\_paas\_exporter\_memory](#input\_cf\_paas\_exporter\_memory) | CF PaaS Exporter memory | `number` | `256` | no |
 | <a name="input_cf_paas_exporter_timeout"></a> [cf\_paas\_exporter\_timeout](#input\_cf\_paas\_exporter\_timeout) | CF PaaS Exporter timeout | `number` | `120` | no |
 | <a name="input_cf_space_id"></a> [cf\_space\_id](#input\_cf\_space\_id) | Cloudfoundry SPACE id to use for deploying all Thanos components. | `string` | n/a | yes |
@@ -207,21 +207,21 @@ License is MIT
 | <a name="input_tenants"></a> [tenants](#input\_tenants) | The list of tenants to scrape. When an app does not specify tenant then 'default' is used | `list(string)` | <pre>[<br>  "default"<br>]</pre> | no |
 | <a name="input_thanos_compactor_disk_quota"></a> [thanos\_compactor\_disk\_quota](#input\_thanos\_compactor\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
 | <a name="input_thanos_compactor_enabled"></a> [thanos\_compactor\_enabled](#input\_thanos\_compactor\_enabled) | Enable or disable the Thanos compactor component | `bool` | `true` | no |
-| <a name="input_thanos_compactor_image"></a> [thanos\_compactor\_image](#input\_thanos\_compactor\_image) | Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v5.5.2"` | no |
+| <a name="input_thanos_compactor_image"></a> [thanos\_compactor\_image](#input\_thanos\_compactor\_image) | Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v6.0.0"` | no |
 | <a name="input_thanos_compactor_memory"></a> [thanos\_compactor\_memory](#input\_thanos\_compactor\_memory) | Thanos store memory | `number` | `1024` | no |
 | <a name="input_thanos_disk_quota"></a> [thanos\_disk\_quota](#input\_thanos\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
 | <a name="input_thanos_extra_config"></a> [thanos\_extra\_config](#input\_thanos\_extra\_config) | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string` | `""` | no |
 | <a name="input_thanos_file_sd_url"></a> [thanos\_file\_sd\_url](#input\_thanos\_file\_sd\_url) | A URL that exposes a prometheus file\_sd yaml file will be periodically downloaded and used for service discovery | `string` | `""` | no |
-| <a name="input_thanos_image"></a> [thanos\_image](#input\_thanos\_image) | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v5.5.2"` | no |
+| <a name="input_thanos_image"></a> [thanos\_image](#input\_thanos\_image) | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v6.0.0"` | no |
 | <a name="input_thanos_memory"></a> [thanos\_memory](#input\_thanos\_memory) | Thanos memory | `number` | `1024` | no |
 | <a name="input_thanos_public_endpoints"></a> [thanos\_public\_endpoints](#input\_thanos\_public\_endpoints) | Make Thanos public endpoint | `bool` | `false` | no |
-| <a name="input_thanos_query_image"></a> [thanos\_query\_image](#input\_thanos\_query\_image) | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v5.5.2"` | no |
+| <a name="input_thanos_query_image"></a> [thanos\_query\_image](#input\_thanos\_query\_image) | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v6.0.0"` | no |
 | <a name="input_thanos_query_memory"></a> [thanos\_query\_memory](#input\_thanos\_query\_memory) | Thanos memory | `number` | `1024` | no |
 | <a name="input_thanos_query_service_bindings"></a> [thanos\_query\_service\_bindings](#input\_thanos\_query\_service\_bindings) | A list of service instances that should be bound to the thanos app | `list(object({ service_instance = string }))` | `[]` | no |
 | <a name="input_thanos_service_bindings"></a> [thanos\_service\_bindings](#input\_thanos\_service\_bindings) | A list of service instances that should be bound to the thanos app | `list(object({ service_instance = string }))` | `[]` | no |
 | <a name="input_thanos_storage_tsdb_retention_time"></a> [thanos\_storage\_tsdb\_retention\_time](#input\_thanos\_storage\_tsdb\_retention\_time) | Thanos storage tsdb retention time | `string` | `"2h"` | no |
 | <a name="input_thanos_store_disk_quota"></a> [thanos\_store\_disk\_quota](#input\_thanos\_store\_disk\_quota) | Thanos store disk quota | `number` | `5000` | no |
-| <a name="input_thanos_store_image"></a> [thanos\_store\_image](#input\_thanos\_store\_image) | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v5.5.2"` | no |
+| <a name="input_thanos_store_image"></a> [thanos\_store\_image](#input\_thanos\_store\_image) | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v6.0.0"` | no |
 | <a name="input_thanos_store_memory"></a> [thanos\_store\_memory](#input\_thanos\_store\_memory) | Thanos store memory | `number` | `1536` | no |
 | <a name="input_thanos_store_service_bindings"></a> [thanos\_store\_service\_bindings](#input\_thanos\_store\_service\_bindings) | A list of service instances that should be bound to the thanos\_store app | `list(object({ service_instance = string }))` | `[]` | no |
 
