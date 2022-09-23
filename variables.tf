@@ -16,25 +16,25 @@ variable "name_postfix" {
 
 variable "thanos_image" {
   description = "Image to use for Thanos app. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.5.2"
+  default     = "philipslabs/cf-thanos:v6.0.0"
   type        = string
 }
 
 variable "thanos_query_image" {
   description = "Image to use for Thanos query. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.5.2"
+  default     = "philipslabs/cf-thanos:v6.0.0"
   type        = string
 }
 
 variable "thanos_store_image" {
   description = "Image to use for Thanos store. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.5.2"
+  default     = "philipslabs/cf-thanos:v6.0.0"
   type        = string
 }
 
 variable "thanos_compactor_image" {
   description = "Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v5.5.2"
+  default     = "philipslabs/cf-thanos:v6.0.0"
   type        = string
 }
 
@@ -163,7 +163,7 @@ variable "cf_functional_account" {
 
 variable "cf_paas_exporter_image" {
   description = "Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates"
-  default     = "governmentpaas/paas-prometheus-exporter:latest"
+  default     = "loafoe/paas-prometheus-exporter:v0.0.5"
   type        = string
 }
 
