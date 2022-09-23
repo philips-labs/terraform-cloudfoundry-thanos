@@ -162,8 +162,8 @@ variable "cf_functional_account" {
 }
 
 variable "cf_paas_exporter_image" {
-  description = "Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates"
-  default     = "governmentpaas/paas-prometheus-exporter:latest"
+  description = "Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates.  Note governmentpaas do not use v* versioning."
+  default     = "governmentpaas/paas-prometheus-exporter:f161a7c90250053964eb179c936dc587ffafc2f3"
   type        = string
 }
 
