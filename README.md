@@ -28,6 +28,114 @@ module "thanos" {
 ```
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_cloudfoundry"></a> [cloudfoundry](#requirement\_cloudfoundry) | >= 0.15.5 |
+| <a name="requirement_hsdp"></a> [hsdp](#requirement\_hsdp) | >= 0.38.2 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.2.1 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_cloudfoundry"></a> [cloudfoundry](#provider\_cloudfoundry) | >= 0.15.5 |
+| <a name="provider_hsdp"></a> [hsdp](#provider\_hsdp) | >= 0.38.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | >= 2.2.1 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_proxy"></a> [proxy](#module\_proxy) | ./modules/proxy | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [cloudfoundry_app.cfpaasexporter](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_app.hsdp_metrics_exporter](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_app.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_app.thanos_compactor](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_app.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_app.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/app) | resource |
+| [cloudfoundry_network_policy.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
+| [cloudfoundry_network_policy.thanos_store](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/network_policy) | resource |
+| [cloudfoundry_route.cfpaasexporter_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
+| [cloudfoundry_route.hsdp_metrics_exporter_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
+| [cloudfoundry_route.thanos](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
+| [cloudfoundry_route.thanos_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
+| [cloudfoundry_route.thanos_query](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
+| [cloudfoundry_route.thanos_query_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
+| [cloudfoundry_route.thanos_store_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
+| [cloudfoundry_service_instance.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_instance) | resource |
+| [random_id.id](https://registry.terraform.io/providers/random/latest/docs/resources/id) | resource |
+| [random_password.password](https://registry.terraform.io/providers/random/latest/docs/resources/password) | resource |
+| [cloudfoundry_domain.app_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain) | data source |
+| [cloudfoundry_domain.apps_internal_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain) | data source |
+| [cloudfoundry_org.org](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/org) | data source |
+| [cloudfoundry_service.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/service) | data source |
+| [hsdp_config.cf](https://registry.terraform.io/providers/philips-software/hsdp/latest/docs/data-sources/config) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_alertmanagers_endpoints"></a> [alertmanagers\_endpoints](#input\_alertmanagers\_endpoints) | List of endpoints of the alert managers | `list(string)` | `[]` | no |
+| <a name="input_cf_functional_account"></a> [cf\_functional\_account](#input\_cf\_functional\_account) | Configuration for the CloudFoundry function account. Required for variant and if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
+| <a name="input_cf_org_name"></a> [cf\_org\_name](#input\_cf\_org\_name) | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
+| <a name="input_cf_paas_exporter_disk_quota"></a> [cf\_paas\_exporter\_disk\_quota](#input\_cf\_paas\_exporter\_disk\_quota) | CF PaaS Exporter disk quota | `number` | `100` | no |
+| <a name="input_cf_paas_exporter_image"></a> [cf\_paas\_exporter\_image](#input\_cf\_paas\_exporter\_image) | Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates | `string` | `"loafoe/paas-prometheus-exporter:v0.0.5"` | no |
+| <a name="input_cf_paas_exporter_memory"></a> [cf\_paas\_exporter\_memory](#input\_cf\_paas\_exporter\_memory) | CF PaaS Exporter memory | `number` | `256` | no |
+| <a name="input_cf_paas_exporter_timeout"></a> [cf\_paas\_exporter\_timeout](#input\_cf\_paas\_exporter\_timeout) | CF PaaS Exporter timeout | `number` | `120` | no |
+| <a name="input_cf_space_id"></a> [cf\_space\_id](#input\_cf\_space\_id) | Cloudfoundry SPACE id to use for deploying all Thanos components. | `string` | n/a | yes |
+| <a name="input_docker_password"></a> [docker\_password](#input\_docker\_password) | Docker registry password | `string` | `""` | no |
+| <a name="input_docker_username"></a> [docker\_username](#input\_docker\_username) | Docker registry username | `string` | `""` | no |
+| <a name="input_enable_cf_exporter"></a> [enable\_cf\_exporter](#input\_enable\_cf\_exporter) | Enable the CloudFoundry metrics exporter and scrape it from Thanos | `bool` | `false` | no |
+| <a name="input_enable_hsdp_metrics_exporter"></a> [enable\_hsdp\_metrics\_exporter](#input\_enable\_hsdp\_metrics\_exporter) | Enable scraping of HSDP Metrics instances | `bool` | `false` | no |
+| <a name="input_enable_prometheus_proxy"></a> [enable\_prometheus\_proxy](#input\_enable\_prometheus\_proxy) | Enable the Prometheus proxy, protected by Basic Auth | `bool` | `false` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | Pass environment variable to the app | `map(any)` | `{}` | no |
+| <a name="input_hsdp_metrics_exporter"></a> [hsdp\_metrics\_exporter](#input\_hsdp\_metrics\_exporter) | HSDP Metrics exporter configuration | <pre>object({<br>    image           = string<br>    docker_username = string<br>    docker_password = string<br>    memory          = number<br>    disk_quota      = number<br>    timeout         = number<br>    region          = string<br>  })</pre> | <pre>{<br>  "disk_quota": 100,<br>  "docker_password": "",<br>  "docker_username": "",<br>  "image": "loafoe/prometheus-hsdp-metrics-exporter:v0.0.14",<br>  "memory": 256,<br>  "region": "us-east",<br>  "timeout": 120<br>}</pre> | no |
+| <a name="input_name_postfix"></a> [name\_postfix](#input\_name\_postfix) | The postfix string to append to the space, hostname, etc. Prevents namespace clashes | `string` | `""` | no |
+| <a name="input_spaces"></a> [spaces](#input\_spaces) | The list of CF space GUIDs to scrape. When provided variant will only consider apps in these spaces | `list(string)` | `[]` | no |
+| <a name="input_tenants"></a> [tenants](#input\_tenants) | The list of tenants to scrape. When an app does not specify tenant then 'default' is used | `list(string)` | <pre>[<br>  "default"<br>]</pre> | no |
+| <a name="input_thanos_compactor_disk_quota"></a> [thanos\_compactor\_disk\_quota](#input\_thanos\_compactor\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
+| <a name="input_thanos_compactor_enabled"></a> [thanos\_compactor\_enabled](#input\_thanos\_compactor\_enabled) | Enable or disable the Thanos compactor component | `bool` | `true` | no |
+| <a name="input_thanos_compactor_image"></a> [thanos\_compactor\_image](#input\_thanos\_compactor\_image) | Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v6.1.0"` | no |
+| <a name="input_thanos_compactor_memory"></a> [thanos\_compactor\_memory](#input\_thanos\_compactor\_memory) | Thanos store memory | `number` | `1024` | no |
+| <a name="input_thanos_disk_quota"></a> [thanos\_disk\_quota](#input\_thanos\_disk\_quota) | Thanos disk quota | `number` | `5000` | no |
+| <a name="input_thanos_extra_config"></a> [thanos\_extra\_config](#input\_thanos\_extra\_config) | Any extra yaml config that will be merged into the prometheus config at runtime. Extra targets can be added here. | `string` | `""` | no |
+| <a name="input_thanos_file_sd_url"></a> [thanos\_file\_sd\_url](#input\_thanos\_file\_sd\_url) | A URL that exposes a prometheus file\_sd yaml file will be periodically downloaded and used for service discovery | `string` | `""` | no |
+| <a name="input_thanos_image"></a> [thanos\_image](#input\_thanos\_image) | Image to use for Thanos app. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v6.1.0"` | no |
+| <a name="input_thanos_memory"></a> [thanos\_memory](#input\_thanos\_memory) | Thanos memory | `number` | `1024` | no |
+| <a name="input_thanos_public_endpoints"></a> [thanos\_public\_endpoints](#input\_thanos\_public\_endpoints) | Make Thanos public endpoint | `bool` | `false` | no |
+| <a name="input_thanos_query_image"></a> [thanos\_query\_image](#input\_thanos\_query\_image) | Image to use for Thanos query. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v6.1.0"` | no |
+| <a name="input_thanos_query_memory"></a> [thanos\_query\_memory](#input\_thanos\_query\_memory) | Thanos memory | `number` | `1024` | no |
+| <a name="input_thanos_query_service_bindings"></a> [thanos\_query\_service\_bindings](#input\_thanos\_query\_service\_bindings) | A list of service instances that should be bound to the thanos app | `list(object({ service_instance = string }))` | `[]` | no |
+| <a name="input_thanos_service_bindings"></a> [thanos\_service\_bindings](#input\_thanos\_service\_bindings) | A list of service instances that should be bound to the thanos app | `list(object({ service_instance = string }))` | `[]` | no |
+| <a name="input_thanos_storage_tsdb_retention_time"></a> [thanos\_storage\_tsdb\_retention\_time](#input\_thanos\_storage\_tsdb\_retention\_time) | Thanos storage tsdb retention time | `string` | `"2h"` | no |
+| <a name="input_thanos_store_disk_quota"></a> [thanos\_store\_disk\_quota](#input\_thanos\_store\_disk\_quota) | Thanos store disk quota | `number` | `5000` | no |
+| <a name="input_thanos_store_image"></a> [thanos\_store\_image](#input\_thanos\_store\_image) | Image to use for Thanos store. Use a v* tagged version to prevent automatic updates | `string` | `"philipslabs/cf-thanos:v6.1.0"` | no |
+| <a name="input_thanos_store_memory"></a> [thanos\_store\_memory](#input\_thanos\_store\_memory) | Thanos store memory | `number` | `1536` | no |
+| <a name="input_thanos_store_service_bindings"></a> [thanos\_store\_service\_bindings](#input\_thanos\_store\_service\_bindings) | A list of service instances that should be bound to the thanos\_store app | `list(object({ service_instance = string }))` | `[]` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_postfix"></a> [postfix](#output\_postfix) | Cluster ID / Postfix of Thanos deployment |
+| <a name="output_prometheus_proxy_endpoint"></a> [prometheus\_proxy\_endpoint](#output\_prometheus\_proxy\_endpoint) | The Promethues proxy endpoint |
+| <a name="output_prometheus_proxy_password"></a> [prometheus\_proxy\_password](#output\_prometheus\_proxy\_password) | The Promethues proxy password |
+| <a name="output_prometheus_proxy_username"></a> [prometheus\_proxy\_username](#output\_prometheus\_proxy\_username) | The Promethues proxy username |
+| <a name="output_thanos_app_id"></a> [thanos\_app\_id](#output\_thanos\_app\_id) | App id for Thanos |
+| <a name="output_thanos_endpoint"></a> [thanos\_endpoint](#output\_thanos\_endpoint) | URL of Thanos deployment |
+| <a name="output_thanos_query_app_id"></a> [thanos\_query\_app\_id](#output\_thanos\_query\_app\_id) | App id for Thanos Query |
+| <a name="output_thanos_query_endpoint"></a> [thanos\_query\_endpoint](#output\_thanos\_query\_endpoint) | URL of Thanos query deployment |
+| <a name="output_thanos_space_id"></a> [thanos\_space\_id](#output\_thanos\_space\_id) | Cloud foundry space ID of Thanos |
+| <a name="output_thanos_store_app_id"></a> [thanos\_store\_app\_id](#output\_thanos\_store\_app\_id) | App id for Thanos Store |
+| <a name="output_thanos_store_endpoint"></a> [thanos\_store\_endpoint](#output\_thanos\_store\_endpoint) | Internal only URL of Thanos store deployment |
 <!-- END_TF_DOCS -->
 
 # Contact / Getting help
