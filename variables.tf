@@ -16,25 +16,25 @@ variable "name_postfix" {
 
 variable "thanos_image" {
   description = "Image to use for Thanos app. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v6.0.0"
+  default     = "philipslabs/cf-thanos:v6.1.0"
   type        = string
 }
 
 variable "thanos_query_image" {
   description = "Image to use for Thanos query. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v6.0.0"
+  default     = "philipslabs/cf-thanos:v6.1.0"
   type        = string
 }
 
 variable "thanos_store_image" {
   description = "Image to use for Thanos store. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v6.0.0"
+  default     = "philipslabs/cf-thanos:v6.1.0"
   type        = string
 }
 
 variable "thanos_compactor_image" {
   description = "Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v6.0.0"
+  default     = "philipslabs/cf-thanos:v6.1.0"
   type        = string
 }
 
@@ -159,6 +159,35 @@ variable "cf_functional_account" {
     username     = ""
     password     = ""
   }
+}
+
+
+variable "enable_hsdp_metrics_exporter" {
+  type        = bool
+  description = "Enable scraping of HSDP Metrics instances"
+  default     = false
+}
+
+variable "hsdp_metrics_exporter" {
+  type = object({
+    image           = string
+    docker_username = string
+    docker_password = string
+    memory          = number
+    disk_quota      = number
+    timeout         = number
+    region          = string
+  })
+  default = {
+    image           = "loafoe/prometheus-hsdp-metrics-exporter:v0.0.14"
+    docker_username = ""
+    docker_password = ""
+    memory          = 256
+    disk_quota      = 100
+    timeout         = 120
+    region          = "us-east"
+  }
+  description = "HSDP Metrics exporter configuration"
 }
 
 variable "cf_paas_exporter_image" {
