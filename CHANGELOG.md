@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v6.1.0
+
+- Add optional HSDP Metrics exporter
+
+## v6.0.0
+
+- BREAKING: requires Terraform 1.3.0 or newer
+
 ## v5.5.0
 
 - Support for remote writes
