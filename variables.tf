@@ -161,6 +161,35 @@ variable "cf_functional_account" {
   }
 }
 
+
+variable "enable_hsdp_metrics_exporter" {
+  type        = bool
+  description = "Enable scraping of HSDP Metrics instances"
+  default     = false
+}
+
+variable "hsdp_metrics_exporter" {
+  type = object({
+    image           = string
+    docker_username = string
+    docker_password = string
+    memory          = number
+    disk_quota      = number
+    timeout         = number
+    region          = string
+  })
+  default = {
+    image           = "loafoe/prometheus-hsdp-metrics-exporter:v0.0.14"
+    docker_username = ""
+    docker_password = ""
+    memory          = 256
+    disk_quota      = 100
+    timeout         = 120
+    region          = "us-east"
+  }
+  description = "HSDP Metrics exporter configuration"
+}
+
 variable "cf_paas_exporter_image" {
   description = "Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates"
   default     = "loafoe/paas-prometheus-exporter:v0.0.5"
