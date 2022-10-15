@@ -8,13 +8,15 @@ Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unli
 - Deploys a Compactor instance
 - [Variant](https://github.com/philips-software/variant) sidecar for scrape target and rule discovery
 - [Remote write](#input_enable_prometheus_proxy) support
+- HSP Metrics exporter (optional)
+- CF Metric exporter (optional)
 
 ## Example of Thanos Terraform
 
 ```
 module "thanos" {
     source = "philips-labs/thanos/cloudfoundry"
-    version = "4.2.0"
+    version = "6.1.0"
 
     cf_org_name        = var.cf_org_name
     cf_space_id        = var.cf_space_id
