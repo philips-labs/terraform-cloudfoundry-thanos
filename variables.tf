@@ -16,25 +16,25 @@ variable "name_postfix" {
 
 variable "thanos_image" {
   description = "Image to use for Thanos app. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v6.1.0"
+  default     = "ghcr.io/philips-labs/terraform-cloudfoundry-thanos:v6.3.1"
   type        = string
 }
 
 variable "thanos_query_image" {
   description = "Image to use for Thanos query. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v6.1.0"
+  default     = "ghcr.io/philips-labs/terraform-cloudfoundry-thanos:v6.3.1"
   type        = string
 }
 
 variable "thanos_store_image" {
   description = "Image to use for Thanos store. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v6.1.0"
+  default     = "ghcr.io/philips-labs/terraform-cloudfoundry-thanos:v6.3.1"
   type        = string
 }
 
 variable "thanos_compactor_image" {
   description = "Image to use for Thanos compactor. Use a v* tagged version to prevent automatic updates"
-  default     = "philipslabs/cf-thanos:v6.1.0"
+  default     = "ghcr.io/philips-labs/terraform-cloudfoundry-thanos:v6.3.1"
   type        = string
 }
 
