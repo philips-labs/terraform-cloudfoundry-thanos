@@ -10,9 +10,15 @@ resource "cloudfoundry_app" "thanos_compactor" {
     username = var.docker_username
     password = var.docker_password
   }
-  environment = var.environment
-  command     = "/sidecars/bin/thanos_s3.sh compact --wait --data-dir=/prometheus --objstore.config-file=/sidecars/etc/bucket_config.yaml"
-  service_binding {
-    service_instance = cloudfoundry_service_instance.s3.id
-  }
+  environment = merge(
+    {
+      S3_BUCKET     = cloudfoundry_service_key.s3.credentials["bucket"]
+      S3_ENDPOINT   = cloudfoundry_service_key.s3.credentials["endpoint"]
+      S3_API_KEY    = cloudfoundry_service_key.s3.credentials["api_key"]
+      S3_SECRET_KEY = cloudfoundry_service_key.s3.credentials["secret_key"]
+      S3_URI        = cloudfoundry_service_key.s3.credentials["uri"]
+    },
+    var.environment
+  )
+  command = "/sidecars/bin/thanos_s3_sk.sh compact --wait --data-dir=/prometheus --objstore.config-file=/sidecars/etc/bucket_config.yaml"
 }
