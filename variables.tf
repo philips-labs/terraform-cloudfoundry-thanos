@@ -1,8 +1,3 @@
-variable "cf_org_name" {
-  description = "Cloudfoundry ORG name to use for reverse proxy"
-  type        = string
-}
-
 variable "cf_space_id" {
   description = "Cloudfoundry SPACE id to use for deploying all Thanos components."
   type        = string

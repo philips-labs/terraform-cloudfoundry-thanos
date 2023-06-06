@@ -77,7 +77,6 @@ module "thanos" {
 | [random_password.password](https://registry.terraform.io/providers/random/latest/docs/resources/password) | resource |
 | [cloudfoundry_domain.app_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain) | data source |
 | [cloudfoundry_domain.apps_internal_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain) | data source |
-| [cloudfoundry_org.org](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/org) | data source |
 | [cloudfoundry_service.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/service) | data source |
 | [hsdp_config.cf](https://registry.terraform.io/providers/philips-software/hsdp/latest/docs/data-sources/config) | data source |
 
@@ -87,7 +86,6 @@ module "thanos" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_alertmanagers_endpoints"></a> [alertmanagers\_endpoints](#input\_alertmanagers\_endpoints) | List of endpoints of the alert managers | `list(string)` | `[]` | no |
 | <a name="input_cf_functional_account"></a> [cf\_functional\_account](#input\_cf\_functional\_account) | Configuration for the CloudFoundry function account. Required for variant and if enable\_cf\_exporter is set to true | <pre>object({<br>    api_endpoint = string<br>    username     = string<br>    password     = string<br>  })</pre> | <pre>{<br>  "api_endpoint": "",<br>  "password": "",<br>  "username": ""<br>}</pre> | no |
-| <a name="input_cf_org_name"></a> [cf\_org\_name](#input\_cf\_org\_name) | Cloudfoundry ORG name to use for reverse proxy | `string` | n/a | yes |
 | <a name="input_cf_paas_exporter_disk_quota"></a> [cf\_paas\_exporter\_disk\_quota](#input\_cf\_paas\_exporter\_disk\_quota) | CF PaaS Exporter disk quota | `number` | `100` | no |
 | <a name="input_cf_paas_exporter_image"></a> [cf\_paas\_exporter\_image](#input\_cf\_paas\_exporter\_image) | Image to use for cf paas exporter. Use a v* tagged version to prevent automatic updates | `string` | `"loafoe/paas-prometheus-exporter:v0.0.5"` | no |
 | <a name="input_cf_paas_exporter_memory"></a> [cf\_paas\_exporter\_memory](#input\_cf\_paas\_exporter\_memory) | CF PaaS Exporter memory | `number` | `256` | no |
