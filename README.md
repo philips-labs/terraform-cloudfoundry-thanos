@@ -73,6 +73,7 @@ module "thanos" {
 | [cloudfoundry_route.thanos_query_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_route.thanos_store_internal](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/route) | resource |
 | [cloudfoundry_service_instance.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_instance) | resource |
+| [cloudfoundry_service_key.s3](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/resources/service_key) | resource |
 | [random_id.id](https://registry.terraform.io/providers/random/latest/docs/resources/id) | resource |
 | [random_password.password](https://registry.terraform.io/providers/random/latest/docs/resources/password) | resource |
 | [cloudfoundry_domain.app_domain](https://registry.terraform.io/providers/cloudfoundry-community/cloudfoundry/latest/docs/data-sources/domain) | data source |
