@@ -43,9 +43,9 @@ module "thanos" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_cloudfoundry"></a> [cloudfoundry](#provider\_cloudfoundry) | 0.50.8 |
-| <a name="provider_hsdp"></a> [hsdp](#provider\_hsdp) | 0.42.1 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+| <a name="provider_cloudfoundry"></a> [cloudfoundry](#provider\_cloudfoundry) | >= 0.15.5 |
+| <a name="provider_hsdp"></a> [hsdp](#provider\_hsdp) | >= 0.38.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | >= 2.2.1 |
 
 ## Modules
 
