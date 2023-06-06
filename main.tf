@@ -42,17 +42,20 @@ resource "cloudfoundry_app" "thanos" {
     VARIANT_TENANTS                    = join(",", var.tenants)
     VARIANT_SPACES                     = join(",", var.spaces)
     VARIANT_RELOAD                     = "true"
-  }, var.environment)
+    S3_BUCKET                          = cloudfoundry_service_key.s3.credentials["bucket"]
+    S3_ENDPOINT                        = cloudfoundry_service_key.s3.credentials["endpoint"]
+    S3_API_KEY                         = cloudfoundry_service_key.s3.credentials["api_key"]
+    S3_SECRET_KEY                      = cloudfoundry_service_key.s3.credentials["secret_key"]
+    S3_URI                             = cloudfoundry_service_key.s3.credentials["uri"]
+    },
+  var.environment)
+
 
   dynamic "routes" {
     for_each = local.thanos_routes
     content {
       route = routes.value
     }
-  }
-  //noinspection HCLUnknownBlockType
-  service_binding {
-    service_instance = cloudfoundry_service_instance.s3.id
   }
 
   dynamic "service_binding" {
