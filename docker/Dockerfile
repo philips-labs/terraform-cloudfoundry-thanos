@@ -1,6 +1,6 @@
 FROM prom/prometheus:v2.47.0 AS prometheus
 
-FROM thanosio/thanos:v0.32.2 AS thanos
+FROM thanosio/thanos:v0.32.4 AS thanos
 
 ## Variant
 FROM philipssoftware/variant:v0.3.0 AS variant
