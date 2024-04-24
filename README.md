@@ -2,6 +2,13 @@
 
 Setup for Prometheus + Thanos on Cloudfoundry. This provides a path towards unlimited metrics storage. This module deploys a number of apps and services to provide [Thanos](https://thanos.io)
 
+## Disclaimer
+
+> [!Important]
+> This repository is managed as Philips Inner-source / Open-source.
+> This repository is NOT endorsed or supported by HSSA&P or I&S Cloud Operations. 
+> You are expected to self-support or raise tickets on the Github project and NOT raise tickets in HSP ServiceNow. 
+
 ## Features
 
 - Deploys a Thanos instance with S3 Bucket as storage
