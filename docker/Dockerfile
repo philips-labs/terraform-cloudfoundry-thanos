@@ -1,4 +1,4 @@
-FROM prom/prometheus:v2.51.2 AS prometheus
+FROM prom/prometheus:v2.53.0 AS prometheus
 
 FROM thanosio/thanos:v0.34.1 AS thanos
 
